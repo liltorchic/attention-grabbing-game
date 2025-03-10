@@ -1,0 +1,362 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmab5sthll2kw"]
+
+[ext_resource type="Script" uid="uid://chfyo4sbk14ri" path="res://scripts/simpleTimerButton.gd" id="1_f8rxg"]
+[ext_resource type="Script" uid="uid://b8856euvmr15g" path="res://scripts/simple_suprise_timer.gd" id="2_7tkh2"]
+[ext_resource type="Script" uid="uid://dei6k0i7cbeqj" path="res://scripts/ticker.gd" id="3_fh3d0"]
+[ext_resource type="Script" uid="uid://dpr3kjlg4654n" path="res://scripts/pet.gd" id="4_my4y7"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_011nb"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FlowContainer" type="FlowContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -262.0
+offset_top = -64.0
+offset_right = 262.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+vertical = true
+
+[node name="template" type="ColorRect" parent="Panel/FlowContainer"]
+visible = false
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="Timer" type="Timer" parent="Panel/FlowContainer/template"]
+
+[node name="Button" type="Button" parent="Panel/FlowContainer/template"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = 9.785
+offset_right = 55.0
+offset_bottom = 40.785
+grow_horizontal = 2
+grow_vertical = 2
+text = "reset"
+
+[node name="Label" type="Label" parent="Panel/FlowContainer/template"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -38.515
+offset_right = 20.0
+offset_bottom = -15.515
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "simple timer"
+
+[node name="SimpleTimerButton" type="ColorRect" parent="Panel/FlowContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+script = ExtResource("1_f8rxg")
+
+[node name="Timer" type="Timer" parent="Panel/FlowContainer/SimpleTimerButton"]
+
+[node name="Button" type="Button" parent="Panel/FlowContainer/SimpleTimerButton"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = 9.785
+offset_right = 55.0
+offset_bottom = 40.785
+grow_horizontal = 2
+grow_vertical = 2
+text = "reset"
+
+[node name="Label" type="Label" parent="Panel/FlowContainer/SimpleTimerButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -38.515
+offset_right = 20.0
+offset_bottom = -15.515
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "simple timer"
+
+[node name="SimpleSupriseTimer" type="ColorRect" parent="Panel/FlowContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+script = ExtResource("2_7tkh2")
+
+[node name="TimerCountdown" type="Timer" parent="Panel/FlowContainer/SimpleSupriseTimer"]
+wait_time = 3.0
+
+[node name="TimerHidden" type="Timer" parent="Panel/FlowContainer/SimpleSupriseTimer"]
+wait_time = 20.0
+
+[node name="Button" type="Button" parent="Panel/FlowContainer/SimpleSupriseTimer"]
+visible = false
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = 9.785
+offset_right = 55.0
+offset_bottom = 40.785
+grow_horizontal = 2
+grow_vertical = 2
+text = "defuse"
+
+[node name="Label" type="Label" parent="Panel/FlowContainer/SimpleSupriseTimer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -38.515
+offset_right = 20.0
+offset_bottom = -15.515
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "suprise timer"
+
+[node name="ticker" type="ColorRect" parent="Panel/FlowContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+script = ExtResource("3_fh3d0")
+
+[node name="Timer" type="Timer" parent="Panel/FlowContainer/ticker"]
+
+[node name="Button" type="Button" parent="Panel/FlowContainer/ticker"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.5
+offset_top = -37.635
+offset_right = 15.5
+offset_bottom = -6.635
+grow_horizontal = 2
+grow_vertical = 0
+text = "+1"
+
+[node name="Label" type="Label" parent="Panel/FlowContainer/ticker"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -38.515
+offset_right = 20.0
+offset_bottom = -15.515
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "ticker"
+
+[node name="CheckButton" type="CheckButton" parent="Panel/FlowContainer/ticker"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.315
+offset_top = -12.0
+offset_right = 13.685
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="_label" type="Label" parent="Panel/FlowContainer/ticker/CheckButton"]
+layout_mode = 0
+offset_left = 39.0
+offset_right = 79.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "x2"
+
+[node name="pet" type="ColorRect" parent="Panel/FlowContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+script = ExtResource("4_my4y7")
+
+[node name="Timer" type="Timer" parent="Panel/FlowContainer/pet"]
+wait_time = 3.0
+autostart = true
+
+[node name="Button_Food" type="Button" parent="Panel/FlowContainer/pet"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = 26.0
+offset_right = 51.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+text = "food"
+
+[node name="Button_Water" type="Button" parent="Panel/FlowContainer/pet"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 3.27
+offset_top = 26.0
+offset_right = 113.27
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+text = "water"
+
+[node name="Label" type="Label" parent="Panel/FlowContainer/pet"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.31
+offset_top = -58.407
+offset_right = 29.31
+offset_bottom = -33.322
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "pet"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Panel/FlowContainer/pet"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -25.455
+offset_right = 20.0
+offset_bottom = 14.545
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_011nb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Panel/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -51.0
+offset_right = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label_Lives" type="Label" parent="Panel/VBoxContainer/ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "lives"
+
+[node name="Label_Lives_num" type="Label" parent="Panel/VBoxContainer/ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "#"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label_Points" type="Label" parent="Panel/VBoxContainer/ColorRect/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "points"
+
+[node name="Label_Points_num" type="Label" parent="Panel/VBoxContainer/ColorRect/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "#"
+
+[connection signal="timeout" from="Panel/FlowContainer/SimpleTimerButton/Timer" to="Panel/FlowContainer/SimpleTimerButton" method="_on_timer_timeout"]
+[connection signal="pressed" from="Panel/FlowContainer/SimpleTimerButton/Button" to="Panel/FlowContainer/SimpleTimerButton" method="_on_button_pressed"]
+[connection signal="timeout" from="Panel/FlowContainer/SimpleSupriseTimer/TimerCountdown" to="Panel/FlowContainer/SimpleSupriseTimer" method="_on_timer_countdown_timeout"]
+[connection signal="timeout" from="Panel/FlowContainer/SimpleSupriseTimer/TimerHidden" to="Panel/FlowContainer/SimpleSupriseTimer" method="_on_timer_hidden_timeout"]
+[connection signal="pressed" from="Panel/FlowContainer/SimpleSupriseTimer/Button" to="Panel/FlowContainer/SimpleSupriseTimer" method="_on_button_pressed"]
+[connection signal="timeout" from="Panel/FlowContainer/ticker/Timer" to="Panel/FlowContainer/ticker" method="_on_timer_timeout"]
+[connection signal="pressed" from="Panel/FlowContainer/ticker/Button" to="Panel/FlowContainer/ticker" method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/FlowContainer/ticker/CheckButton" to="Panel/FlowContainer/ticker" method="_on_check_button_pressed"]
+[connection signal="timeout" from="Panel/FlowContainer/pet/Timer" to="Panel/FlowContainer/pet" method="_on_timer_timeout"]
+[connection signal="pressed" from="Panel/FlowContainer/pet/Button_Food" to="Panel/FlowContainer/pet" method="_on_button_food_pressed"]
+[connection signal="pressed" from="Panel/FlowContainer/pet/Button_Water" to="Panel/FlowContainer/pet" method="_on_button_water_pressed"]
