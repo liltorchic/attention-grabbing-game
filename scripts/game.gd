@@ -2,10 +2,15 @@ extends Node
 
 
 var time_points = 0
-var lifes = 10
+var lives = 10
+
 
 func _ready() -> void:
 	print("hi from singlton")
+	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
 
 
 func add_time_point():
@@ -13,3 +18,10 @@ func add_time_point():
 	
 func add_time_points(_p:int):
 	time_points += _p
+
+func remove_life():
+	if(lives - 1 > 0):
+		lives -= 1
+	else:
+		print("you died")
+		#dead

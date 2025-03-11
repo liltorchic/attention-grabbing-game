@@ -50,5 +50,6 @@ func _on_button_pressed() -> void:
 	label.text = str(ticker)
 	
 func _timeout():
+	Game.remove_life()
 	print("ticker timeout")
 	

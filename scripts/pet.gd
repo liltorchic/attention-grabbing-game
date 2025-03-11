@@ -19,6 +19,7 @@ func _ready() -> void:
 	health = 100
 	
 func die():
+	Game.remove_life()
 	print("pet timeout")
 
 

@@ -39,7 +39,9 @@ func _on_timer_hidden_timeout() -> void:
 #you lose
 func _on_timer_countdown_timeout() -> void:
 	countdown_timer.stop()
+	hidden_timer.stop()
 	label.text = "0.00"
+	Game.remove_life()
 	print("suprise defuse timeout")
 
 

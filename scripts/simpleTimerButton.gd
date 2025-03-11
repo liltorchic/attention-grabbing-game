@@ -17,6 +17,7 @@ func _process(delta: float) -> void:
 func _on_timer_timeout() -> void:
 	timer.stop()
 	label.text = "0.00"
+	Game.remove_life()
 	print("simple timer timeout")
 
 
