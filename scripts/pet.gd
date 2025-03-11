@@ -1,6 +1,7 @@
 extends ColorRect
 
 var timer:Timer
+var scorer:Timer
 var button_food:Button
 var button_water:Button
 var label:Label
@@ -11,22 +12,19 @@ var health:int
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	timer = get_node("Timer")
+	scorer = get_node("Timer_Scorer")
 	button_food = get_node("Button_Food")
 	button_water = get_node("Button_Water")
 	label = get_node("Label")
 	tex = get_node("TextureRect")
 	label.text = "happy"
 	health = 100
+	scorer.start(1)
 	
 func die():
 	Game.remove_life()
+	scorer.stop()
 	print("pet timeout")
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 
 func _on_timer_timeout() -> void:
 	health = health - 1
@@ -36,6 +34,7 @@ func _on_timer_timeout() -> void:
 		label.text = "dead"
 		die()
 		timer.stop()
+		scorer.stop()
 	elif(health < 10):
 		label.text = "dying"
 	elif(health < 30):
@@ -56,13 +55,23 @@ func _on_timer_timeout() -> void:
 		label.text = "dead"
 		die()
 		timer.stop()
+		scorer.stop()
 		
 	print(str(health))
 
 
 func _on_button_food_pressed() -> void:
 	health = health + 3
+	if(scorer.paused):
+		scorer.start(1)
 
 
 func _on_button_water_pressed() -> void:
 	health = health + 1
+	if(scorer.paused):
+		scorer.start(1)
+
+
+func _on_timer_scorer_timeout() -> void:
+	Game.add_time_point()
+	scorer.start(1)

@@ -51,6 +51,9 @@ layout_mode = 2
 
 [node name="Timer" type="Timer" parent="Panel/distractions/template"]
 
+[node name="Timer_Scorer" type="Timer" parent="Panel/distractions/template"]
+editor_description = "Used for assigning points to the game manager"
+
 [node name="Button" type="Button" parent="Panel/distractions/template"]
 layout_direction = 1
 layout_mode = 1
@@ -89,6 +92,9 @@ layout_mode = 2
 script = ExtResource("1_f8rxg")
 
 [node name="Timer" type="Timer" parent="Panel/distractions/SimpleTimerButton"]
+
+[node name="Timer_Scorer" type="Timer" parent="Panel/distractions/SimpleTimerButton"]
+editor_description = "Used for assigning points to the game manager"
 
 [node name="Button" type="Button" parent="Panel/distractions/SimpleTimerButton"]
 layout_direction = 1
@@ -133,6 +139,9 @@ wait_time = 3.0
 [node name="TimerHidden" type="Timer" parent="Panel/distractions/SimpleSupriseTimer"]
 wait_time = 20.0
 
+[node name="Timer_Scorer" type="Timer" parent="Panel/distractions/SimpleSupriseTimer"]
+editor_description = "Used for assigning points to the game manager"
+
 [node name="Button" type="Button" parent="Panel/distractions/SimpleSupriseTimer"]
 visible = false
 layout_direction = 1
@@ -172,6 +181,9 @@ layout_mode = 2
 script = ExtResource("3_fh3d0")
 
 [node name="Timer" type="Timer" parent="Panel/distractions/ticker"]
+
+[node name="Timer_Scorer" type="Timer" parent="Panel/distractions/ticker"]
+editor_description = "Used for assigning points to the game manager"
 
 [node name="Button" type="Button" parent="Panel/distractions/ticker"]
 layout_direction = 1
@@ -235,6 +247,9 @@ script = ExtResource("4_my4y7")
 [node name="Timer" type="Timer" parent="Panel/distractions/pet"]
 wait_time = 3.0
 autostart = true
+
+[node name="Timer_Scorer" type="Timer" parent="Panel/distractions/pet"]
+editor_description = "Used for assigning points to the game manager"
 
 [node name="Button_Food" type="Button" parent="Panel/distractions/pet"]
 layout_direction = 1
@@ -352,13 +367,17 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "#"
 
 [connection signal="timeout" from="Panel/distractions/SimpleTimerButton/Timer" to="Panel/distractions/SimpleTimerButton" method="_on_timer_timeout"]
+[connection signal="timeout" from="Panel/distractions/SimpleTimerButton/Timer_Scorer" to="Panel/distractions/SimpleTimerButton" method="_on_timer_scorer_timeout"]
 [connection signal="pressed" from="Panel/distractions/SimpleTimerButton/Button" to="Panel/distractions/SimpleTimerButton" method="_on_button_pressed"]
 [connection signal="timeout" from="Panel/distractions/SimpleSupriseTimer/TimerCountdown" to="Panel/distractions/SimpleSupriseTimer" method="_on_timer_countdown_timeout"]
 [connection signal="timeout" from="Panel/distractions/SimpleSupriseTimer/TimerHidden" to="Panel/distractions/SimpleSupriseTimer" method="_on_timer_hidden_timeout"]
+[connection signal="timeout" from="Panel/distractions/SimpleSupriseTimer/Timer_Scorer" to="Panel/distractions/SimpleSupriseTimer" method="_on_timer_scorer_timeout"]
 [connection signal="pressed" from="Panel/distractions/SimpleSupriseTimer/Button" to="Panel/distractions/SimpleSupriseTimer" method="_on_button_pressed"]
 [connection signal="timeout" from="Panel/distractions/ticker/Timer" to="Panel/distractions/ticker" method="_on_timer_timeout"]
+[connection signal="timeout" from="Panel/distractions/ticker/Timer_Scorer" to="Panel/distractions/ticker" method="_on_timer_scorer_timeout"]
 [connection signal="pressed" from="Panel/distractions/ticker/Button" to="Panel/distractions/ticker" method="_on_button_pressed"]
 [connection signal="pressed" from="Panel/distractions/ticker/CheckButton" to="Panel/distractions/ticker" method="_on_check_button_pressed"]
 [connection signal="timeout" from="Panel/distractions/pet/Timer" to="Panel/distractions/pet" method="_on_timer_timeout"]
+[connection signal="timeout" from="Panel/distractions/pet/Timer_Scorer" to="Panel/distractions/pet" method="_on_timer_scorer_timeout"]
 [connection signal="pressed" from="Panel/distractions/pet/Button_Food" to="Panel/distractions/pet" method="_on_button_food_pressed"]
 [connection signal="pressed" from="Panel/distractions/pet/Button_Water" to="Panel/distractions/pet" method="_on_button_water_pressed"]
