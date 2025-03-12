@@ -4,6 +4,7 @@ extends Node
 var time_points = 0
 var lives = 10
 
+const panel_size = 128
 
 func _ready() -> void:
 	print("hi from singlton")
