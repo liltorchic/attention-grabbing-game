@@ -4,6 +4,9 @@ var timer:Timer
 var label:Label
 var scorer:Timer
 var timer_length:int = 60
+
+@onready var p = preload("res://scenes/particle.tscn")
+var particle_tree
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	timer = get_node("Timer")
@@ -11,6 +14,7 @@ func _ready() -> void:
 	scorer = get_node("Timer_Scorer")
 	timer.start(timer_length)
 	scorer.start(1)
+	_on_timer_scorer_timeout()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -29,9 +33,11 @@ func _on_button_pressed() -> void:
 	timer.start(timer_length)
 	scorer.start(1)
 	
-
-
 func _on_timer_scorer_timeout() -> void:
 	scorer.start(1)
+	particle_tree = p.instantiate()
+	add_child(particle_tree)
+	particle_tree.emit_speed(1,1.0,.02)
 	Game.add_time_point()
+	
 	
