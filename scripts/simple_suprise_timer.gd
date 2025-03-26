@@ -50,6 +50,9 @@ func _on_timer_countdown_timeout() -> void:
 
 #defuse
 func _on_button_pressed() -> void:
+	var reward = 20 * Game.get_multiplier()
+	if(!countdown_timer.is_stopped()):
+		Game.add_time_points(reward)	
 	timer_hidden = true
 	label.text = ""
 	countdown_timer.stop()
@@ -58,5 +61,5 @@ func _on_button_pressed() -> void:
 	button.visible = false
 	particle_tree = p.instantiate()
 	add_child(particle_tree)
-	particle_tree.emit(20,2.0)
-	Game.add_time_points(20)
+	particle_tree.emit(reward,2.0)
+	

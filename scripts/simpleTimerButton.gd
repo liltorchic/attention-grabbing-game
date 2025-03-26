@@ -34,10 +34,11 @@ func _on_button_pressed() -> void:
 	scorer.start(1)
 	
 func _on_timer_scorer_timeout() -> void:
+	var reward = 1 * Game.get_multiplier()
 	scorer.start(1)
 	particle_tree = p.instantiate()
 	add_child(particle_tree)
-	particle_tree.emit_speed(1,1.0,.02)
-	Game.add_time_point()
+	particle_tree.emit_speed(reward ,1.0,.02)
+	Game.add_time_points(reward)
 	
 	

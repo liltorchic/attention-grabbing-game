@@ -24,7 +24,7 @@ func _ready() -> void:
 	label.text = "happy"
 	health = 100
 	scorer.start(1)
-	award = 1
+	award = 1 * Game.get_multiplier()
 	_on_timer_scorer_timeout()
 	
 func die():
@@ -47,25 +47,25 @@ func _on_timer_timeout() -> void:
 		award = 0
 	elif(health < 30):
 		label.text = "sick"
-		award = 1
+		award = 1 * Game.get_multiplier()
 	elif(health < 60):
 		label.text = "unhappy"
-		award = 2
+		award = 2 * Game.get_multiplier()
 	elif(health < 80):
 		label.text = "ok"
-		award = 2
+		award = 2 * Game.get_multiplier()
 	elif(health < 90):
 		label.text = "happy"
-		award = 3
+		award = 3 * Game.get_multiplier()
 	elif(health < 101):
 		label.text = "excited"
-		award = 4
+		award = 4 * Game.get_multiplier()
 	elif(health < 110):
 		label.text = "crazy"
-		award = 2
+		award = 2 * Game.get_multiplier()
 	elif(health < 200):
 		label.text = "too stuffed"
-		award = 1
+		award = 1 * Game.get_multiplier()
 	elif(health < 260):
 		label.text = "dead"
 		award = 0
@@ -77,7 +77,7 @@ func _on_timer_timeout() -> void:
 
 
 func _on_button_food_pressed() -> void:
-	health = health + 3
+	health = health + 3 
 	if(scorer.paused):
 		scorer.start(1)
 

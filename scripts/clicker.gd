@@ -12,10 +12,11 @@ func _ready() -> void:
 
 
 func _on_button_pressed() -> void:
-	Game.add_time_point()
+	var reward = 1 * Game.get_multiplier()
+	Game.add_time_points(reward)
 	
 	particle_tree = p.instantiate()
 	add_child(particle_tree)
-	particle_tree.emit(1,2.0)
+	particle_tree.emit(reward,2.0)
 
 		

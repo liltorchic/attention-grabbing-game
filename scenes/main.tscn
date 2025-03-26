@@ -52,7 +52,7 @@ clip_contents = true
 custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
 
-[node name="VBoxContainer_Score" type="VBoxContainer" parent="Panel/HBoxContainer/VBoxContainer_UI/ColorRect"]
+[node name="container_scorer_ver" type="VBoxContainer" parent="Panel/HBoxContainer/VBoxContainer_UI/ColorRect"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -64,28 +64,41 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_tbgi4")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer_UI/ColorRect/VBoxContainer_Score"]
+[node name="container_lives_hor" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer_UI/ColorRect/container_scorer_ver"]
 layout_mode = 2
 
-[node name="Label_Lives" type="Label" parent="Panel/HBoxContainer/VBoxContainer_UI/ColorRect/VBoxContainer_Score/HBoxContainer"]
+[node name="Label_Lives" type="Label" parent="Panel/HBoxContainer/VBoxContainer_UI/ColorRect/container_scorer_ver/container_lives_hor"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "lives"
 
-[node name="Label_Lives_num" type="Label" parent="Panel/HBoxContainer/VBoxContainer_UI/ColorRect/VBoxContainer_Score/HBoxContainer"]
+[node name="Label_Lives_num" type="Label" parent="Panel/HBoxContainer/VBoxContainer_UI/ColorRect/container_scorer_ver/container_lives_hor"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "#"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer_UI/ColorRect/VBoxContainer_Score"]
+[node name="container_points_hor" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer_UI/ColorRect/container_scorer_ver"]
 layout_mode = 2
 
-[node name="Label_Points" type="Label" parent="Panel/HBoxContainer/VBoxContainer_UI/ColorRect/VBoxContainer_Score/HBoxContainer2"]
+[node name="Label_Points" type="Label" parent="Panel/HBoxContainer/VBoxContainer_UI/ColorRect/container_scorer_ver/container_points_hor"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "points"
 
-[node name="Label_Points_num" type="Label" parent="Panel/HBoxContainer/VBoxContainer_UI/ColorRect/VBoxContainer_Score/HBoxContainer2"]
+[node name="Label_Points_num" type="Label" parent="Panel/HBoxContainer/VBoxContainer_UI/ColorRect/container_scorer_ver/container_points_hor"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "#"
+
+[node name="container_mult_hor" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer_UI/ColorRect/container_scorer_ver"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer_UI/ColorRect/container_scorer_ver/container_mult_hor"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "mult"
+
+[node name="Label_Multiplier" type="Label" parent="Panel/HBoxContainer/VBoxContainer_UI/ColorRect/container_scorer_ver/container_mult_hor"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "#"
