@@ -1,0 +1,11 @@
+--distractions--
+add two numbers for points
+mult two number for points
+memory game
+long term memory game
+
+--mechanics--
+be able to buy distraction modules
+buy lives
+upgrade modules
+passive unlocking
