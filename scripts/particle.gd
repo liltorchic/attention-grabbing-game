@@ -20,7 +20,7 @@ func emit_speed(value: int, life:float, _rate:float) -> void:
 	rate = _rate
 	timer.start(life)
 
-func _process(delta):
+func _process(_delta):
 	if(label != null):
 		label.position += (Vector2(randf_range(0.05,.95),randf_range(-0.05,-.95)) * rate) + move_dir
 

@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://dmab5sthll2kw"]
 
-[ext_resource type="Script" uid="uid://chfyo4sbk14ri" path="res://scripts/simpleTimerButton.gd" id="1_f8rxg"]
-[ext_resource type="Script" uid="uid://b8856euvmr15g" path="res://scripts/simple_suprise_timer.gd" id="2_7tkh2"]
-[ext_resource type="Script" uid="uid://dei6k0i7cbeqj" path="res://scripts/ticker.gd" id="3_fh3d0"]
-[ext_resource type="Script" uid="uid://dpr3kjlg4654n" path="res://scripts/pet.gd" id="4_my4y7"]
-[ext_resource type="Script" uid="uid://jvp8yk25jfnw" path="res://scripts/v_box_container_score.gd" id="5_tbgi4"]
-[ext_resource type="Script" uid="uid://y1g6j227iswe" path="res://scripts/clicker.gd" id="6_tefeu"]
+[ext_resource type="Script" uid="uid://chfyo4sbk14ri" path="res://scripts/disctactions/distraction_timer_button.gd" id="1_f8rxg"]
+[ext_resource type="Script" uid="uid://b8856euvmr15g" path="res://scripts/disctactions/distraction_timer_defuse.gd" id="2_7tkh2"]
+[ext_resource type="Script" uid="uid://dei6k0i7cbeqj" path="res://scripts/disctactions/distraction_ticker.gd" id="3_fh3d0"]
+[ext_resource type="Script" uid="uid://dpr3kjlg4654n" path="res://scripts/disctactions/distraction_pet.gd" id="4_my4y7"]
+[ext_resource type="Script" uid="uid://jvp8yk25jfnw" path="res://scripts/ui/ui_vbox_container_score.gd" id="5_tbgi4"]
+[ext_resource type="Script" uid="uid://y1g6j227iswe" path="res://scripts/disctactions/distraction_clicker.gd" id="6_tefeu"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_011nb"]
 
@@ -122,17 +122,17 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 columns = 2
 
-[node name="template" type="ColorRect" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions"]
+[node name="distraction_template" type="ColorRect" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions"]
 visible = false
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 
-[node name="Timer" type="Timer" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/template"]
+[node name="Timer" type="Timer" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_template"]
 
-[node name="Timer_Scorer" type="Timer" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/template"]
+[node name="Timer_Scorer" type="Timer" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_template"]
 editor_description = "Used for assigning points to the game manager"
 
-[node name="Button" type="Button" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/template"]
+[node name="Button" type="Button" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_template"]
 layout_direction = 1
 layout_mode = 1
 anchors_preset = 8
@@ -148,7 +148,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "reset"
 
-[node name="Label" type="Label" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/template"]
+[node name="Label" type="Label" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_template"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -164,17 +164,17 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "simple timer"
 
-[node name="SimpleTimerButton" type="ColorRect" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions"]
+[node name="distraction_timer_button" type="ColorRect" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 script = ExtResource("1_f8rxg")
 
-[node name="Timer" type="Timer" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/SimpleTimerButton"]
+[node name="Timer" type="Timer" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_button"]
 
-[node name="Timer_Scorer" type="Timer" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/SimpleTimerButton"]
+[node name="Timer_Scorer" type="Timer" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_button"]
 editor_description = "Used for assigning points to the game manager"
 
-[node name="Button" type="Button" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/SimpleTimerButton"]
+[node name="Button" type="Button" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_button"]
 layout_direction = 1
 layout_mode = 1
 anchors_preset = 8
@@ -190,7 +190,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "reset"
 
-[node name="Label" type="Label" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/SimpleTimerButton"]
+[node name="Label" type="Label" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_button"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -206,18 +206,18 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "simple timer"
 
-[node name="SimpleSupriseTimer" type="ColorRect" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions"]
+[node name="distraction_timer_suprise" type="ColorRect" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 script = ExtResource("2_7tkh2")
 
-[node name="TimerCountdown" type="Timer" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/SimpleSupriseTimer"]
+[node name="TimerCountdown" type="Timer" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_suprise"]
 wait_time = 3.0
 
-[node name="TimerHidden" type="Timer" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/SimpleSupriseTimer"]
+[node name="TimerHidden" type="Timer" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_suprise"]
 wait_time = 20.0
 
-[node name="Button" type="Button" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/SimpleSupriseTimer"]
+[node name="Button" type="Button" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_suprise"]
 visible = false
 layout_direction = 1
 layout_mode = 1
@@ -234,7 +234,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "defuse"
 
-[node name="Label" type="Label" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/SimpleSupriseTimer"]
+[node name="Label" type="Label" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_suprise"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -250,17 +250,17 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "suprise timer"
 
-[node name="ticker" type="ColorRect" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions"]
+[node name="distraction_ticker" type="ColorRect" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 script = ExtResource("3_fh3d0")
 
-[node name="Timer" type="Timer" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/ticker"]
+[node name="Timer" type="Timer" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_ticker"]
 
-[node name="Timer_Scorer" type="Timer" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/ticker"]
+[node name="Timer_Scorer" type="Timer" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_ticker"]
 editor_description = "Used for assigning points to the game manager"
 
-[node name="Button" type="Button" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/ticker"]
+[node name="Button" type="Button" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_ticker"]
 layout_direction = 1
 layout_mode = 1
 anchors_preset = 7
@@ -276,7 +276,7 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "+1"
 
-[node name="Label" type="Label" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/ticker"]
+[node name="Label" type="Label" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_ticker"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -292,7 +292,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "ticker"
 
-[node name="CheckButton" type="CheckButton" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/ticker"]
+[node name="CheckButton" type="CheckButton" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_ticker"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -306,7 +306,7 @@ offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="_label" type="Label" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/ticker/CheckButton"]
+[node name="_label" type="Label" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_ticker/CheckButton"]
 layout_mode = 0
 offset_left = 39.0
 offset_right = 79.0
@@ -314,19 +314,19 @@ offset_bottom = 23.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "x2"
 
-[node name="pet" type="ColorRect" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions"]
+[node name="distraction_pet" type="ColorRect" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 script = ExtResource("4_my4y7")
 
-[node name="Timer" type="Timer" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/pet"]
+[node name="Timer" type="Timer" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_pet"]
 wait_time = 3.0
 autostart = true
 
-[node name="Timer_Scorer" type="Timer" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/pet"]
+[node name="Timer_Scorer" type="Timer" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_pet"]
 editor_description = "Used for assigning points to the game manager"
 
-[node name="Button_Food" type="Button" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/pet"]
+[node name="Button_Food" type="Button" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_pet"]
 layout_direction = 1
 layout_mode = 1
 anchors_preset = 8
@@ -343,7 +343,7 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 text = "food"
 
-[node name="Button_Water" type="Button" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/pet"]
+[node name="Button_Water" type="Button" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_pet"]
 layout_direction = 1
 layout_mode = 1
 anchors_preset = 8
@@ -360,7 +360,7 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 text = "water"
 
-[node name="Label" type="Label" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/pet"]
+[node name="Label" type="Label" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_pet"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -377,7 +377,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "pet"
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/pet"]
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_pet"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -392,12 +392,12 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("PlaceholderTexture2D_011nb")
 
-[node name="clicker" type="ColorRect" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions"]
+[node name="distraction_clicker" type="ColorRect" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 script = ExtResource("6_tefeu")
 
-[node name="Button" type="Button" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/clicker"]
+[node name="Button" type="Button" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_clicker"]
 layout_direction = 1
 layout_mode = 1
 anchors_preset = 8
@@ -413,7 +413,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "click"
 
-[node name="clicker" type="Label" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/clicker"]
+[node name="clicker" type="Label" parent="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_clicker"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -440,18 +440,18 @@ custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
 size_flags_vertical = 3
 
-[connection signal="timeout" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/SimpleTimerButton/Timer" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/SimpleTimerButton" method="_on_timer_timeout"]
-[connection signal="timeout" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/SimpleTimerButton/Timer_Scorer" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/SimpleTimerButton" method="_on_timer_scorer_timeout"]
-[connection signal="pressed" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/SimpleTimerButton/Button" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/SimpleTimerButton" method="_on_button_pressed"]
-[connection signal="timeout" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/SimpleSupriseTimer/TimerCountdown" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/SimpleSupriseTimer" method="_on_timer_countdown_timeout"]
-[connection signal="timeout" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/SimpleSupriseTimer/TimerHidden" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/SimpleSupriseTimer" method="_on_timer_hidden_timeout"]
-[connection signal="pressed" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/SimpleSupriseTimer/Button" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/SimpleSupriseTimer" method="_on_button_pressed"]
-[connection signal="timeout" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/ticker/Timer" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/ticker" method="_on_timer_timeout"]
-[connection signal="timeout" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/ticker/Timer_Scorer" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/ticker" method="_on_timer_scorer_timeout"]
-[connection signal="pressed" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/ticker/Button" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/ticker" method="_on_button_pressed"]
-[connection signal="pressed" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/ticker/CheckButton" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/ticker" method="_on_check_button_pressed"]
-[connection signal="timeout" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/pet/Timer" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/pet" method="_on_timer_timeout"]
-[connection signal="timeout" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/pet/Timer_Scorer" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/pet" method="_on_timer_scorer_timeout"]
-[connection signal="pressed" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/pet/Button_Food" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/pet" method="_on_button_food_pressed"]
-[connection signal="pressed" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/pet/Button_Water" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/pet" method="_on_button_water_pressed"]
-[connection signal="pressed" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/clicker/Button" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/clicker" method="_on_button_pressed"]
+[connection signal="timeout" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_button/Timer" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_button" method="_on_timer_timeout"]
+[connection signal="timeout" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_button/Timer_Scorer" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_button" method="_on_timer_scorer_timeout"]
+[connection signal="pressed" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_button/Button" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_button" method="_on_button_pressed"]
+[connection signal="timeout" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_suprise/TimerCountdown" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_suprise" method="_on_timer_countdown_timeout"]
+[connection signal="timeout" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_suprise/TimerHidden" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_suprise" method="_on_timer_hidden_timeout"]
+[connection signal="pressed" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_suprise/Button" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_suprise" method="_on_button_pressed"]
+[connection signal="timeout" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_ticker/Timer" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_ticker" method="_on_timer_timeout"]
+[connection signal="timeout" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_ticker/Timer_Scorer" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_ticker" method="_on_timer_scorer_timeout"]
+[connection signal="pressed" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_ticker/Button" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_ticker" method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_ticker/CheckButton" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_ticker" method="_on_check_button_pressed"]
+[connection signal="timeout" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_pet/Timer" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_pet" method="_on_timer_timeout"]
+[connection signal="timeout" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_pet/Timer_Scorer" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_pet" method="_on_timer_scorer_timeout"]
+[connection signal="pressed" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_pet/Button_Food" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_pet" method="_on_button_food_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_pet/Button_Water" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_pet" method="_on_button_water_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_clicker/Button" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_clicker" method="_on_button_pressed"]

@@ -2,12 +2,11 @@ extends Node
 
 
 var time_points = 0
-var lives = 10 
-
 var isMultUnlocked = true
-var multiplier = 13.3
 
-const panel_size = 128
+var lives = Constants.starting_lives
+var multiplier = Constants.base_multiplier * 13.3
+const panel_size = Constants.ui_panel_standard_size
 
 func _ready() -> void:
 	pass
@@ -16,10 +15,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
+# includes multiplier
 func add_time_point():
-	time_points += 1
+	time_points += 1 * multiplier
 	
+# does not include multiplier
 func add_time_points(_p:int):
 	time_points += _p
 
