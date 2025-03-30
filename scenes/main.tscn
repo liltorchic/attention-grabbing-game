@@ -440,6 +440,75 @@ custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="shop" type="ColorRect" parent="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.4
+color = Color(0.121569, 1, 1, 1)
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/shop"]
+custom_minimum_size = Vector2(6.305, 7.02)
+layout_mode = 1
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 70.0
+offset_bottom = 53.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "shop"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/shop"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 55.0
+offset_bottom = 295.0
+grow_horizontal = 2
+
+[node name="GridContainer" type="GridContainer" parent="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/shop/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 4
+
+[node name="upgrade" type="ColorRect" parent="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.61
+color = Color(0.801395, 0.957694, 0, 1)
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade"]
+custom_minimum_size = Vector2(6.305, 7.02)
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 70.0
+offset_bottom = 53.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "upgrade"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 55.0
+offset_bottom = 339.0
+grow_horizontal = 2
+
+[node name="GridContainer" type="GridContainer" parent="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 4
+
 [connection signal="timeout" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_button/Timer" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_button" method="_on_timer_timeout"]
 [connection signal="timeout" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_button/Timer_Scorer" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_button" method="_on_timer_scorer_timeout"]
 [connection signal="pressed" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_button/Button" to="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_timer_button" method="_on_button_pressed"]
