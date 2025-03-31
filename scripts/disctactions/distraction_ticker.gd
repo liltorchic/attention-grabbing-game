@@ -1,4 +1,4 @@
-extends ColorRect
+extends "res://scripts/disctactions/distraction.gd"
 
 var ticker:int
 var timer:Timer
@@ -18,11 +18,17 @@ func _ready() -> void:
 	label = get_node("Label")
 	button = get_node("Button")
 	checkbutton = get_node("CheckButton")
-	timer.start()
-	scorer.start(1)
 	ticker = 100
-	_on_timer_scorer_timeout()
-	_on_check_button_pressed()
+	self.title = "ticker"
+	self.price = 5000
+	
+	if(self.UI_MODE):
+		button.disabled = true
+		checkbutton.disabled = true
+	else:
+		timer.start()
+		_on_timer_scorer_timeout()
+		_on_check_button_pressed()
 
 
 func _on_timer_timeout() -> void:

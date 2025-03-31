@@ -1,4 +1,4 @@
-extends ColorRect
+extends "res://scripts/disctactions/distraction.gd"
 
 var button:Button 
 var label:Label
@@ -6,9 +6,16 @@ var label:Label
 @onready var p = preload("res://scenes/particle.tscn")
 var particle_tree
 
+
 func _ready() -> void:
 	button = get_node("Button")
 	label = get_node("clicker")
+	
+	self.title = "clicker"
+	self.price = 0
+	
+	if(self.UI_MODE):
+		button.disabled = true
 
 
 func _on_button_pressed() -> void:

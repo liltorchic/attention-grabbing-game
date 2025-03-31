@@ -19,3 +19,7 @@ config/icon="res://icon.svg"
 
 Game="*res://scripts/singletons/game.gd"
 Constants="*res://scripts/singletons/constants.gd"
+
+[global_group]
+
+distraction=""

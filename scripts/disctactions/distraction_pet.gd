@@ -1,4 +1,4 @@
-extends ColorRect
+extends "res://scripts/disctactions/distraction.gd"
 
 var timer:Timer
 var scorer:Timer
@@ -23,9 +23,15 @@ func _ready() -> void:
 	tex = get_node("TextureRect")
 	label.text = "happy"
 	health = 100
-	scorer.start(1)
 	award = 1 * Game.get_multiplier()
-	_on_timer_scorer_timeout()
+	self.title = "pet"
+	self.price = 10000
+	
+	if(self.UI_MODE):
+		button_food.disabled = true	
+		button_water.disabled = true	
+	else:
+		_on_timer_scorer_timeout()
 	
 func die():
 	Game.remove_life()
@@ -94,3 +100,4 @@ func _on_timer_scorer_timeout() -> void:
 	add_child(particle_tree)
 	particle_tree.emit_speed(award,2.0,.02)
 	scorer.start(1)
+	timer.start(3)

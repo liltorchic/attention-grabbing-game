@@ -1,8 +1,8 @@
-extends ColorRect
-
+extends "res://scripts/disctactions/distraction.gd"
 var timer:Timer
 var label:Label
 var scorer:Timer
+var button:Button
 var timer_length:int = 60
 
 @onready var p = preload("res://scenes/particle.tscn")
@@ -12,9 +12,15 @@ func _ready() -> void:
 	timer = get_node("Timer")
 	label = get_node("Label")
 	scorer = get_node("Timer_Scorer")
-	timer.start(timer_length)
-	scorer.start(1)
-	_on_timer_scorer_timeout()
+	button = get_node("Button")
+	self.title = "timer"
+	self.price = 100
+	
+	if(self.UI_MODE):
+		button.disabled = true
+	else:
+		timer.start(timer_length)
+		_on_timer_scorer_timeout()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -1,4 +1,4 @@
-extends ColorRect
+extends "res://scripts/disctactions/distraction.gd"
 
 var countdown_timer:Timer
 var hidden_timer:Timer
@@ -23,8 +23,14 @@ func _ready() -> void:
 	label.text = ""
 	timer_hidden = true
 	button.visible = false
-	countdown_timer.set_wait_time(timer_amount + 0.01) # +0.01 so the scorewr can score on 0.00
-	hidden_timer.start(rng.randf_range(6, 12))
+	self.title = "defuser"
+	self.price = 2
+	
+	if(self.UI_MODE):
+		button.disabled = true
+	else:
+		countdown_timer.set_wait_time(timer_amount + 0.01) # +0.01 so the scorewr can score on 0.00
+		hidden_timer.start(rng.randf_range(6, 12))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

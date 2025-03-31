@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1733btlluhvb"]
+
+[ext_resource type="Script" uid="uid://dei6k0i7cbeqj" path="res://scripts/disctactions/distraction_ticker.gd" id="1_dbfkp"]
+
+[node name="distraction_ticker" type="ColorRect" groups=["distraction"]]
+custom_minimum_size = Vector2(128, 128)
+script = ExtResource("1_dbfkp")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Timer_Scorer" type="Timer" parent="."]
+editor_description = "Used for assigning points to the game manager"
+
+[node name="Button" type="Button" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.5
+offset_top = -37.635
+offset_right = 15.5
+offset_bottom = -6.635
+grow_horizontal = 2
+grow_vertical = 0
+text = "+1"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -38.515
+offset_right = 20.0
+offset_bottom = -15.515
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "ticker"
+
+[node name="CheckButton" type="CheckButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.315
+offset_top = -12.0
+offset_right = 13.685
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="_label" type="Label" parent="CheckButton"]
+layout_mode = 0
+offset_left = 39.0
+offset_right = 79.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "x2"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer_Scorer" to="." method="_on_timer_scorer_timeout"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CheckButton" to="." method="_on_check_button_pressed"]

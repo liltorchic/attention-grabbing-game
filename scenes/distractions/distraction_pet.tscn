@@ -1,0 +1,86 @@
+[gd_scene load_steps=3 format=3 uid="uid://du4e4oykiyos"]
+
+[ext_resource type="Script" uid="uid://dpr3kjlg4654n" path="res://scripts/disctactions/distraction_pet.gd" id="1_q215s"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_011nb"]
+
+[node name="distraction_pet" type="ColorRect" groups=["distraction"]]
+custom_minimum_size = Vector2(128, 128)
+script = ExtResource("1_q215s")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="Timer_Scorer" type="Timer" parent="."]
+editor_description = "Used for assigning points to the game manager"
+
+[node name="Button_Food" type="Button" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = 26.0
+offset_right = 51.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+text = "food"
+
+[node name="Button_Water" type="Button" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 3.27
+offset_top = 26.0
+offset_right = 113.27
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+text = "water"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.31
+offset_top = -58.407
+offset_right = 29.31
+offset_bottom = -33.322
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "pet"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -25.455
+offset_right = 20.0
+offset_bottom = 14.545
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_011nb")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer_Scorer" to="." method="_on_timer_scorer_timeout"]
+[connection signal="pressed" from="Button_Food" to="." method="_on_button_food_pressed"]
+[connection signal="pressed" from="Button_Water" to="." method="_on_button_water_pressed"]
