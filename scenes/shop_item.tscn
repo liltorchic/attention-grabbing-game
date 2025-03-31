@@ -64,5 +64,4 @@ layout_mode = 2
 size_flags_horizontal = 10
 text = "buy"
 
-[connection signal="child_entered_tree" from="ColorRect/VBoxContainer/Container" to="." method="_on_container_child_entered_tree"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

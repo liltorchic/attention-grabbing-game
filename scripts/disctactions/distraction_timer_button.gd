@@ -13,8 +13,6 @@ func _ready() -> void:
 	label = get_node("Label")
 	scorer = get_node("Timer_Scorer")
 	button = get_node("Button")
-	self.title = "timer"
-	self.price = 100
 	
 	if(self.UI_MODE):
 		button.disabled = true
@@ -22,6 +20,10 @@ func _ready() -> void:
 		timer.start(timer_length)
 		_on_timer_scorer_timeout()
 
+func init() -> void:
+	self.title = "timer"
+	self.price = 100
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	label.text = str("%.2f" % [timer.time_left])

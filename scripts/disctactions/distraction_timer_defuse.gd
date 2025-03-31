@@ -23,8 +23,6 @@ func _ready() -> void:
 	label.text = ""
 	timer_hidden = true
 	button.visible = false
-	self.title = "defuser"
-	self.price = 2
 	
 	if(self.UI_MODE):
 		button.disabled = true
@@ -32,7 +30,10 @@ func _ready() -> void:
 		countdown_timer.set_wait_time(timer_amount + 0.01) # +0.01 so the scorewr can score on 0.00
 		hidden_timer.start(rng.randf_range(6, 12))
 
-
+func init() -> void:
+	self.title = "defuser"
+	self.price = 2
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if(!timer_hidden):

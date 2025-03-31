@@ -20,13 +20,13 @@ extends ColorRect
 func _ready() -> void:
 	for i in shop_items:
 		var shop_item:ShopItem = shop_item_template.instantiate()
-		#container.add_child(_in)
-		shop_item.add_item(i)
 		var item:Distraction = i.instantiate()
-		target.add_child(shop_item)
-		shop_item.add_item(i)
+		item.init()
+		target.add_child(shop_item)#add shop item to shop
+		shop_item.add_item(i)#add item to shop item
+		shop_item.set_title(item.title)
+		shop_item.set_price(item.price)
 		shop_item.bought.connect(_child_button_pressed)
-		shop_item.item_ready.connect(_update_info.bind(shop_item))
 		
 		
 func _child_button_pressed(item):
@@ -35,6 +35,4 @@ func _child_button_pressed(item):
 	distractions.add_child(distraction)
 	print("bought " + str(distraction))
 	
-func _update_info(item:Distraction, shop_item:ShopItem):
-	shop_item.set_title(item.title)
-	shop_item.set_price(item.price)
+	

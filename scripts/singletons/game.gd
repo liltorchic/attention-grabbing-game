@@ -23,6 +23,9 @@ func add_time_point():
 func add_time_points(_p:int):
 	time_points += _p
 
+func get_points() -> int:
+	return time_points
+
 func remove_life():
 	if(lives - 1 > 0):
 		lives -= 1

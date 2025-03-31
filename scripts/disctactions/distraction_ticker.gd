@@ -18,9 +18,7 @@ func _ready() -> void:
 	label = get_node("Label")
 	button = get_node("Button")
 	checkbutton = get_node("CheckButton")
-	ticker = 100
-	self.title = "ticker"
-	self.price = 5000
+	ticker = 10
 	
 	if(self.UI_MODE):
 		button.disabled = true
@@ -30,6 +28,9 @@ func _ready() -> void:
 		_on_timer_scorer_timeout()
 		_on_check_button_pressed()
 
+func init() -> void:
+	self.title = "ticker"
+	self.price = 5000
 
 func _on_timer_timeout() -> void:
 	var a = 2 * Game.get_multiplier() / 2.33

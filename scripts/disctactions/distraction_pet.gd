@@ -24,14 +24,16 @@ func _ready() -> void:
 	label.text = "happy"
 	health = 100
 	award = 1 * Game.get_multiplier()
-	self.title = "pet"
-	self.price = 10000
 	
 	if(self.UI_MODE):
 		button_food.disabled = true	
 		button_water.disabled = true	
 	else:
 		_on_timer_scorer_timeout()
+
+func init() -> void:
+	self.title = "pet"
+	self.price = 10000
 	
 func die():
 	Game.remove_life()

@@ -9,15 +9,12 @@ var distraction:PackedScene
 var copy:Distraction
 
 signal bought(item)
-signal item_ready(item)
-
 
 func add_item(_in):
 	container = get_node("ColorRect/VBoxContainer/Container")
 	distraction = _in
 	copy = distraction.duplicate().instantiate()
 	container.add_child(copy)
-
 	
 func set_title(_in:String):
 	label_title = get_node("ColorRect/VBoxContainer/Label_Title")
@@ -30,8 +27,6 @@ func set_price(_in):
 func _on_button_pressed() -> void:
 	bought.emit(distraction)
 
-func _on_container_child_entered_tree(node: Node) -> void:
-	if(node.is_in_group("distraction")):
-		item_ready.emit(node)
-		print("child entered   " + str(node))
+
+	
 		

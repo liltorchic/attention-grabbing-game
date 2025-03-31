@@ -6,3 +6,6 @@ var LOG:bool = false
 
 var price = 1 * Game.get_multiplier()
 var title = ""
+
+func init():
+	push_error("implement me")
