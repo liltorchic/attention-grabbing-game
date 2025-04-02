@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dmab5sthll2kw"]
 
-[ext_resource type="Script" uid="uid://jvp8yk25jfnw" path="res://scripts/ui/ui_vbox_container_score.gd" id="5_tbgi4"]
-[ext_resource type="Script" uid="uid://d21fc0y6shsto" path="res://scripts/ui/ui_shop.gd" id="7_o6xl0"]
-[ext_resource type="Script" uid="uid://c2mdeg8d5w40o" path="res://scripts/ui/ui_upgrade.gd" id="8_tipki"]
+[ext_resource type="Script" path="res://scripts/ui/ui_vbox_container_score.gd" id="5_tbgi4"]
+[ext_resource type="Script" path="res://scripts/ui/ui_shop.gd" id="7_o6xl0"]
+[ext_resource type="Script" path="res://scripts/ui/ui_upgrade.gd" id="8_tipki"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
