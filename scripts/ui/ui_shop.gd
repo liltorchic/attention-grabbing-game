@@ -29,8 +29,8 @@ func _ready() -> void:
 		shop_item.bought.connect(_child_button_pressed)
 		
 		
-func _child_button_pressed(item):
-	var distraction:Distraction = item.instantiate()
+func _child_button_pressed(packedscene: PackedScene):
+	var distraction:Distraction = packedscene.instantiate()
 	distraction.UI_MODE = false
 	distractions.add_child(distraction)
 	print("bought " + str(distraction))

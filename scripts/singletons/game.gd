@@ -22,6 +22,9 @@ func add_time_point():
 # does not include multiplier
 func add_time_points(_p:int):
 	time_points += _p
+	
+func remove_time_points(_p:int):
+	time_points -= _p
 
 func get_points() -> int:
 	return time_points
