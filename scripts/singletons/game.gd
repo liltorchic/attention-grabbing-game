@@ -2,7 +2,9 @@ extends Node
 
 
 var time_points = 0
+var cumlative_points = 0
 var isMultUnlocked = true
+var isUpgradesUnlocked = true
 
 var lives = Constants.starting_lives
 var multiplier = Constants.base_multiplier * 13.3
@@ -18,10 +20,12 @@ func _process(delta: float) -> void:
 # includes multiplier
 func add_time_point():
 	time_points += 1 * multiplier
+	cumlative_points += 1 * multiplier
 	
 # does not include multiplier
 func add_time_points(_p:int):
 	time_points += _p
+	cumlative_points += _p
 	
 func remove_time_points(_p:int):
 	time_points -= _p
@@ -40,4 +44,4 @@ func get_multiplier():
 	return multiplier
 
 func add_to_multiplier( _f: float):
-	multiplier = multiplier + _f
+	multiplier =+ _f
