@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmab5sthll2kw"]
+[gd_scene load_steps=5 format=3 uid="uid://dmab5sthll2kw"]
 
-[ext_resource type="Script" path="res://scripts/ui/ui_vbox_container_score.gd" id="5_tbgi4"]
-[ext_resource type="Script" path="res://scripts/ui/ui_shop.gd" id="7_o6xl0"]
-[ext_resource type="Script" path="res://scripts/ui/ui_upgrade.gd" id="8_tipki"]
+[ext_resource type="Script" uid="uid://jvp8yk25jfnw" path="res://scripts/ui/ui_vbox_container_score.gd" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://coqm2j3xd3wot" path="res://scenes/upgrade_item_base.tscn" id="5_tefeu"]
+[ext_resource type="Script" uid="uid://d21fc0y6shsto" path="res://scripts/ui/ui_shop.gd" id="7_o6xl0"]
+[ext_resource type="Script" uid="uid://c2mdeg8d5w40o" path="res://scripts/ui/ui_upgrade.gd" id="8_tipki"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -198,11 +199,12 @@ text = "shop"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/shop"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_top = 55.0
-offset_bottom = 295.0
+anchor_bottom = 1.0
+offset_top = 68.0
 grow_horizontal = 2
+grow_vertical = 2
 
 [node name="GridContainer" type="GridContainer" parent="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/shop/ScrollContainer"]
 layout_mode = 2
@@ -230,17 +232,20 @@ text = "upgrade"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_top = 55.0
-offset_bottom = 339.0
+anchor_bottom = 1.0
+offset_top = 66.0
 grow_horizontal = 2
+grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
-columns = 4
+size_flags_vertical = 4
+
+[node name="UpgradeItemMain" parent="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade/ScrollContainer/VBoxContainer" instance=ExtResource("5_tefeu")]
+layout_mode = 2
 
 [connection signal="child_entered_tree" from="Panel/HBoxContainer/ColorRect/ScrollContainer/distractions" to="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade" method="_on_distractions_child_entered_tree"]
 [connection signal="child_entered_tree" from="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/shop/ScrollContainer/GridContainer" to="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/shop" method="_on_grid_container_child_entered_tree"]

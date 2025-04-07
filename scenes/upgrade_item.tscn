@@ -1,0 +1,175 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctrey2fysq5vm"]
+
+[ext_resource type="Script" uid="uid://bhfjilsgfahpa" path="res://scripts/ui/ui_upgrade_item.gd" id="1_5bs5i"]
+
+[node name="UpgradeItem" type="Control"]
+custom_minimum_size = Vector2(145, 144)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 144.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+script = ExtResource("1_5bs5i")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(145, 144)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+color = Color(0.589096, 0.589096, 0.589096, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_right = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label_Title" type="Label" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "title"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.6
+
+[node name="upgrade_1" type="VBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label_upgrade" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_1"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "no1"
+
+[node name="Label_description" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_1"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 13
+text = "description"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_1"]
+layout_mode = 2
+
+[node name="Label_Price" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_1/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "price"
+
+[node name="Button" type="Button" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_1/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "buy"
+
+[node name="VSeparator" type="VSeparator" parent="ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="upgrade_2" type="VBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label_upgrade" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_2"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "no2"
+
+[node name="Label_description" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_2"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 13
+text = "description"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_2"]
+layout_mode = 2
+
+[node name="Label_Price" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "price"
+
+[node name="Button" type="Button" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_2/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "buy"
+
+[node name="VSeparator2" type="VSeparator" parent="ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="upgrade_3" type="VBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label_upgrade" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_3"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "no3"
+
+[node name="Label_description" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_3"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 13
+text = "description"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_3"]
+layout_mode = 2
+
+[node name="Label_Price" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "price"
+
+[node name="Button" type="Button" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_3/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "buy"
+
+[node name="VSeparator3" type="VSeparator" parent="ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="upgrade_4" type="VBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label_upgrade" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_4"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "no4"
+
+[node name="Label_description" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_4"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 13
+text = "description"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_4"]
+layout_mode = 2
+
+[node name="Label_Price" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_4/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "price"
+
+[node name="Button" type="Button" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_4/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "buy"
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/upgrade_1/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/upgrade_2/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/upgrade_3/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/upgrade_4/HBoxContainer/Button" to="." method="_on_button_pressed"]

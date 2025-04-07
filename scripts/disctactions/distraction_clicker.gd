@@ -7,13 +7,34 @@ var label:Label
 var particle_tree
 
 
+@onready var upgrade = preload("res://scenes/upgrade_item.tscn")
+
 func _ready() -> void:
 	button = get_node("Button")
 	label = get_node("clicker")
 	
 	if(self.UI_MODE):
 		button.disabled = true
-
+	else:
+		#for upgrade
+		var upgrade_node_target = get_node("../../../../../HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade/ScrollContainer/VBoxContainer")
+		var u:upgrade_item = upgrade.instantiate()
+		self.update_upgrade_data()
+		upgrade_node_target.add_child(u)
+		u.link(self)
+		
+func update_upgrade_data():
+	self.upgrade_level_1_title = "click amount"
+	self.upgrade_level_1_desc = "+1"
+	self.upgrade_level_1_startingprice = 1
+	
+	self.upgrade_level_2_title = ""
+	self.upgrade_level_2_desc = ""
+	self.upgrade_level_2_startingprice = 1
+	
+	self.upgrade_level_2_title = ""
+	self.upgrade_level_2_desc = ""
+	self.upgrade_level_2_startingprice = 1
 
 func init() -> void:
 	self.title = "clicker"
