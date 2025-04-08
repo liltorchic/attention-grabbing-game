@@ -11,12 +11,12 @@ func _ready() -> void:
 	label = get_node("Label")
 	label.text = ""
 	
-func emit(value: int, life:float) -> void:
-	label.text = "+" + str(value)
+func emit(value: float, life:float) -> void:
+	label.text = "+" + str("%.1f" % [value])
 	timer.start(life)
 	
-func emit_speed(value: int, life:float, _rate:float) -> void:
-	label.text = "+" + str(value)
+func emit_speed(value: float, life:float, _rate:float) -> void:
+	label.text = "+" + str("%.1f" % [value])
 	rate = _rate
 	timer.start(life)
 

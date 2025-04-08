@@ -151,14 +151,13 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 20
-text = "price"
+text = "discount"
 
 [node name="Label_description" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_4"]
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 13
-text = "description
-"
+text = "buy less money"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_4"]
 layout_mode = 2

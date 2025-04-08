@@ -35,3 +35,4 @@ func _on_button_pressed() -> void:
 	if(price <= Game.time_points):
 		bought.emit(distraction)
 		Game.remove_time_points(price)
+		set_price(Game.recalc_price(price))
