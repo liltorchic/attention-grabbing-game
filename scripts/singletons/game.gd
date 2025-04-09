@@ -6,8 +6,10 @@ var cumlative_points = 0
 var isMultUnlocked = true
 var isUpgradesUnlocked = true
 
+var base_mult:float = 0.0
+
 var lives = Constants.starting_lives
-var multiplier = Constants.base_multiplier * 1.0
+var multiplier:float = Constants.base_multiplier * 1.0
 const panel_size = Constants.ui_panel_standard_size
 
 func _ready() -> void:
@@ -41,10 +43,13 @@ func remove_life():
 		#dead
 	
 func get_multiplier():
-	return multiplier
+	return multiplier + base_mult
 
 func add_to_multiplier( _f: float):
 	multiplier =+ _f
 	
 func recalc_price(_in:float) -> float:
 	return (_in * 1.25) + (100 * Game.multiplier)
+
+func add_base_mult(_in:float):
+	base_mult += _in

@@ -137,6 +137,8 @@ func do_upgrade(_upgrade_type:Constants.Type):
 			linked_distraction.mult += 0.1
 		Constants.Type.AUTOCLICKER:
 			linked_distraction.autoclicker = true
+		Constants.Type.DURATION:
+			pass
 		Constants.Type.BOOST:
 			pass
 		Constants.Type.ALARM:

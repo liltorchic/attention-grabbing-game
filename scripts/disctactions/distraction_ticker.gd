@@ -16,7 +16,7 @@ func _ready() -> void:
 	label = get_node("Label")
 	button = get_node("Button")
 	checkbutton = get_node("CheckButton")
-	ticker = 10
+	
 	
 	init()
 	
@@ -52,12 +52,18 @@ func update_upgrade_data():
 	
 
 func init() -> void:
+	ticker = 10
 	self.title = "ticker"
 	self.price = 5000
 	self.amount = 1
 	
 func update_labels():	
-	button.text = "+" + str(1 + self.amount * (Game.get_multiplier() + self.mult))
+	var a = 2 * self.amount * (Game.get_multiplier() + self.mult)
+	var b = 1 * self.amount * (Game.get_multiplier() + self.mult)
+	isChecked = checkbutton.button_pressed
+	
+	var increment_score = a if isChecked else b
+	button.text = "+" + str(increment_score)
 	
 func _on_timer_timeout() -> void:
 	var a = 2 * self.amount * (Game.get_multiplier() + self.mult)
@@ -71,14 +77,14 @@ func _on_timer_timeout() -> void:
 		timer.stop()
 		scorer.stop()
 		_timeout()
+		init()
+		timer.start()
+		_on_timer_scorer_timeout()
+		_on_check_button_pressed()
 
 func _on_check_button_pressed() -> void:
-	var a = 2 * self.amount * (Game.get_multiplier() + self.mult)
-	var b = 1 * self.amount * (Game.get_multiplier() + self.mult)
-	isChecked = checkbutton.button_pressed
-	
-	var increment_score = a if isChecked else b
-	button.text = "+" + str(increment_score)
+	update_labels()
+
 
 func _on_button_pressed() -> void:
 	var a = 2 * self.amount * (Game.get_multiplier() + self.mult)

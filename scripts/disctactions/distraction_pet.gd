@@ -8,7 +8,8 @@ var label:Label
 var tex:TextureRect
 
 var health:int
-var award:int
+var award:float
+var last_reward:float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,7 +21,7 @@ func _ready() -> void:
 	tex = get_node("TextureRect")
 	label.text = "happy"
 	health = 100
-	award = 1 * Game.get_multiplier()
+	_calc_score(0)
 	
 	init()
 	
@@ -61,6 +62,10 @@ func update_upgrade_data():
 func init() -> void:
 	self.title = "pet"
 	self.price = 10000
+	self.amount = 1
+	self.mult = 0
+	last_reward = 0
+	award = 0
 	
 func update_labels():
 	pass
@@ -76,43 +81,48 @@ func _on_timer_timeout() -> void:
 	
 	if(health <= 0):
 		label.text = "dead"
-		award = 0
+		_calc_score(-2)
 		die()
 		timer.stop()
 		scorer.stop()
 	elif(health < 10):
 		label.text = "dying"
-		award = 0 + self.amount * Game.get_multiplier() + self.mult
+		_calc_score(-1)
 	elif(health < 30):
 		label.text = "sick"
-		award = 2 + self.amount * Game.get_multiplier() + self.mult
+		_calc_score(0)
 	elif(health < 60):
 		label.text = "unhappy"
-		award = 2 + self.amount * Game.get_multiplier() + self.mult
+		_calc_score(1)
 	elif(health < 80):
 		label.text = "ok"
-		award = 2 + self.amount * Game.get_multiplier() + self.mult
+		_calc_score(2)
 	elif(health < 90):
 		label.text = "happy"
-		award = 3 + self.amount * Game.get_multiplier() + self.mult
+		_calc_score(3)
 	elif(health < 101):
 		label.text = "excited"
-		award = 4 + self.amount * Game.get_multiplier() + self.mult
+		_calc_score(4)
 	elif(health < 110):
 		label.text = "crazy"
-		award = 2 + self.amount * Game.get_multiplier() + self.mult
+		_calc_score(2)
 	elif(health < 200):
 		label.text = "too stuffed"
-		award = 1 + self.amount * Game.get_multiplier() + self.mult
+		_calc_score(0)
 	elif(health < 260):
 		label.text = "dead"
-		award = 0
+		_calc_score(-2)
 		die()
 		timer.stop()
 		scorer.stop()
 		
 	print(str(health))
 
+func _calc_score(_award:float):
+	last_reward = _award
+	award = (_award + self.amount) * (Game.get_multiplier() + self.mult)
+	print(str(award))
+	
 
 func _on_button_food_pressed() -> void:
 	health = health + 3 
@@ -127,6 +137,7 @@ func _on_button_water_pressed() -> void:
 
 
 func _on_timer_scorer_timeout() -> void:
+	_calc_score(last_reward)
 	Game.add_time_points(award)
 	particle_tree = p.instantiate()
 	add_child(particle_tree)

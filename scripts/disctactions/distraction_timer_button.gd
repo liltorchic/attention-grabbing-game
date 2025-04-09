@@ -37,10 +37,10 @@ func update_upgrade_data():
 	self.upgrade_level_2_startingprice = 1000
 	self.upgrade_level_2_type = Constants.Type.MULTIPLIER
 	
-	self.upgrade_level_3_title = "autoclicker"
-	self.upgrade_level_3_desc = "click for you"
-	self.upgrade_level_3_startingprice = 10000
-	self.upgrade_level_3_type = Constants.Type.AUTOCLICKER
+	self.upgrade_level_3_title = "duration"
+	self.upgrade_level_3_desc = "longer countdown"
+	self.upgrade_level_3_startingprice = 100000
+	self.upgrade_level_3_type = Constants.Type.DURATION
 	
 	self.upgrade_level_4_title = "alart"
 	self.upgrade_level_4_desc = "get an alarm"
