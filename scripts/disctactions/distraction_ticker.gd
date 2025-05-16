@@ -115,3 +115,8 @@ func _timeout():
 	Game.remove_life()
 	print("ticker timeout")
 	
+func _on_gui_input(event: InputEvent) -> void:
+	if not self.UI_MODE:
+		if event is not InputEventMouseMotion:
+			if event.pressed:
+				Game.set_selected(self)

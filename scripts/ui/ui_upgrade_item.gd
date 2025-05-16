@@ -4,6 +4,8 @@ class_name upgrade_item
 
 @onready var title :Label = $ColorRect/VBoxContainer/Label_Title
 
+@onready var highlight :ColorRect = $ColorRect/highlight
+
 @onready var upgrade_1_title :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_1/Label_upgrade
 @onready var upgrade_1_desc :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_1/Label_description
 @onready var upgrade_1_price :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_1/HBoxContainer/Label_Price
@@ -35,7 +37,10 @@ var upgrade_4_type:Constants.Type
 
 var linked_distraction:Distraction
 
+var is_selected:bool = false
+
 func link(input):
+	self.focus_mode = Control.FOCUS_NONE
 	linked_distraction = input
 	title.text = str(linked_distraction)
 	
@@ -84,7 +89,16 @@ func update_price_labels():
 	
 	linked_distraction.update_labels()
 	
-
+	Game.updated_selected.connect(_selection_update)
+	
+func _selection_update():
+	if Game.selected == linked_distraction:
+		is_selected = true
+		highlight.visible = true
+	else:
+		is_selected = false
+		highlight.visible = false
+		
 
 func _on_button_pressed() -> void:
 	if(upgrade_1_price_f <= Game.get_points()):

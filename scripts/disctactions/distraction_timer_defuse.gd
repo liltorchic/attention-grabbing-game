@@ -100,3 +100,8 @@ func _on_button_pressed() -> void:
 	add_child(particle_tree)
 	particle_tree.emit(reward,2.0)
 	
+func _on_gui_input(event: InputEvent) -> void:
+	if not self.UI_MODE:
+		if event is not InputEventMouseMotion:
+			if event.pressed:
+				Game.set_selected(self)

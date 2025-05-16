@@ -46,6 +46,7 @@ func update_labels():
 	push_warning("update_labels unimplemented")
 	
 func init():
+	self.focus_mode = Control.FOCUS_CLICK
 	push_error("init unimplemented")
 	
 func upgrade_1():

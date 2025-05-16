@@ -80,7 +80,10 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("PlaceholderTexture2D_011nb")
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer_Scorer" to="." method="_on_timer_scorer_timeout"]
 [connection signal="pressed" from="Button_Food" to="." method="_on_button_food_pressed"]
 [connection signal="pressed" from="Button_Water" to="." method="_on_button_water_pressed"]
+[connection signal="gui_input" from="Label" to="." method="_on_gui_input"]
+[connection signal="gui_input" from="TextureRect" to="." method="_on_gui_input"]

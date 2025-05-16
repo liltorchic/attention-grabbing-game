@@ -12,12 +12,10 @@ var lives = Constants.starting_lives
 var multiplier:float = Constants.base_multiplier * 1.0
 const panel_size = Constants.ui_panel_standard_size
 
-func _ready() -> void:
-	pass
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+var selected 
+
+signal updated_selected
+
 
 # includes multiplier
 func add_time_point():
@@ -40,7 +38,6 @@ func remove_life():
 		lives -= 1
 	else:
 		print("you died")
-		#dead
 	
 func get_multiplier():
 	return multiplier + base_mult
@@ -53,3 +50,7 @@ func recalc_price(_in:float) -> float:
 
 func add_base_mult(_in:float):
 	base_mult += _in
+	
+func set_selected(_in):
+	selected = _in
+	updated_selected.emit()
