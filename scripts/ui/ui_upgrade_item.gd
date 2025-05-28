@@ -4,7 +4,7 @@ class_name upgrade_item
 
 @onready var title :Label = $ColorRect/VBoxContainer/Label_Title
 
-@onready var highlight :ColorRect = $ColorRect/highlight
+@onready var highlight :ColorRect = $ColorRect
 
 @onready var upgrade_1_title :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_1/Label_upgrade
 @onready var upgrade_1_desc :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_1/Label_description
@@ -94,10 +94,10 @@ func update_price_labels():
 func _selection_update():
 	if Game.selected == linked_distraction:
 		is_selected = true
-		highlight.visible = true
+		highlight.color = Color(0.466, 0.466, 0.466)
 	else:
 		is_selected = false
-		highlight.visible = false
+		highlight.color = Color(0.588, 0.588, 0.588)
 		
 
 func _on_button_pressed() -> void:

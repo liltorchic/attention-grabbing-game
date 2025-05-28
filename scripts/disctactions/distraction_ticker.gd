@@ -85,7 +85,6 @@ func _on_timer_timeout() -> void:
 func _on_check_button_pressed() -> void:
 	update_labels()
 
-
 func _on_button_pressed() -> void:
 	var a = 2 * self.amount * (Game.get_multiplier() + self.mult)
 	var b = 1 * self.amount * (Game.get_multiplier() + self.mult)
