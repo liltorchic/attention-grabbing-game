@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmab5sthll2kw"]
+[gd_scene load_steps=6 format=3 uid="uid://dmab5sthll2kw"]
 
+[ext_resource type="Script" uid="uid://bhr7o5k57cb0o" path="res://scripts/singletons/main_screen.gd" id="1_tbgi4"]
 [ext_resource type="Script" uid="uid://jvp8yk25jfnw" path="res://scripts/ui/ui_vbox_container_score.gd" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://coqm2j3xd3wot" path="res://scenes/upgrade_item_base.tscn" id="5_tefeu"]
 [ext_resource type="Script" uid="uid://d21fc0y6shsto" path="res://scripts/ui/ui_shop.gd" id="7_o6xl0"]
@@ -12,6 +13,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_tbgi4")
 
 [node name="Panel" type="Panel" parent="."]
 z_index = -1
@@ -206,11 +210,10 @@ offset_top = 68.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/shop/ScrollContainer"]
+[node name="GridContainer" type="FlowContainer" parent="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/shop/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 4
 
 [node name="upgrade" type="ColorRect" parent="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer"]
 custom_minimum_size = Vector2(200, 200)
