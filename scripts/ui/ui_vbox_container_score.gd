@@ -19,7 +19,8 @@ func _process(delta: float) -> void:
 		lives_label_data.text = str(Game.lives)
 		
 	if(str(Game.time_points) != score_label_data.text):
-		score_label_data.text = str(Game.time_points)
+		score_label_data.text = str("%.3f" % [Game.time_points])
+		
 	if(Game.isMultUnlocked):
 		if(str(Game.get_multiplier()) != mult_label_data.text):
 			mult_label_data.text = "x" + str(Game.get_multiplier())

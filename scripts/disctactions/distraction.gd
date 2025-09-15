@@ -10,40 +10,50 @@ var LOG:bool = false
 var particle_tree
 @onready var upgrade = preload("res://scenes/upgrade_item.tscn")
 
-var price = 1 * Game.get_multiplier()
-var title = "undefined"
-var upgrade_level_1 = 1
-var upgrade_level_1_title = "undefined"
-var upgrade_level_1_desc = "description"
-var upgrade_level_1_startingprice:float = -1
-var upgrade_level_1_type:Constants.Type = Constants.Type.UNDEFINED
+var price:float = 1 * Game.get_multiplier()
+var title:String = "undefined"
 
-var upgrade_level_2 = 1
+var upgrade_level_1_title:String = "undefined"
+var upgrade_level_1_desc:String = "description"
+var upgrade_level_1_price:float = -1
+var upgrade_level_1_price_increase:float = -1
+var upgrade_level_1_one_time:bool = false
+var upgrade_level_1_level:int = 1
+var upgrade_level_1_disabled:bool = false
+
+
 var upgrade_level_2_title = "undefined"
 var upgrade_level_2_desc = "description"
-var upgrade_level_2_startingprice:float = -1
-var upgrade_level_2_type:Constants.Type = Constants.Type.UNDEFINED
+var upgrade_level_2_price:float = -1
+var upgrade_level_2_price_increase:float = -1
+var upgrade_level_2_one_time:bool = false
+var upgrade_level_2_level:int = 1
+var upgrade_level_2_disabled:bool = false
 
-var upgrade_level_3 = 1
 var upgrade_level_3_title = "undefined"
 var upgrade_level_3_desc = "description"
-var upgrade_level_3_startingprice:float = -1
-var upgrade_level_3_type:Constants.Type = Constants.Type.UNDEFINED
+var upgrade_level_3_price:float = -1
+var upgrade_level_3_price_increase:float = -1
+var upgrade_level_3_one_time:bool = false
+var upgrade_level_3_level:int = 1
+var upgrade_level_3_disabled:bool = false
 
-var upgrade_level_4 = 1
 var upgrade_level_4_title = "undefined"
 var upgrade_level_4_desc = "description"
-var upgrade_level_4_startingprice:float = -1
-var upgrade_level_4_type:Constants.Type = Constants.Type.UNDEFINED
+var upgrade_level_4_price:float = -1
+var upgrade_level_4_price_increase:float = -1
+var upgrade_level_4_one_time:bool = false
+var upgrade_level_4_level:int = 1
+var upgrade_level_4_disabled:bool = false
 
-var amount:int = 0
-var mult:float = 0
+var amount:float
+var mult:float
+var auto:bool
+var autofreq:float
+var alarm:bool
 
 func update_upgrade_data():
 	push_error("update_upgrade_data unimplemented")
-
-func update_labels():
-	push_warning("update_labels unimplemented")
 	
 func init():
 	push_error("init unimplemented")

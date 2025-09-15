@@ -124,7 +124,7 @@ text = "Data"
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 13
-text = "see more stuff
+text = "view details
 "
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_3"]
@@ -157,7 +157,7 @@ text = "discount"
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 13
-text = "buy less money"
+text = "spend less money"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_4"]
 layout_mode = 2

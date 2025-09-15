@@ -10,7 +10,7 @@ var tex:TextureRect
 var health:int
 var award:float
 var last_reward:float = 0
-
+var interval = 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	timer = get_node("Timer")
@@ -39,25 +39,25 @@ func _ready() -> void:
 		u.link(self)
 		
 func update_upgrade_data():
-	self.upgrade_level_1_title = "amount"
+	self.upgrade_level_1_title = "Amount"
 	self.upgrade_level_1_desc = "+1"
-	self.upgrade_level_1_startingprice = 10000
-	self.upgrade_level_1_type = Constants.Type.AMOUNT
+	self.upgrade_level_1_price = 500
+	self.upgrade_level_1_price_increase = 1.55
 	
-	self.upgrade_level_2_title = "multiplier"
+	self.upgrade_level_2_title = "Multiplier"
 	self.upgrade_level_2_desc = "+0.1x"
-	self.upgrade_level_2_startingprice = 1000
-	self.upgrade_level_2_type = Constants.Type.MULTIPLIER
+	self.upgrade_level_2_price = 1000
+	self.upgrade_level_2_price_increase = 2
 	
-	self.upgrade_level_3_title = "love"
+	self.upgrade_level_3_title = "Love"
 	self.upgrade_level_3_desc = "how much you love your pet"
-	self.upgrade_level_3_startingprice = 10000
-	self.upgrade_level_3_type = Constants.Type.LOVE
+	self.upgrade_level_3_price = 60
+	self.upgrade_level_3_price_increase = 1.225
 	
-	self.upgrade_level_4_title = "torture"
+	self.upgrade_level_4_title = "Torture"
 	self.upgrade_level_4_desc = "hurt it to make it behave"
-	self.upgrade_level_4_startingprice = 0.1
-	self.upgrade_level_4_type = Constants.Type.TORTURE
+	self.upgrade_level_4_price = 10
+	self.upgrade_level_4_price_increase = 1.115
 
 func init() -> void:
 	self.title = "pet"
@@ -67,8 +67,47 @@ func init() -> void:
 	last_reward = 0
 	award = 0
 	
-func update_labels():
-	pass
+	
+#Amount
+func upgrade_1():
+	if(self.upgrade_level_1_price <= Game.get_points()):
+		Game.remove_time_points(upgrade_level_1_price)
+		self.upgrade_level_1_price = upgrade_level_1_price * upgrade_level_1_price_increase
+		self.upgrade_level_1_level = upgrade_level_1_level + 1
+		
+		#upgrade
+		self.amount += 1
+		
+#Multiplier
+func upgrade_2():
+	if(self.upgrade_level_2_price <= Game.get_points()):
+		Game.remove_time_points(upgrade_level_2_price)
+		self.upgrade_level_2_price = upgrade_level_2_price * upgrade_level_2_price_increase
+		self.upgrade_level_2_level = upgrade_level_2_level + 1
+		
+		#upgrade
+		self.mult += 0.1
+
+#love	
+func upgrade_3():
+	if(self.upgrade_level_3_price <= Game.get_points()):
+		Game.remove_time_points(upgrade_level_3_price)
+		self.upgrade_level_3_price = upgrade_level_3_price * upgrade_level_3_price_increase
+		self.upgrade_level_3_level = upgrade_level_3_level + 1
+		
+		#upgrade
+		self.amount += 0.2
+
+#pain
+func upgrade_4():
+	if(self.upgrade_level_4_price <= Game.get_points()):
+		Game.remove_time_points(upgrade_level_4_price)
+		self.upgrade_level_4_price = upgrade_level_4_price * upgrade_level_4_price_increase
+		self.upgrade_level_4_level = upgrade_level_4_level + 1
+		#upgrade
+		self.amount += 0.1
+		if(self.interval - 0.01 != 0):
+			self.interval = self.interval - 0.01
 	
 func die():
 	Game.remove_life()
@@ -116,12 +155,12 @@ func _on_timer_timeout() -> void:
 		timer.stop()
 		scorer.stop()
 		
-	print(str(health))
+	#print(str(health))
 
 func _calc_score(_award:float):
 	last_reward = _award
 	award = (_award + self.amount) * (Game.get_multiplier() + self.mult)
-	print(str(award))
+	#print(str(award))
 	
 
 func _on_button_food_pressed() -> void:
@@ -142,8 +181,8 @@ func _on_timer_scorer_timeout() -> void:
 	particle_tree = p.instantiate()
 	add_child(particle_tree)
 	particle_tree.emit_speed(award,2.0,.02)
-	scorer.start(1)
-	timer.start(3)
+	scorer.start(self.interval)
+	
 	
 func _on_gui_input(event: InputEvent) -> void:
 	if not self.UI_MODE:

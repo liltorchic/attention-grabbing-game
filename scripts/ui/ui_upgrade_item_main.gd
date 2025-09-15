@@ -1,6 +1,5 @@
 extends Node
 
-
 @onready var title :Label = $ColorRect/VBoxContainer/Label_Title
 
 #mult
@@ -29,27 +28,25 @@ var upgrade_4_type:Constants.Type = Constants.Type.BASE_DISCOUNT
 
 func _ready() -> void:
 	update_price_labels()
-
-
 	
 func update_price_labels():
 	if(upgrade_1_price_f != -1):
-		upgrade_1_price.text = str("%.3f" % [upgrade_1_price_f])
+		upgrade_1_price.text = str("%.0f" % [upgrade_1_price_f])
 	else:
 		upgrade_1_price.text = ""
 		
 	if(upgrade_2_price_f != -1):
-		upgrade_2_price.text = str("%.3f" % [upgrade_2_price_f])
+		upgrade_2_price.text = str("%.0f" % [upgrade_2_price_f])
 	else:
 		upgrade_2_price.text = ""
 		
 	if(upgrade_3_price_f != -1):	
-		upgrade_3_price.text = str("%.3f" % [upgrade_3_price_f])
+		upgrade_3_price.text = str("%.0f" % [upgrade_3_price_f])
 	else:
 		upgrade_3_price.text = ""	
 		
 	if(upgrade_4_price_f != -1):			
-		upgrade_4_price.text = str("%.3f" % [upgrade_4_price_f])
+		upgrade_4_price.text = str("%.0f" % [upgrade_4_price_f])
 	else:
 		upgrade_4_price.text = ""
 	

@@ -38,6 +38,9 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "clicker"
 
+[node name="Timer_Autoclick" type="Timer" parent="."]
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="gui_input" from="clicker" to="." method="_on_gui_input"]
+[connection signal="timeout" from="Timer_Autoclick" to="." method="_on_timer_autoclick_timeout"]

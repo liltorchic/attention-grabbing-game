@@ -1,7 +1,8 @@
 extends Node
 
+var ui_decimal_count = 0
 
-var time_points:float = 100000000000 if Constants.dev else 0
+var time_points:float = 100000 if Constants.dev else 0
 var cumlative_points = 0
 var isMultUnlocked = true
 var isUpgradesUnlocked = true

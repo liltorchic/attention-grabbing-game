@@ -4,7 +4,10 @@
 [ext_resource type="Script" uid="uid://jvp8yk25jfnw" path="res://scripts/ui/ui_vbox_container_score.gd" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://coqm2j3xd3wot" path="res://scenes/upgrade_item_base.tscn" id="5_tefeu"]
 [ext_resource type="Script" uid="uid://d21fc0y6shsto" path="res://scripts/ui/ui_shop.gd" id="7_o6xl0"]
-[ext_resource type="Script" uid="uid://c2mdeg8d5w40o" path="res://scripts/ui/ui_upgrade.gd" id="8_tipki"]
+
+[sub_resource type="GDScript" id="GDScript_jyhfs"]
+script/source = "extends ColorRect
+"
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -221,7 +224,7 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.61
 color = Color(0.801395, 0.957694, 0, 1)
-script = ExtResource("8_tipki")
+script = SubResource("GDScript_jyhfs")
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade"]
 custom_minimum_size = Vector2(6.305, 7.02)

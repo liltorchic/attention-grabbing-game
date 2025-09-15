@@ -28,7 +28,7 @@ func set_title(_in:String):
 	
 func set_price(_in):
 	label_price = get_node("ColorRect/VBoxContainer/HBoxContainer/Label_Price")
-	label_price.text = str(_in)
+	label_price.text = str("%.0f" % [_in])
 	price = _in
 
 func _on_button_pressed() -> void:

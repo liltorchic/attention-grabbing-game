@@ -10,12 +10,12 @@ extends ColorRect
 @onready var _distraction_timer_button = preload("res://scenes/distractions/distraction_timer_button.tscn")
 @onready var _distraction_timer_suprise = preload("res://scenes/distractions/distraction_timer_suprise.tscn")
 
-@onready var shop_items=[_distraction_clicker,
-				_distraction_pet,
-				_distraction_ticker,
-				_distraction_timer_button,
-				_distraction_timer_suprise]
-				
+@onready var shop_items=[   _distraction_clicker,
+							_distraction_pet,
+							_distraction_ticker,
+							_distraction_timer_button,
+							_distraction_timer_suprise
+						]
 
 func _ready() -> void:
 	for i in shop_items:

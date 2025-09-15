@@ -4,10 +4,12 @@ var ticker:float
 var timer:Timer
 var scorer:Timer
 var label:Label
+var checklabel:Label
 var checkbutton:CheckButton
 var button:Button
 
 var isChecked
+var modifier = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,7 +18,7 @@ func _ready() -> void:
 	label = get_node("Label")
 	button = get_node("Button")
 	checkbutton = get_node("CheckButton")
-	
+	checklabel = get_node("CheckButton/Label")
 	
 	init()
 	
@@ -35,20 +37,25 @@ func _ready() -> void:
 		u.link(self)
 		
 func update_upgrade_data():
-	self.upgrade_level_1_title = "tick amount"
+	self.upgrade_level_1_title = "Amount"
 	self.upgrade_level_1_desc = "+1"
-	self.upgrade_level_1_startingprice = 100
-	self.upgrade_level_1_type = Constants.Type.AMOUNT
-	
+	self.upgrade_level_1_price = 1500
+	self.upgrade_level_1_price_increase = 1.25
+
 	self.upgrade_level_2_title = "multiplier"
 	self.upgrade_level_2_desc = "+0.1x"
-	self.upgrade_level_2_startingprice = 1000
-	self.upgrade_level_2_type = Constants.Type.MULTIPLIER
+	self.upgrade_level_2_price = 2000
+	self.upgrade_level_1_price_increase = 2
 	
-	self.upgrade_level_3_title = "alart"
+	self.upgrade_level_3_title = "alarm"
 	self.upgrade_level_3_desc = "get an alarm"
-	self.upgrade_level_3_startingprice = 100000000
-	self.upgrade_level_3_type = Constants.Type.ALARM
+	self.upgrade_level_3_price = 100000
+	self.upgrade_level_3_one_time = true
+	
+	self.upgrade_level_4_title = "offset"
+	self.upgrade_level_4_desc = "+ x1"
+	self.upgrade_level_4_price = 15000
+	self.upgrade_level_4_price_increase = 1.5
 	
 
 func init() -> void:
@@ -56,9 +63,53 @@ func init() -> void:
 	self.title = "ticker"
 	self.price = 5000
 	self.amount = 1
+	self.alarm = false
+	
+#Amount
+func upgrade_1():
+	if(self.upgrade_level_1_price <= Game.get_points()):
+		Game.remove_time_points(upgrade_level_1_price)
+		self.upgrade_level_1_price = upgrade_level_1_price * upgrade_level_1_price_increase
+		self.upgrade_level_1_level = upgrade_level_1_level + 1
+		
+		#upgrade
+		self.amount += 1
+		
+#Multiplier
+func upgrade_2():
+	if(self.upgrade_level_2_price <= Game.get_points()):
+		Game.remove_time_points(upgrade_level_2_price)
+		self.upgrade_level_2_price = upgrade_level_2_price * upgrade_level_2_price_increase
+		self.upgrade_level_2_level = upgrade_level_2_level + 1
+		
+		#upgrade
+		self.mult += 0.1
+
+#alarm	
+func upgrade_3():
+	if(self.upgrade_level_3_price <= Game.get_points()):
+		Game.remove_time_points(upgrade_level_3_price)
+		self.upgrade_level_3_price = upgrade_level_3_price * upgrade_level_3_price_increase
+		self.upgrade_level_3_level = upgrade_level_3_level + 1
+		
+		#upgrade
+		self.alarm = true
+
+#tick amount
+func upgrade_4():
+	if(self.upgrade_level_4_price <= Game.get_points()):
+		Game.remove_time_points(upgrade_level_4_price)
+		self.upgrade_level_4_price = upgrade_level_4_price * upgrade_level_4_price_increase
+		self.upgrade_level_4_level = upgrade_level_4_level + 1
+		#upgrade
+		self.modifier += 1
+		checklabel.text = "x" + str(self.modifier)
+
+
+	
 	
 func update_labels():	
-	var a = 2 * self.amount * (Game.get_multiplier() + self.mult)
+	var a = self.modifier * self.amount * (Game.get_multiplier() + self.mult)
 	var b = 1 * self.amount * (Game.get_multiplier() + self.mult)
 	isChecked = checkbutton.button_pressed
 	
@@ -66,7 +117,7 @@ func update_labels():
 	button.text = "+" + str(increment_score)
 	
 func _on_timer_timeout() -> void:
-	var a = 2 * self.amount * (Game.get_multiplier() + self.mult)
+	var a = self.modifier * self.amount * (Game.get_multiplier() + self.mult)
 	var b = 1 * self.amount * (Game.get_multiplier() + self.mult)
 	var increment_score = a if isChecked else b
 	timer.start(1)
@@ -86,7 +137,7 @@ func _on_check_button_pressed() -> void:
 	update_labels()
 
 func _on_button_pressed() -> void:
-	var a = 2 * self.amount * (Game.get_multiplier() + self.mult)
+	var a = self.modifier * self.amount * (Game.get_multiplier() + self.mult)
 	var b = 1 * self.amount * (Game.get_multiplier() + self.mult)
 	var increment_score = a if isChecked else b
 	
@@ -99,7 +150,7 @@ func _on_button_pressed() -> void:
 	particle_tree.emit(increment_score,2.0)
 	
 func _on_timer_scorer_timeout() -> void:
-	var a = 2 * self.amount * (Game.get_multiplier() + self.mult)
+	var a = self.modifier * self.amount * (Game.get_multiplier() + self.mult)
 	var b = 1 * self.amount * (Game.get_multiplier() + self.mult)
 	var increment_score = a if isChecked else b
 	Game.add_time_points(increment_score)
