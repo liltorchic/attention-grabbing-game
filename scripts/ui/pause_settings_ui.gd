@@ -1,5 +1,4 @@
 extends Panel
-
 #when paused
 
 
@@ -15,7 +14,8 @@ func _on_button_resume_pressed() -> void:
 
 
 func _on_button_quit_pressed() -> void:
-	pass # Replace with function body.
+	_saveandquit()
+
 
 
 
@@ -25,3 +25,12 @@ func _on_button_quit_pressed() -> void:
 func _on_button_settings_pressed() -> void:
 	show() #show pause screen
 	get_tree().paused = true
+
+
+func _on_button_save_and_quit_pressed() -> void:
+	_saveandquit()
+
+
+func _saveandquit():
+	print("quiting")
+	get_tree().quit()

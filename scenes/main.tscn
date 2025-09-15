@@ -352,7 +352,7 @@ text = "save & quit
 
 [connection signal="pressed" from="game/HBoxContainer/VBoxContainer_UI/ColorRect/container_settings_vert/CenterContainer/HBoxContainer/Button_Settings" to="game" method="_on_button_settings_pressed"]
 [connection signal="pressed" from="game/HBoxContainer/VBoxContainer_UI/ColorRect/container_settings_vert/CenterContainer/HBoxContainer/Button_Settings" to="settings" method="_on_button_settings_pressed"]
-[connection signal="pressed" from="game/HBoxContainer/VBoxContainer_UI/ColorRect/container_settings_vert/CenterContainer/HBoxContainer/Button_Save_and_Quit" to="game" method="_on_button_save_and_quit_pressed"]
+[connection signal="pressed" from="game/HBoxContainer/VBoxContainer_UI/ColorRect/container_settings_vert/CenterContainer/HBoxContainer/Button_Save_and_Quit" to="settings" method="_on_button_save_and_quit_pressed"]
 [connection signal="child_entered_tree" from="game/HBoxContainer/ColorRect/ScrollContainer/distractions" to="game/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade" method="_on_distractions_child_entered_tree"]
 [connection signal="child_entered_tree" from="game/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/shop/ScrollContainer/GridContainer" to="game/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/shop" method="_on_grid_container_child_entered_tree"]
 [connection signal="pressed" from="settings/VBoxContainer/Button_resume" to="settings" method="_on_button_resume_pressed"]
