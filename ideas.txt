@@ -3,9 +3,9 @@ add two numbers for points
 mult two number for points
 memory game
 long term memory game
+mini shop (this is the best idea, have like different genres and types)
 
 --mechanics--
-be able to buy distraction modules
 buy lives
 upgrade modules
-passive unlocking
+passive unlocking (automatic)
