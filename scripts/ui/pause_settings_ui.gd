@@ -22,10 +22,6 @@ func _on_button_quit_pressed() -> void:
 	_saveandquit()
 
 
-
-
-
-
 #from the game screen
 func _on_button_settings_pressed() -> void:
 	show() #show pause screen
@@ -38,4 +34,5 @@ func _on_button_save_and_quit_pressed() -> void:
 
 func _saveandquit():
 	print("quiting")
-	get_tree().quit()
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/menu/menu.tscn")

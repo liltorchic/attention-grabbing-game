@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfk4sxkvl3rvm"]
+
+[ext_resource type="Script" uid="uid://bi04ch65dfyld" path="res://scripts/ui/menu/menu.gd" id="1_klgdb"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_y1u3h"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_klgdb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_y1u3h")
+stretch_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Button_new" type="Button" parent="VBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "New Game"
+
+[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Button_load" type="Button" parent="VBoxContainer/CenterContainer2"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "Load Game"
+
+[node name="CenterContainer3" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Button_settings" type="Button" parent="VBoxContainer/CenterContainer3"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "Settings"
+
+[node name="CenterContainer4" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Button_quit" type="Button" parent="VBoxContainer/CenterContainer4"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/CenterContainer/Button_new" to="." method="_on_button_new_pressed"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer2/Button_load" to="." method="_on_button_load_pressed"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer3/Button_settings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer4/Button_quit" to="." method="_on_button_quit_pressed"]
