@@ -7,6 +7,10 @@ extends Panel
 func _process(float) -> void:
 	pass
 
+#only called when game is paused
+func _input(event):
+	if event.is_action_pressed("Escape"):
+		_on_button_resume_pressed()
 
 #from the pause screen
 func _on_button_resume_pressed() -> void:
