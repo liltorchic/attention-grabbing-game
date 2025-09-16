@@ -7,6 +7,7 @@ var label_price:Label
 
 var distraction:PackedScene
 var copy:Distraction
+var copy2:Distraction
 
 var id
 var price: int
@@ -26,18 +27,19 @@ func getSaveData() -> Dictionary:
 	return save_dict
 
 func add_item(_in):
-	
 	container = get_node("ColorRect/VBoxContainer/Container")
-	distraction = _in
-	copy = distraction.instantiate()
-	container.add_child(copy)
-	id = copy.get_instance_id()
-	Game.discount_purchased.connect(_discount_purchased)
 	
 	if(!Game.is_new_game):
 		var distraction_target = get_tree().get_first_node_in_group("distraction_target")
-		copy.UI_MODE = false
-		distraction_target.add_child(copy)
+		_in.UI_MODE = false
+		distraction_target.add_child(_in)
+	else:
+		distraction = _in
+		copy = distraction.instantiate()
+		container.add_child(copy)
+		id = copy.get_instance_id()
+		
+	Game.discount_purchased.connect(_discount_purchased)
 	
 func _discount_purchased():
 	set_price(price * Game.discount)

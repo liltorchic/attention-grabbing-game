@@ -12,17 +12,33 @@ func _ready() -> void:
 	timer_autoclicker = get_node("Timer_Autoclick")
 	Game.data_purchased.connect(update_labels)
 	init()
-	
+	present_init_upgrade_data()
 	if(self.UI_MODE):
 		button.disabled = true
 	else:
 		#for upgrade
 		var upgrade_node_target = get_tree().get_first_node_in_group("upgrade_target")
+		print(upgrade_node_target)  # must not be null
 		var u:upgrade_item = upgrade.instantiate()
+		print(upgrade)  
 		self.present_init_upgrade_data()
 		upgrade_node_target.add_child(u)
-		u.link(self)
-		
+		print(u.is_inside_tree())  # should be true
+		if(Game.is_new_game):
+			u.link(self)
+		else:
+			loadSaveData()
+			await get_tree().process_frame  
+			u.link(self)
+
+func init() -> void:
+	self.title = "clicker"
+	self.price = 0
+	self.amount = 1
+	self.mult = 1
+	self.auto = false
+	self.autofreq = 1
+	
 func present_init_upgrade_data():
 	self.upgrade_level_1_title = "Amount"
 	self.upgrade_level_1_desc = "+1"
@@ -50,13 +66,15 @@ func present_init_upgrade_data():
 	self.upgrade_level_4_price_increase = 3
 	self.upgrade_level_4_level_string = "0"
 	
-func init() -> void:
-	self.title = "clicker"
-	self.price = 0
-	self.amount = 1
-	self.mult = 1
-	self.auto = false
-	self.autofreq = 1
+
+
+func loadSaveData():
+	self.title = str_to_var(savedata.title)
+	self.price = str_to_var(savedata.price)
+	self.amount = str_to_var(savedata.amount)
+	self.mult = str_to_var(savedata.mult)
+	self.auto = str_to_var(savedata.auto)
+	self.autofreq = str_to_var(savedata.autofreq)
 	
 #gather all info to be saved
 func getSaveData() -> Dictionary:

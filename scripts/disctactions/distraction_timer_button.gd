@@ -24,8 +24,21 @@ func _ready() -> void:
 		var u:upgrade_item = upgrade.instantiate()
 		self.update_upgrade_data()
 		upgrade_node_target.add_child(u)
-		u.link(self)
+		if(Game.is_new_game):
+			u.link(self)
+		else:
+			loadSaveData()
+			await get_tree().process_frame  
+			u.link(self)
 		
+func loadSaveData():
+	self.title = str_to_var(savedata.title)
+	self.price = str_to_var(savedata.price)
+	self.amount = str_to_var(savedata.amount)
+	self.mult = str_to_var(savedata.mult)
+	self.alarm = str_to_var(savedata.alarm)
+	self.timer_length = str_to_var(savedata.timer_length)
+	
 func update_upgrade_data():
 	self.upgrade_level_1_title = "click amount"
 	self.upgrade_level_1_desc = "+1"

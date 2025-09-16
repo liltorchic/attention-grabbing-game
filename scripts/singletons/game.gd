@@ -200,9 +200,11 @@ func load_game() -> void:
 		var item:Distraction = distraction_ref.instantiate()
 		
 		item.init()
+		item.savedata = distract.data.stats.duplicate()
 		
 		shop_item_target.add_child(shop_item_template_instance)#add shop item to shop
-		shop_item_template_instance.add_item(distraction_ref)#add item to shop item
+		shop_item_template_instance.add_item(item)#add item to shop item
+		
 		shop_item_template_instance.set_title(str_to_var(distract.data.stats.title))
 		shop_item_template_instance.set_price(str_to_var(distract.data.stats.price))
 		

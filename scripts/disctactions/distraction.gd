@@ -12,6 +12,7 @@ var particle_tree
 
 var price:float = 1 * Game.get_multiplier()
 var title:String = "undefined"
+var savedata
 
 var upgrade_level_1_title:String = "undefined"
 var upgrade_level_1_desc:String = "description"
