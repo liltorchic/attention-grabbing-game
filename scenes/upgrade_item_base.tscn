@@ -163,12 +163,14 @@ text = "spend less money"
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="Label_Price" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_4/HBoxContainer"]
+[node name="Label_Price_data_upgrade" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_4/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
 text = "price"
 
-[node name="Button" type="Button" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_4/HBoxContainer"]
+[node name="Button_data_upgrade" type="Button" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_4/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -177,4 +179,4 @@ text = "buy"
 [connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/upgrade_1/HBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/upgrade_2/HBoxContainer/Button" to="." method="_on_button_pressed_2"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/upgrade_3/HBoxContainer/Button" to="." method="_on_button_pressed_3"]
-[connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/upgrade_4/HBoxContainer/Button" to="." method="_on_button_pressed_4"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/upgrade_4/HBoxContainer/Button_data_upgrade" to="." method="_on_button_pressed_4"]

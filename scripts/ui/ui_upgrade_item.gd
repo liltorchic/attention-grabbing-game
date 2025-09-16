@@ -36,6 +36,7 @@ func link(input):
 	self.title.text = str(linked_distraction.title)
 	self.focus_mode = Control.FOCUS_NONE
 	Game.updated_selected.connect(_selection_update)
+	Game.discount_purchased.connect(_discount_update)
 	update_price_labels()
 	
 func update_price_labels():
@@ -43,22 +44,22 @@ func update_price_labels():
 	upgrade_1_title.text = linked_distraction.upgrade_level_1_title
 	upgrade_1_desc.text = linked_distraction.upgrade_level_1_desc
 	if(upgrade_1_price.text != "out of stock"):
-		upgrade_1_price.text = str("%.2f" % [linked_distraction.upgrade_level_1_price])
+		upgrade_1_price.text = str("%.2f" % [linked_distraction.upgrade_level_1_price * Game.discount])
 	
 	upgrade_2_title.text = linked_distraction.upgrade_level_2_title
 	upgrade_2_desc.text = linked_distraction.upgrade_level_2_desc
 	if(upgrade_2_price.text != "out of stock"):
-		upgrade_2_price.text = str("%.2f" % [linked_distraction.upgrade_level_2_price])
+		upgrade_2_price.text = str("%.2f" % [linked_distraction.upgrade_level_2_price * Game.discount])
 	
 	upgrade_3_title.text = linked_distraction.upgrade_level_3_title
 	upgrade_3_desc.text = linked_distraction.upgrade_level_3_desc
 	if(upgrade_3_price.text != "out of stock"):
-		upgrade_3_price.text = str("%.2f" % [linked_distraction.upgrade_level_3_price])
+		upgrade_3_price.text = str("%.2f" % [linked_distraction.upgrade_level_3_price * Game.discount])
 	
 	upgrade_4_title.text = linked_distraction.upgrade_level_4_title
 	upgrade_4_desc.text = linked_distraction.upgrade_level_4_desc
 	if(upgrade_4_price.text != "out of stock"):
-		upgrade_4_price.text = str("%.2f" % [linked_distraction.upgrade_level_4_price])
+		upgrade_4_price.text = str("%.2f" % [linked_distraction.upgrade_level_4_price * Game.discount])
 	
 func _selection_update():
 	if Game.selected == linked_distraction:
@@ -67,7 +68,9 @@ func _selection_update():
 	else:
 		is_selected = false
 		highlight.color = Color(0.588, 0.588, 0.588)
-		
+
+func _discount_update():
+		update_price_labels()
 
 func _on_button_pressed() -> void:
 	self.linked_distraction.upgrade_1()

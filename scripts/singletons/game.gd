@@ -6,23 +6,24 @@ var time_points:float = 100000 if Constants.dev else 0
 
 var isMultUnlocked = true
 var isUpgradesUnlocked = true
+var isDataUnlocked = false
 
-var cumlative_points = 0
-var cumlative_points_rollover = 0
-#global multiplier
-var base_mult:float = 0.0
-#
-var hundredkprogess:int = 0
+var cumlative_points:int = 0
+var cumlative_points_rollover:int = 0
+var base_mult:float = 0.0 #global multiplier
+var hundredkprogess:int = 0 #second currency
+var discount:float = 1.000
 
-var lives = Constants.starting_lives
+var lives:int = Constants.starting_lives
 var multiplier:float = Constants.base_multiplier * 1.0
-const panel_size = Constants.ui_panel_standard_size
+const panel_size:int = Constants.ui_panel_standard_size
 
 
 
 
 var selected 
 signal updated_selected
+signal discount_purchased
 
 
 func checkprogressandrollover():
@@ -51,6 +52,9 @@ func remove_time_points(_p:float):
 func get_points() -> float:
 	return time_points
 
+func add_life():
+	lives += 1
+
 func remove_life():
 	if(lives - 1 > 0):
 		lives -= 1
@@ -72,3 +76,16 @@ func add_base_mult(_in:float):
 func set_selected(_in):
 	selected = _in
 	updated_selected.emit()
+	
+func doDataUpdate():
+	isDataUnlocked = true
+	
+func doDiscountUpdate():
+	if(discount - 0.01 > 0):
+		discount -= 0.01
+		discount_purchased.emit()
+	else:
+		var button:Button = %Button_data_upgrade
+		var label:Label = %Label_Price_data_upgrade
+		button.disabled = true
+		label.text = "out of stock"

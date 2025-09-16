@@ -20,7 +20,10 @@ func add_item(_in):
 	copy = distraction.duplicate().instantiate()
 	container.add_child(copy)
 	id = copy.get_instance_id()
+	Game.discount_purchased.connect(_discount_purchased)
 	
+func _discount_purchased():
+	set_price(price * Game.discount)
 	
 func set_title(_in:String):
 	label_title = get_node("ColorRect/VBoxContainer/Label_Title")

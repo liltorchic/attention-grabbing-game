@@ -60,9 +60,9 @@ func update_upgrade_data():
 	
 #Amount
 func upgrade_1():
-	if(self.upgrade_level_1_price <= Game.get_points()):
-		Game.remove_time_points(upgrade_level_1_price)
-		self.upgrade_level_1_price = upgrade_level_1_price * upgrade_level_1_price_increase
+	if(self.upgrade_level_1_price * Game.discount <= Game.get_points()):
+		Game.remove_time_points(upgrade_level_1_price * Game.discount)
+		self.upgrade_level_1_price = upgrade_level_1_price * Game.discount * upgrade_level_1_price_increase
 		self.upgrade_level_1_level = upgrade_level_1_level + 1
 		
 		#upgrade
@@ -70,9 +70,9 @@ func upgrade_1():
 		
 #Multiplier
 func upgrade_2():
-	if(self.upgrade_level_2_price <= Game.get_points()):
-		Game.remove_time_points(upgrade_level_2_price)
-		self.upgrade_level_2_price = upgrade_level_2_price * upgrade_level_2_price_increase
+	if(self.upgrade_level_2_price * Game.discount <= Game.get_points()):
+		Game.remove_time_points(upgrade_level_2_price * Game.discount)
+		self.upgrade_level_2_price = upgrade_level_2_price * Game.discount * upgrade_level_2_price_increase
 		self.upgrade_level_2_level = upgrade_level_2_level + 1
 		
 		#upgrade
@@ -80,9 +80,9 @@ func upgrade_2():
 
 #peace	
 func upgrade_3():
-	if(self.upgrade_level_3_price <= Game.get_points()):
-		Game.remove_time_points(upgrade_level_3_price)
-		self.upgrade_level_3_price = upgrade_level_3_price * upgrade_level_3_price_increase
+	if(self.upgrade_level_3_price * Game.discount <= Game.get_points()):
+		Game.remove_time_points(upgrade_level_3_price * Game.discount)
+		self.upgrade_level_3_price = upgrade_level_3_price * Game.discount * upgrade_level_3_price_increase
 		self.upgrade_level_3_level = upgrade_level_3_level + 1
 		
 		#upgrade
@@ -92,9 +92,9 @@ func upgrade_3():
 
 #alarm
 func upgrade_4():
-	if(self.upgrade_level_4_price <= Game.get_points()):
-		Game.remove_time_points(upgrade_level_4_price)
-		self.upgrade_level_4_price = upgrade_level_4_price * upgrade_level_4_price_increase
+	if(self.upgrade_level_4_price * Game.discount <= Game.get_points()):
+		Game.remove_time_points(upgrade_level_4_price * Game.discount)
+		self.upgrade_level_4_price = upgrade_level_4_price * Game.discount * upgrade_level_4_price_increase
 		self.upgrade_level_4_level = upgrade_level_4_level + 1
 		#upgrade
 		self.alarm = true
