@@ -19,7 +19,7 @@ func _ready() -> void:
 	button = get_node("Button")
 	checkbutton = get_node("CheckButton")
 	checklabel = get_node("CheckButton/Label")
-	
+	Game.data_purchased.connect(update_labels)
 	init()
 	
 	if(self.UI_MODE):
@@ -41,22 +41,25 @@ func update_upgrade_data():
 	self.upgrade_level_1_desc = "+1"
 	self.upgrade_level_1_price = 1500
 	self.upgrade_level_1_price_increase = 1.25
-
+	self.upgrade_level_1_level_string = "0"
+	
 	self.upgrade_level_2_title = "multiplier"
 	self.upgrade_level_2_desc = "+0.1x"
 	self.upgrade_level_2_price = 2000
 	self.upgrade_level_1_price_increase = 2
+	self.upgrade_level_2_level_string = "0"
 	
 	self.upgrade_level_3_title = "alarm"
 	self.upgrade_level_3_desc = "get an alarm"
 	self.upgrade_level_3_price = 100000
 	self.upgrade_level_3_one_time = true
+	self.upgrade_level_3_level_string = "available"
 	
 	self.upgrade_level_4_title = "offset"
 	self.upgrade_level_4_desc = "+ x1"
 	self.upgrade_level_4_price = 15000
 	self.upgrade_level_4_price_increase = 1.5
-	
+	self.upgrade_level_4_level_string = "0"
 
 func init() -> void:
 	ticker = 10
@@ -65,6 +68,11 @@ func init() -> void:
 	self.amount = 1
 	self.alarm = false
 	
+func update_labels():
+	self.upgrade_level_1_level_string = str(upgrade_level_1_level)
+	self.upgrade_level_2_level_string = str(upgrade_level_2_level)
+	self.upgrade_level_3_level_string = "purchased" if upgrade_level_3_level == 1 else "available"
+	self.upgrade_level_4_level_string = str(upgrade_level_4_level)
 #Amount
 func upgrade_1():
 	if(self.upgrade_level_1_price * Game.discount <= Game.get_points()):
@@ -74,6 +82,7 @@ func upgrade_1():
 		
 		#upgrade
 		self.amount += 1
+		update_labels()
 		
 #Multiplier
 func upgrade_2():
@@ -84,6 +93,7 @@ func upgrade_2():
 		
 		#upgrade
 		self.mult += 0.1
+		update_labels()
 
 #alarm	
 func upgrade_3():
@@ -94,6 +104,7 @@ func upgrade_3():
 		
 		#upgrade
 		self.alarm = true
+		update_labels()
 
 #tick amount
 func upgrade_4():
@@ -104,11 +115,12 @@ func upgrade_4():
 		#upgrade
 		self.modifier += 1
 		checklabel.text = "x" + str(self.modifier)
+		update_labels()
 
 
 	
 	
-func update_labels():	
+func update_labels_internal():	
 	var a = self.modifier * self.amount * (Game.get_multiplier() + self.mult)
 	var b = 1 * self.amount * (Game.get_multiplier() + self.mult)
 	isChecked = checkbutton.button_pressed
@@ -123,7 +135,7 @@ func _on_timer_timeout() -> void:
 	timer.start(1)
 	ticker = ticker - increment_score
 	label.text = str(ticker)
-	update_labels()	
+	update_labels_internal()	
 	if(ticker <= 0):
 		timer.stop()
 		scorer.stop()
@@ -134,7 +146,7 @@ func _on_timer_timeout() -> void:
 		_on_check_button_pressed()
 
 func _on_check_button_pressed() -> void:
-	update_labels()
+	update_labels_internal()
 
 func _on_button_pressed() -> void:
 	var a = self.modifier * self.amount * (Game.get_multiplier() + self.mult)

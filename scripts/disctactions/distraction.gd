@@ -18,16 +18,19 @@ var upgrade_level_1_desc:String = "description"
 var upgrade_level_1_price:float = -1
 var upgrade_level_1_price_increase:float = -1
 var upgrade_level_1_one_time:bool = false
-var upgrade_level_1_level:int = 1
+var upgrade_level_1_level:int = 0
+var upgrade_level_1_level_limit:int = 1
+var upgrade_level_1_level_string:String = "-/-"
 var upgrade_level_1_disabled:bool = false
-
 
 var upgrade_level_2_title = "undefined"
 var upgrade_level_2_desc = "description"
 var upgrade_level_2_price:float = -1
 var upgrade_level_2_price_increase:float = -1
 var upgrade_level_2_one_time:bool = false
-var upgrade_level_2_level:int = 1
+var upgrade_level_2_level:int = 0
+var upgrade_level_2_level_limit:int = 1
+var upgrade_level_2_level_string:String = "-/-"
 var upgrade_level_2_disabled:bool = false
 
 var upgrade_level_3_title = "undefined"
@@ -35,7 +38,9 @@ var upgrade_level_3_desc = "description"
 var upgrade_level_3_price:float = -1
 var upgrade_level_3_price_increase:float = -1
 var upgrade_level_3_one_time:bool = false
-var upgrade_level_3_level:int = 1
+var upgrade_level_3_level:int = 0
+var upgrade_level_3_level_limit:int = 1
+var upgrade_level_3_level_string:String = "-/-"
 var upgrade_level_3_disabled:bool = false
 
 var upgrade_level_4_title = "undefined"
@@ -43,7 +48,9 @@ var upgrade_level_4_desc = "description"
 var upgrade_level_4_price:float = -1
 var upgrade_level_4_price_increase:float = -1
 var upgrade_level_4_one_time:bool = false
-var upgrade_level_4_level:int = 1
+var upgrade_level_4_level:int = 0
+var upgrade_level_4_level_limit:int = 1
+var upgrade_level_4_level_string:String = "-/-"
 var upgrade_level_4_disabled:bool = false
 
 var amount:float
@@ -52,8 +59,8 @@ var auto:bool
 var autofreq:float
 var alarm:bool
 
-func update_upgrade_data():
-	push_error("update_upgrade_data unimplemented")
+func update_labels():
+	push_error("update_labels unimplemented")
 	
 func init():
 	push_error("init unimplemented")

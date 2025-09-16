@@ -22,7 +22,7 @@ func _ready() -> void:
 	label.text = ""
 	timer_hidden = true
 	button.visible = false
-	
+	Game.data_purchased.connect(update_labels)
 	init()
 	
 	if(self.UI_MODE):
@@ -42,21 +42,31 @@ func update_upgrade_data():
 	self.upgrade_level_1_desc = "+1"
 	self.upgrade_level_1_price = 100
 	self.upgrade_level_1_price_increase = 1.5
+	self.upgrade_level_1_level_string = "0"
 	
 	self.upgrade_level_2_title = "multiplier"
 	self.upgrade_level_2_desc = "+0.1x"
 	self.upgrade_level_2_price = 1000
 	self.upgrade_level_2_price_increase = 1.25
+	self.upgrade_level_2_level_string = "0"
 	
 	self.upgrade_level_3_title = "peace"
 	self.upgrade_level_3_desc = "rest easier"
 	self.upgrade_level_3_price = 1000
 	self.upgrade_level_3_price_increase = 1.1
+	self.upgrade_level_3_level_string = "0"
 	
 	self.upgrade_level_4_title = "alarm"
 	self.upgrade_level_4_desc = "get an alarm"
 	self.upgrade_level_4_price = 100000
 	self.upgrade_level_4_one_time = true
+	self.upgrade_level_4_level_string = "available"
+
+func update_labels():
+	self.upgrade_level_1_level_string = str(upgrade_level_1_level)
+	self.upgrade_level_2_level_string = str(upgrade_level_2_level)
+	self.upgrade_level_3_level_string = str(upgrade_level_3_level)
+	self.upgrade_level_4_level_string = "purchased" if upgrade_level_4_level == 1 else "available"
 	
 #Amount
 func upgrade_1():
@@ -67,6 +77,7 @@ func upgrade_1():
 		
 		#upgrade
 		self.amount += 1
+		update_labels()
 		
 #Multiplier
 func upgrade_2():
@@ -77,6 +88,7 @@ func upgrade_2():
 		
 		#upgrade
 		self.mult += 0.1
+		update_labels()
 
 #peace	
 func upgrade_3():
@@ -89,6 +101,7 @@ func upgrade_3():
 		self.timer_amount += 1
 		self.timer_rng_lower += 1
 		self.timer_rng_upper += 2
+		update_labels()
 
 #alarm
 func upgrade_4():
@@ -98,6 +111,7 @@ func upgrade_4():
 		self.upgrade_level_4_level = upgrade_level_4_level + 1
 		#upgrade
 		self.alarm = true
+		update_labels()
 	
 
 func init() -> void:

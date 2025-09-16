@@ -11,7 +11,7 @@ func _ready() -> void:
 	label = get_node("Label")
 	scorer = get_node("Timer_Scorer")
 	button = get_node("Button")
-	
+	Game.data_purchased.connect(update_labels)
 	init()
 	
 	if(self.UI_MODE):
@@ -31,26 +31,36 @@ func update_upgrade_data():
 	self.upgrade_level_1_desc = "+1"
 	self.upgrade_level_1_price = 100
 	self.upgrade_level_1_price_increase = 3
+	self.upgrade_level_1_level_string = "0"
 	
 	self.upgrade_level_2_title = "multiplier"
 	self.upgrade_level_2_desc = "+0.1x"
 	self.upgrade_level_2_price = 1000
 	self.upgrade_level_2_price_increase = 1.25
+	self.upgrade_level_2_level_string = "0"
 	
 	self.upgrade_level_3_title = "countdown"
 	self.upgrade_level_3_desc = "1.5x"
 	self.upgrade_level_3_price = 10000
 	self.upgrade_level_3_price_increase = 1.25
+	self.upgrade_level_3_level_string = "0"
 	
 	self.upgrade_level_4_title = "alarm"
 	self.upgrade_level_4_desc = "get an alarm"
 	self.upgrade_level_4_price = 100000
 	self.upgrade_level_4_one_time = true
+	self.upgrade_level_4_level_string = "available"
 
 func init() -> void:
 	self.title = "timer"
 	self.price = 100
 	self.amount = 1
+
+func update_labels():
+	self.upgrade_level_1_level_string = str(upgrade_level_1_level)
+	self.upgrade_level_2_level_string = str(upgrade_level_2_level)
+	self.upgrade_level_3_level_string = str(upgrade_level_3_level)
+	self.upgrade_level_4_level_string = "purchased" if upgrade_level_4_level == 1 else "available"
 	
 #Amount
 func upgrade_1():
@@ -61,6 +71,7 @@ func upgrade_1():
 		
 		#upgrade
 		self.amount += 1
+		update_labels()
 		
 #Multiplier
 func upgrade_2():
@@ -71,6 +82,7 @@ func upgrade_2():
 		
 		#upgrade
 		self.mult += 0.1
+		update_labels()
 
 #alarm	
 func upgrade_3():
@@ -81,6 +93,7 @@ func upgrade_3():
 		
 		#upgrade
 		self.timer_length = self.timer_length * 1.5
+		update_labels()
 
 #tick amount
 func upgrade_4():
@@ -90,6 +103,7 @@ func upgrade_4():
 		self.upgrade_level_4_level = upgrade_level_4_level + 1
 		#upgrade
 		self.alarm = true
+		update_labels()
 
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.

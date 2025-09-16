@@ -22,7 +22,7 @@ func _ready() -> void:
 	label.text = "happy"
 	health = 100
 	_calc_score(0)
-	
+	Game.data_purchased.connect(update_labels)
 	init()
 	
 	if(self.UI_MODE):
@@ -34,30 +34,34 @@ func _ready() -> void:
 				#for upgrade
 		var upgrade_node_target = get_node("../../../../../HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade/ScrollContainer/VBoxContainer")
 		var u:upgrade_item = upgrade.instantiate()
-		self.update_upgrade_data()
+		self.init_data()
 		upgrade_node_target.add_child(u)
 		u.link(self)
 		
-func update_upgrade_data():
+func init_data():
 	self.upgrade_level_1_title = "Amount"
 	self.upgrade_level_1_desc = "+1"
 	self.upgrade_level_1_price = 500
 	self.upgrade_level_1_price_increase = 1.55
+	self.upgrade_level_1_level_string = "0"
 	
 	self.upgrade_level_2_title = "Multiplier"
 	self.upgrade_level_2_desc = "+0.1x"
 	self.upgrade_level_2_price = 1000
 	self.upgrade_level_2_price_increase = 2
+	self.upgrade_level_2_level_string = "0"
 	
 	self.upgrade_level_3_title = "Love"
 	self.upgrade_level_3_desc = "how much you love your pet"
 	self.upgrade_level_3_price = 60
 	self.upgrade_level_3_price_increase = 1.225
+	self.upgrade_level_3_level_string = "0"
 	
 	self.upgrade_level_4_title = "Torture"
 	self.upgrade_level_4_desc = "hurt it to make it behave"
 	self.upgrade_level_4_price = 10
 	self.upgrade_level_4_price_increase = 1.115
+	self.upgrade_level_4_level_string = "0"
 
 func init() -> void:
 	self.title = "pet"
@@ -67,7 +71,11 @@ func init() -> void:
 	last_reward = 0
 	award = 0
 	
-	
+func update_labels():
+	self.upgrade_level_1_level_string = str(upgrade_level_1_level)
+	self.upgrade_level_2_level_string = str(upgrade_level_2_level)
+	self.upgrade_level_3_level_string = str(upgrade_level_3_level)
+	self.upgrade_level_4_level_string = str(upgrade_level_4_level)
 #Amount
 func upgrade_1():
 	if(self.upgrade_level_1_price * Game.discount <= Game.get_points()):
@@ -77,6 +85,7 @@ func upgrade_1():
 		
 		#upgrade
 		self.amount += 1
+		update_labels()
 		
 #Multiplier
 func upgrade_2():
@@ -87,6 +96,8 @@ func upgrade_2():
 		
 		#upgrade
 		self.mult += 0.1
+		update_labels()
+		
 
 #love	
 func upgrade_3():
@@ -97,6 +108,7 @@ func upgrade_3():
 		
 		#upgrade
 		self.amount += 0.2
+		update_labels()
 
 #pain
 func upgrade_4():
@@ -108,6 +120,7 @@ func upgrade_4():
 		self.amount += 0.1
 		if(self.interval - 0.01 != 0):
 			self.interval = self.interval - 0.01
+		update_labels()
 	
 func die():
 	Game.remove_life()

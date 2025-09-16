@@ -10,22 +10,29 @@ class_name upgrade_item
 @onready var upgrade_1_desc :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_1/Label_description
 @onready var upgrade_1_price :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_1/HBoxContainer/Label_Price
 @onready var upgrade_1_button :Button = $ColorRect/VBoxContainer/HBoxContainer/upgrade_1/HBoxContainer/Button
-
+@onready var upgrade_1_container:HBoxContainer = $ColorRect/VBoxContainer/HBoxContainer/upgrade_1/level
+@onready var upgrade_1_data_label:Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_1/level/Label
 
 @onready var upgrade_2_title :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_2/Label_upgrade
 @onready var upgrade_2_desc :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_2/Label_description
 @onready var upgrade_2_price :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_2/HBoxContainer/Label_Price
 @onready var upgrade_2_button :Button = $ColorRect/VBoxContainer/HBoxContainer/upgrade_2/HBoxContainer/Button
+@onready var upgrade_2_container:HBoxContainer = $ColorRect/VBoxContainer/HBoxContainer/upgrade_2/level
+@onready var upgrade_2_data_label:Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_2/level/Label
 
 @onready var upgrade_3_title :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_3/Label_upgrade
 @onready var upgrade_3_desc :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_3/Label_description
 @onready var upgrade_3_price :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_3/HBoxContainer/Label_Price
 @onready var upgrade_3_button :Button = $ColorRect/VBoxContainer/HBoxContainer/upgrade_3/HBoxContainer/Button
+@onready var upgrade_3_container:HBoxContainer = $ColorRect/VBoxContainer/HBoxContainer/upgrade_3/level
+@onready var upgrade_3_data_label:Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_3/level/Label
 
 @onready var upgrade_4_title :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_4/Label_upgrade
 @onready var upgrade_4_desc :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_4/Label_description
 @onready var upgrade_4_price :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_4/HBoxContainer/Label_Price
 @onready var upgrade_4_button :Button = $ColorRect/VBoxContainer/HBoxContainer/upgrade_4/HBoxContainer/Button
+@onready var upgrade_4_container:HBoxContainer = $ColorRect/VBoxContainer/HBoxContainer/upgrade_4/level
+@onready var upgrade_4_data_label:Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_4/level/Label
 
 var linked_distraction:Distraction
 
@@ -37,7 +44,17 @@ func link(input):
 	self.focus_mode = Control.FOCUS_NONE
 	Game.updated_selected.connect(_selection_update)
 	Game.discount_purchased.connect(_discount_update)
-	update_price_labels()
+	Game.data_purchased.connect(_data_purchased)
+	upgrade_1_button.pressed.connect(update_price_labels)
+	upgrade_2_button.pressed.connect(update_price_labels)
+	upgrade_3_button.pressed.connect(update_price_labels)
+	upgrade_4_button.pressed.connect(update_price_labels)
+	
+	if(Game.isDataUnlocked):
+		_data_purchased()
+	else:
+		update_price_labels()
+	
 	
 func update_price_labels():
 	
@@ -60,6 +77,11 @@ func update_price_labels():
 	upgrade_4_desc.text = linked_distraction.upgrade_level_4_desc
 	if(upgrade_4_price.text != "out of stock"):
 		upgrade_4_price.text = str("%.2f" % [linked_distraction.upgrade_level_4_price * Game.discount])
+		
+	upgrade_1_data_label.text = linked_distraction.upgrade_level_1_level_string
+	upgrade_2_data_label.text = linked_distraction.upgrade_level_2_level_string
+	upgrade_3_data_label.text = linked_distraction.upgrade_level_3_level_string
+	upgrade_4_data_label.text = linked_distraction.upgrade_level_4_level_string
 	
 func _selection_update():
 	if Game.selected == linked_distraction:
@@ -70,6 +92,14 @@ func _selection_update():
 		highlight.color = Color(0.588, 0.588, 0.588)
 
 func _discount_update():
+		update_price_labels()
+
+		
+func _data_purchased():
+		upgrade_1_container.visible = true
+		upgrade_2_container.visible = true
+		upgrade_3_container.visible = true
+		upgrade_4_container.visible = true
 		update_price_labels()
 
 func _on_button_pressed() -> void:

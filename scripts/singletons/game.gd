@@ -24,6 +24,7 @@ const panel_size:int = Constants.ui_panel_standard_size
 var selected 
 signal updated_selected
 signal discount_purchased
+signal data_purchased
 
 
 func checkprogressandrollover():
@@ -79,6 +80,7 @@ func set_selected(_in):
 	
 func doDataUpdate():
 	isDataUnlocked = true
+	data_purchased.emit()
 	
 func doDiscountUpdate():
 	if(discount - 0.01 > 0):

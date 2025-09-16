@@ -110,7 +110,21 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "100k's"
 
-[node name="Label_100kp" type="Label" parent="game/HBoxContainer/VBoxContainer_UI/ColorRect/container_scorer_ver/container_100kp_extra"]
+[node name="Label_100kp_data" type="Label" parent="game/HBoxContainer/VBoxContainer_UI/ColorRect/container_scorer_ver/container_100kp_extra"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "#"
+
+[node name="container_discount_extra" type="HBoxContainer" parent="game/HBoxContainer/VBoxContainer_UI/ColorRect/container_scorer_ver"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="game/HBoxContainer/VBoxContainer_UI/ColorRect/container_scorer_ver/container_discount_extra"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "discount: "
+
+[node name="Label_discount_data" type="Label" parent="game/HBoxContainer/VBoxContainer_UI/ColorRect/container_scorer_ver/container_discount_extra"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "#"

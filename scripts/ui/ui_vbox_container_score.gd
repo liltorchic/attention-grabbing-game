@@ -4,7 +4,10 @@ extends VBoxContainer
 var lives_label_data:Label
 var score_label_data:Label
 var mult_label_data:Label
-
+var label100kp_data:Label
+var discount_data:Label
+var container_100k:HBoxContainer
+var container_discount:HBoxContainer
 
 func _ready() -> void:
 	lives_label_data = get_node("container_lives_hor/Label_Lives_num")
@@ -13,6 +16,15 @@ func _ready() -> void:
 	score_label_data.text = ""
 	mult_label_data = get_node("container_mult_hor/Label_Multiplier")
 	mult_label_data.text = ""
+	label100kp_data = get_node("container_100kp_extra/Label_100kp_data")
+	label100kp_data.text = ""
+	discount_data = get_node("container_discount_extra/Label_discount_data")
+	discount_data.text = ""
+	container_100k = get_node("container_100kp_extra")
+	container_discount = get_node("container_discount_extra")
+	
+	
+	Game.data_purchased.connect(_data_purchased)
 	
 func _process(delta: float) -> void:
 	if(str(Game.lives) != lives_label_data.text):
@@ -26,3 +38,13 @@ func _process(delta: float) -> void:
 			mult_label_data.text = "x" + str(Game.get_multiplier())
 	else:
 		mult_label_data.text = ""
+		
+	if(str(Game.hundredkprogess) != label100kp_data.text):
+		label100kp_data.text = str(Game.hundredkprogess)
+	
+	if(str(Game.discount) != discount_data.text):
+		discount_data.text = str(Game.discount)
+
+func _data_purchased():
+	container_100k.visible = true
+	container_discount.visible = true
