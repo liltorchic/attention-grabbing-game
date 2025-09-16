@@ -59,6 +59,9 @@ var auto:bool
 var autofreq:float
 var alarm:bool
 
+func getSaveData(): 
+	push_error("update_labels unimplemented")
+
 func update_labels():
 	push_error("update_labels unimplemented")
 	

@@ -2,11 +2,13 @@ extends Control
 
 
 func _on_button_new_pressed() -> void:
+	Game.is_new_game = true
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 
 func _on_button_load_pressed() -> void:
-	pass # Replace with function body.
+	Game.is_new_game = false
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 
 func _on_button_settings_pressed() -> void:

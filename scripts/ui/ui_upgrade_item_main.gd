@@ -1,33 +1,34 @@
 extends Node
 
-@onready var title :Label = $ColorRect/VBoxContainer/Label_Title
+enum Type {UNDEFINED, AMOUNT, MULTIPLIER, AUTOCLICKER, BOOST, LOVE, TORTURE, ALARM, DURATION, BASE_LIVES, BASE_DATA, BASE_DISCOUNT}
 
+@onready var title :Label = $ColorRect/VBoxContainer/Label_Title
 #mult
 @onready var upgrade_1_price :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_1/HBoxContainer/Label_Price
 @onready var upgrade_1_button :Button = $ColorRect/VBoxContainer/HBoxContainer/upgrade_1/HBoxContainer/Button
 var upgrade_1_price_f:float = 1000.0
-var upgrade_1_type:Constants.Type = Constants.Type.MULTIPLIER
+var upgrade_1_type:Type = Type.MULTIPLIER
 var upgrade_1_level:int = 0
 
 #lives
 @onready var upgrade_2_price :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_2/HBoxContainer/Label_Price
 @onready var upgrade_2_button :Button = $ColorRect/VBoxContainer/HBoxContainer/upgrade_2/HBoxContainer/Button
 var upgrade_2_price_f:float = 10000.0
-var upgrade_2_type:Constants.Type = Constants.Type.BASE_LIVES
+var upgrade_2_type:Type = Type.BASE_LIVES
 var upgrade_2_level:int = 0
 
 #data
 @onready var upgrade_3_price :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_3/HBoxContainer/Label_Price
 @onready var upgrade_3_button :Button = $ColorRect/VBoxContainer/HBoxContainer/upgrade_3/HBoxContainer/Button
 var upgrade_3_price_f:float = 100.0
-var upgrade_3_type:Constants.Type = Constants.Type.BASE_DATA
+var upgrade_3_type:Type = Type.BASE_DATA
 
 
 #discount
 @onready var upgrade_4_price :Label = %Label_Price_data_upgrade
 @onready var upgrade_4_button :Button = %Button_data_upgrade
 var upgrade_4_price_f:float = 10000.0
-var upgrade_4_type:Constants.Type = Constants.Type.BASE_DISCOUNT
+var upgrade_4_type:Type = Type.BASE_DISCOUNT
 var upgrade_4_level:int = 0
 var upgrade_4_level_limit:int = 99
 
@@ -80,7 +81,7 @@ func _on_button_pressed() -> void:
 		upgrade_1_price_f = Game.recalc_price(upgrade_1_price_f * Game.discount)
 		upgrade_1_level += 1
 		do_upgrade(upgrade_1_type)
-		if(upgrade_1_type == Constants.Type.BASE_DATA):
+		if(upgrade_1_type == Type.BASE_DATA):
 			upgrade_1_button.disabled = true
 			upgrade_1_price_f = -1
 		update_price_labels()
@@ -92,7 +93,7 @@ func _on_button_pressed_2() -> void:
 		upgrade_2_price_f = Game.recalc_price(upgrade_2_price_f * Game.discount)
 		upgrade_2_level += 1
 		do_upgrade(upgrade_2_type)
-		if(upgrade_2_type == Constants.Type.BASE_DATA):
+		if(upgrade_2_type == Type.BASE_DATA):
 			upgrade_2_button.disabled = true
 			upgrade_2_price_f = -1
 		update_price_labels()
@@ -103,7 +104,7 @@ func _on_button_pressed_3() -> void:
 		Game.remove_time_points(upgrade_3_price_f * Game.discount)
 		upgrade_3_price_f = Game.recalc_price(upgrade_3_price_f * Game.discount)
 		do_upgrade(upgrade_3_type)
-		if(upgrade_3_type == Constants.Type.BASE_DATA):
+		if(upgrade_3_type == Type.BASE_DATA):
 			upgrade_3_button.disabled = true
 			upgrade_3_price_f = -1
 		update_price_labels()
@@ -115,18 +116,18 @@ func _on_button_pressed_4() -> void:
 		upgrade_4_price_f = Game.recalc_price(upgrade_4_price_f * Game.discount)
 		upgrade_4_level += 1
 		do_upgrade(upgrade_4_type)
-		if(upgrade_4_type == Constants.Type.BASE_DATA):
+		if(upgrade_4_type == Type.BASE_DATA):
 			upgrade_4_button.disabled = true
 			upgrade_4_price_f = -1
 		update_price_labels()
 		
-func do_upgrade(_upgrade_type:Constants.Type):
+func do_upgrade(_upgrade_type:Type):
 	match _upgrade_type:
-		Constants.Type.MULTIPLIER:
+		Type.MULTIPLIER:
 			Game.add_base_mult(0.1)
-		Constants.Type.BASE_LIVES:
+		Type.BASE_LIVES:
 			Game.add_life()
-		Constants.Type.BASE_DATA:
+		Type.BASE_DATA:
 			Game.doDataUpdate()
-		Constants.Type.BASE_DISCOUNT:
+		Type.BASE_DISCOUNT:
 			Game.doDiscountUpdate()

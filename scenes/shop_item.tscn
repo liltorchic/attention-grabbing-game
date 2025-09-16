@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bmdyjkhyyap4m" path="res://scripts/ui/ui_shop_item.gd" id="1_lrx6i"]
 
-[node name="ShopItem" type="Control"]
+[node name="ShopItem" type="Control" groups=["shopItem"]]
 custom_minimum_size = Vector2(145, 200)
 layout_mode = 3
 anchors_preset = 0

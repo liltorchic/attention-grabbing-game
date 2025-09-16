@@ -68,6 +68,57 @@ func init() -> void:
 	self.amount = 1
 	self.alarm = false
 	
+#gather all info to be saved
+func getSaveData() -> Dictionary:
+	var save_dict := {
+		type = Constants.Type.TICKER,
+		stats = {
+			title = var_to_str(self.title),
+			price = var_to_str(self.price),
+			amount = var_to_str(self.amount),
+			alarm = var_to_str(self.alarm),
+			isChecked = var_to_str(self.isChecked),
+			modifier = var_to_str(self.modifier),#offset upgrade
+			upgrade_level_1_desc = var_to_str(self.upgrade_level_1_desc),
+			upgrade_level_1_disabled = var_to_str(self.upgrade_level_1_disabled),
+			upgrade_level_1_level = var_to_str(self.upgrade_level_1_level),
+			upgrade_level_1_level_limit = var_to_str(self.upgrade_level_1_level_limit),
+			upgrade_level_1_level_string = var_to_str(self.upgrade_level_1_level_string),
+			upgrade_level_1_one_time = var_to_str(self.upgrade_level_1_one_time),
+			upgrade_level_1_price = var_to_str(self.upgrade_level_1_price),
+			upgrade_level_1_price_increase = var_to_str(self.upgrade_level_1_price_increase),
+			upgrade_level_1_title = var_to_str(self.upgrade_level_1_title),
+			upgrade_level_2_desc = var_to_str(self.upgrade_level_2_desc),
+			upgrade_level_2_disabled = var_to_str(self.upgrade_level_2_disabled),
+			upgrade_level_2_level = var_to_str(self.upgrade_level_2_level),
+			upgrade_level_2_level_limit = var_to_str(self.upgrade_level_2_level_limit),
+			upgrade_level_2_level_string = var_to_str(self.upgrade_level_2_level_string),
+			upgrade_level_2_one_time = var_to_str(self.upgrade_level_2_one_time),
+			upgrade_level_2_price = var_to_str(self.upgrade_level_2_price),
+			upgrade_level_2_price_increase = var_to_str(self.upgrade_level_2_price_increase),
+			upgrade_level_2_title = var_to_str(self.upgrade_level_2_title),
+			upgrade_level_3_desc = var_to_str(self.upgrade_level_3_desc),
+			upgrade_level_3_disabled = var_to_str(self.upgrade_level_3_disabled),
+			upgrade_level_3_level = var_to_str(self.upgrade_level_3_level),
+			upgrade_level_3_level_limit = var_to_str(self.upgrade_level_3_level_limit),
+			upgrade_level_3_level_string = var_to_str(self.upgrade_level_3_level_string),
+			upgrade_level_3_one_time = var_to_str(self.upgrade_level_3_one_time),
+			upgrade_level_3_price = var_to_str(self.upgrade_level_3_price),
+			upgrade_level_3_price_increase = var_to_str(self.upgrade_level_3_price_increase),
+			upgrade_level_3_title = var_to_str(self.upgrade_level_3_title),
+			upgrade_level_4_desc = var_to_str(self.upgrade_level_4_desc),
+			upgrade_level_4_disabled = var_to_str(self.upgrade_level_4_disabled),
+			upgrade_level_4_level = var_to_str(self.upgrade_level_4_level),
+			upgrade_level_4_level_limit = var_to_str(self.upgrade_level_4_level_limit),
+			upgrade_level_4_level_string = var_to_str(self.upgrade_level_4_level_string),
+			upgrade_level_4_one_time = var_to_str(self.upgrade_level_4_one_time),
+			upgrade_level_4_price = var_to_str(self.upgrade_level_4_price),
+			upgrade_level_4_price_increase = var_to_str(self.upgrade_level_4_price_increase),
+			upgrade_level_4_title = var_to_str(self.upgrade_level_4_title),
+		},
+	}
+	return save_dict
+	
 func update_labels():
 	self.upgrade_level_1_level_string = str(upgrade_level_1_level)
 	self.upgrade_level_2_level_string = str(upgrade_level_2_level)

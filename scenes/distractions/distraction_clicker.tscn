@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://y1g6j227iswe" path="res://scripts/disctactions/distraction_clicker.gd" id="1_6jgap"]
 
-[node name="distraction_clicker" type="ColorRect" groups=["distraction"]]
+[node name="distraction_clicker" type="ColorRect" groups=["d_clicker", "distraction"]]
 custom_minimum_size = Vector2(128, 128)
 script = ExtResource("1_6jgap")
 

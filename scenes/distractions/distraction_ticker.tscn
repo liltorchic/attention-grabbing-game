@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dei6k0i7cbeqj" path="res://scripts/disctactions/distraction_ticker.gd" id="1_dbfkp"]
 
-[node name="distraction_ticker" type="ColorRect" groups=["distraction"]]
+[node name="distraction_ticker" type="ColorRect" groups=["d_ticker", "distraction"]]
 custom_minimum_size = Vector2(128, 128)
 script = ExtResource("1_dbfkp")
 

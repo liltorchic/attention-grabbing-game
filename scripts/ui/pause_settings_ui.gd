@@ -33,6 +33,8 @@ func _on_button_save_and_quit_pressed() -> void:
 
 
 func _saveandquit():
+	Game.is_new_game = true # reset flag
+	Game.save_game()
 	print("quiting")
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/menu/menu.tscn")

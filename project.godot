@@ -30,7 +30,17 @@ window/stretch/scale=1.5
 
 [global_group]
 
-distraction=""
+distraction="savable distraction"
+shopItem=""
+d_clicker=""
+d_pet=""
+d_ticker=""
+d_timer_button=""
+d_timer_suprise=""
+shop_target=""
+upgradeItem=""
+distraction_target=""
+upgrade_target=""
 
 [input]
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b8856euvmr15g" path="res://scripts/disctactions/distraction_timer_defuse.gd" id="1_ju7hv"]
 
-[node name="distraction_timer_suprise" type="ColorRect" groups=["distraction"]]
+[node name="distraction_timer_suprise" type="ColorRect" groups=["d_timer_suprise", "distraction"]]
 custom_minimum_size = Vector2(128, 128)
 script = ExtResource("1_ju7hv")
 

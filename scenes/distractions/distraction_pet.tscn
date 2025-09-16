@@ -4,7 +4,7 @@
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_011nb"]
 
-[node name="distraction_pet" type="ColorRect" groups=["distraction"]]
+[node name="distraction_pet" type="ColorRect" groups=["d_pet", "distraction"]]
 custom_minimum_size = Vector2(128, 128)
 script = ExtResource("1_q215s")
 

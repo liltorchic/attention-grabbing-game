@@ -190,7 +190,7 @@ size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 13
 text = "description"
 
-[node name="level" type="HBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_4"]
+[node name="level" type="HBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer/upgrade_4" groups=["upgradeItem"]]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
