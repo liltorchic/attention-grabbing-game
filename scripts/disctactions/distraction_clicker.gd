@@ -24,12 +24,7 @@ func _ready() -> void:
 		self.present_init_upgrade_data()
 		upgrade_node_target.add_child(u)
 		print(u.is_inside_tree())  # should be true
-		if(Game.is_new_game):
-			u.link(self)
-		else:
-			loadSaveData()
-			await get_tree().process_frame  
-			u.link(self)
+		u.link(self)
 
 func init() -> void:
 	self.title = "clicker"

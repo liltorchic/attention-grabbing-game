@@ -27,8 +27,24 @@ signal discount_purchased
 signal data_purchased
 signal game_loaded
 
+signal shop_item_clicker_loaded(ref)
+var linked_async_shop_item_clicker
+signal shop_item_pet_loaded(ref)
+var linked_async_shop_item_pet
+signal shop_item_ticker_loaded(ref)
+var linked_async_shop_item_ticker
+signal shop_item_timer_button_loaded(ref)
+var linked_async_shop_item_timer_button
+signal shop_item_timer_defuse_loaded(ref)
+var linked_async_shop_item_timer_defuse
+
 func _ready() -> void:
 	game_loaded.connect(_game_loaded)
+	shop_item_clicker_loaded.connect(_shop_item_clicker_loaded)
+	shop_item_pet_loaded.connect(_shop_item_pet_loaded)
+	shop_item_ticker_loaded.connect(_shop_item_ticker_loaded)
+	shop_item_timer_button_loaded.connect(_shop_item_timer_button_loaded)
+	shop_item_timer_defuse_loaded.connect(_shop_item_timer_defuse_loaded)
 
 func checkprogressandrollover():
 	if cumlative_points_rollover >= 100000:
@@ -166,7 +182,7 @@ func load_game() -> void:
 	# Remove existing objects before adding new ones.
 	get_tree().call_group("distraction", "queue_free")
 	get_tree().call_group("upgradeItem", "queue_free")
-	get_tree().call_group("shopItem", "queue_free")
+	#get_tree().call_group("shopItem", "queue_free")
 	
 	#populate game data
 	time_points = str_to_var(save_dict.stats.time_points)
@@ -196,17 +212,36 @@ func load_game() -> void:
 		elif(enumtype == Constants.Type.TIMER_SUPRISE):
 			distraction_ref = _distraction_timer_suprise
 			
-		var shop_item_template_instance:ShopItem = shop_item_template.instantiate()
 		var item:Distraction = distraction_ref.instantiate()
 		
 		item.init()
 		item.savedata = distract.data.stats.duplicate()
+	
+	for shopies: Dictionary in save_dict.shopItemz:
 		
-		shop_item_target.add_child(shop_item_template_instance)#add shop item to shop
-		shop_item_template_instance.add_item(item)#add item to shop item
+		if(str_to_var(shopies.data.stats.id) == "clicker"):	
+			linked_async_shop_item_clicker.loadSaveData(shopies.data.stats)
+		elif(str_to_var(shopies.data.stats.id) == "pet"):
+			linked_async_shop_item_pet.loadSaveData(shopies.data.stats)
+		elif(str_to_var(shopies.data.stats.id) == "ticker"):
+			linked_async_shop_item_ticker.loadSaveData(shopies.data.stats)
+		elif(str_to_var(shopies.data.stats.id) == "timer"):
+			linked_async_shop_item_timer_button.loadSaveData(shopies.data.stats)
+		elif(str_to_var(shopies.data.stats.id) == "bomb"):
+			linked_async_shop_item_timer_defuse.loadSaveData(shopies.data.stats)
 		
-		shop_item_template_instance.set_title(str_to_var(distract.data.stats.title))
-		shop_item_template_instance.set_price(str_to_var(distract.data.stats.price))
 		
-		
-		print("added a d of type " + str((distract.data.type))) 
+func _shop_item_clicker_loaded(node_reference):
+	linked_async_shop_item_clicker = node_reference
+	
+func _shop_item_pet_loaded(node_reference):
+	linked_async_shop_item_pet = node_reference
+	
+func _shop_item_ticker_loaded(node_reference):
+	linked_async_shop_item_ticker = node_reference
+	
+func _shop_item_timer_button_loaded(node_reference):
+	linked_async_shop_item_timer_button = node_reference
+	
+func _shop_item_timer_defuse_loaded(node_reference):
+	linked_async_shop_item_timer_defuse = node_reference

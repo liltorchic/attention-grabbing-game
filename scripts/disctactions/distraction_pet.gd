@@ -36,12 +36,7 @@ func _ready() -> void:
 		var u:upgrade_item = upgrade.instantiate()
 		self.init_data()
 		upgrade_node_target.add_child(u)
-		if(Game.is_new_game):
-			u.link(self)
-		else:
-			loadSaveData()
-			await get_tree().process_frame  
-			u.link(self)
+		u.link(self)
 			
 func loadSaveData():
 	self.title = str_to_var(savedata.title)

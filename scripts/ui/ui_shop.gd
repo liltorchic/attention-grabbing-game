@@ -20,19 +20,23 @@ extends ColorRect
 
 
 func _ready() -> void:
-	if(Game.is_new_game):
-		for i in shop_items:
-			var shop_item:ShopItem = shop_item_template.instantiate()
-			var item:Distraction = i.instantiate()
-			item.init()
-			shop_target.add_child(shop_item)#add shop item to shop
-			shop_item.add_item(i)#add item to shop item
-			shop_item.set_title(item.title)
+	for i in shop_items:
+		var shop_item:ShopItem = shop_item_template.instantiate()
+		shop_target.add_child(shop_item)#add shop item to shop
+		
+		var item:Distraction = i.instantiate()
+		item.init()
+		shop_item.set_title(item.title)
+		shop_item.add_item(i)
+		
+		if(Game.is_new_game):
 			shop_item.set_price(item.price)
-			shop_item.bought.connect(_child_button_pressed)
+		else:
+			shop_item.tether()
+		
+		
+		shop_item.bought.connect(_child_button_pressed)
 	Game.game_loaded.emit()
-		
-		
 		
 		
 func _child_button_pressed(packedscene: PackedScene):

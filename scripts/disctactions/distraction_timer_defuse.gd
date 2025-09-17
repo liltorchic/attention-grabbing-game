@@ -34,13 +34,8 @@ func _ready() -> void:
 		var upgrade_node_target = get_node("../../../../../HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade/ScrollContainer/VBoxContainer")
 		var u:upgrade_item = upgrade.instantiate()
 		self.update_upgrade_data()
-		upgrade_node_target.add_child(u)
-		if(Game.is_new_game):
-			u.link(self)
-		else:
-			loadSaveData()
-			await get_tree().process_frame  
-			u.link(self)
+		upgrade_node_target.add_child(u) 
+		u.link(self)
 		
 func loadSaveData():
 	self.title = str_to_var(savedata.title)
@@ -78,7 +73,7 @@ func update_upgrade_data():
 	self.upgrade_level_4_level_string = "available"
 
 func init() -> void:
-	self.title = "defuser"
+	self.title = "bomb"
 	self.price = 200
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

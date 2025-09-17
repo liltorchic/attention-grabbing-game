@@ -15,6 +15,28 @@ var count: int
 
 signal bought(packedscene)
 
+func tether() -> void:
+	print("linking " + id)
+	if(id == "clicker"):	
+		Game.shop_item_clicker_loaded.emit(self)
+	elif(id == "pet"):
+		Game.shop_item_pet_loaded.emit(self)
+	elif(id == "ticker"):
+		Game.shop_item_ticker_loaded.emit(self)
+	elif(id == "timer"):
+		Game.shop_item_timer_button_loaded.emit(self)
+	elif(id == "bomb"):
+		Game.shop_item_timer_defuse_loaded.emit(self)
+	
+func loadSaveData(_in:Dictionary):
+	print("loading in data for shop item " + self.id)
+	self.price = _in.price
+	self.count = _in.count
+	label_price = get_node("ColorRect/VBoxContainer/HBoxContainer/Label_Price")
+	label_price.text = str("%.0f" % [self.price])
+	var distraction_target = get_node("ColorRect/VBoxContainer/Container/ColorRect")	
+	distraction_target.add_child(	distraction.instantiate())
+	
 #gather all info to be saved
 func getSaveData() -> Dictionary:
 	var save_dict := {
@@ -26,19 +48,14 @@ func getSaveData() -> Dictionary:
 	}
 	return save_dict
 
-func add_item(_in):
+func add_item(_in:PackedScene):
 	container = get_node("ColorRect/VBoxContainer/Container")
-	
-	if(!Game.is_new_game):
-		var distraction_target = get_tree().get_first_node_in_group("distraction_target")
-		_in.UI_MODE = false
-		distraction_target.add_child(_in)
-	else:
-		distraction = _in
-		copy = distraction.instantiate()
-		container.add_child(copy)
-		id = copy.get_instance_id()
-		
+	var distraction_target = get_node("ColorRect/VBoxContainer/Container/ColorRect")
+	distraction = _in
+	var lilguy:Distraction = _in.instantiate()
+	lilguy.init()
+	lilguy.UI_MODE = true
+	distraction_target.add_child(	lilguy)
 	Game.discount_purchased.connect(_discount_purchased)
 	
 func _discount_purchased():
@@ -47,6 +64,7 @@ func _discount_purchased():
 func set_title(_in:String):
 	label_title = get_node("ColorRect/VBoxContainer/Label_Title")
 	label_title.text = _in
+	id = _in
 	
 func set_price(_in):
 	label_price = get_node("ColorRect/VBoxContainer/HBoxContainer/Label_Price")
