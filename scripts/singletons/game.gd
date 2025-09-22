@@ -55,15 +55,15 @@ func checkprogressandrollover():
 # includes multiplier
 func add_time_point():
 	time_points += 1.0 * multiplier
-	cumlative_points += 1.0 * multiplier
-	cumlative_points_rollover += 1.0 * multiplier
+	cumlative_points += ceil(1.0 * multiplier)
+	cumlative_points_rollover +=  ceil(1.0 * multiplier)
 	checkprogressandrollover()
 	
 # does not include multiplier
 func add_time_points(_p:float):
 	time_points += _p
-	cumlative_points += _p
-	cumlative_points_rollover += _p
+	cumlative_points +=  ceil(_p)
+	cumlative_points_rollover +=  ceil(_p)
 	checkprogressandrollover()
 	
 func remove_time_points(_p:float):
@@ -170,11 +170,8 @@ func load_game() -> void:
 	var json := JSON.new()
 	json.parse(file.get_line())
 	var save_dict := json.get_data() as Dictionary
-	var shop_item_target = get_tree().get_first_node_in_group("shop_target")
 	var distraction_target = get_tree().get_first_node_in_group("distraction_target")
 
-
-	var shop_item_template =  preload("res://scenes/shop_item.tscn")
 	var _distraction_clicker = preload("res://scenes/distractions/distraction_clicker.tscn")
 	var _distraction_pet = preload("res://scenes/distractions/distraction_pet.tscn")
 	var _distraction_ticker = preload("res://scenes/distractions/distraction_ticker.tscn")

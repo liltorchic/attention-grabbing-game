@@ -113,7 +113,7 @@ func init() -> void:
 	self.price = 200
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if(!timer_hidden):
 		label.text =  str("%.2f" % [countdown_timer.time_left])
 			

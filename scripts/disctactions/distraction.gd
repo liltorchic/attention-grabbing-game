@@ -16,6 +16,7 @@ var title:String = "undefined"
 var savedata
 var loading_from_save:bool = false
 
+@warning_ignore("unused_signal")
 signal upgrade_ui_loaded
 
 var upgrade_level_1_title:String = "undefined"

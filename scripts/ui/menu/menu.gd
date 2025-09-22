@@ -4,7 +4,7 @@ func _ready() -> void:
 		($VBoxContainer/CenterContainer5/Button_delete_save as Button).disabled = not FileAccess.file_exists("user://save_json.json")
 		($VBoxContainer/CenterContainer2/Button_load as Button).disabled = not FileAccess.file_exists("user://save_json.json")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	($VBoxContainer/CenterContainer5/Button_delete_save as Button).disabled = not FileAccess.file_exists("user://save_json.json")
 	($VBoxContainer/CenterContainer2/Button_load as Button).disabled = not FileAccess.file_exists("user://save_json.json")
 	
