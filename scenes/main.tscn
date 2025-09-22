@@ -156,6 +156,10 @@ text = "settings"
 layout_mode = 2
 text = "save & quit"
 
+[node name="Button_Quit" type="Button" parent="game/HBoxContainer/VBoxContainer_UI/ColorRect/container_settings_vert/CenterContainer/HBoxContainer"]
+layout_mode = 2
+text = "quit"
+
 [node name="Label" type="Label" parent="game/HBoxContainer/VBoxContainer_UI/ColorRect/container_settings_vert"]
 modulate = Color(0.691357, 0.691357, 0.691357, 1)
 layout_mode = 2
@@ -176,52 +180,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="distractions" type="GridContainer" parent="game/HBoxContainer/ColorRect/ScrollContainer" groups=["distraction_target"]]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 columns = 2
-
-[node name="distraction_template" type="ColorRect" parent="game/HBoxContainer/ColorRect/ScrollContainer/distractions"]
-visible = false
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-
-[node name="Timer" type="Timer" parent="game/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_template"]
-
-[node name="Timer_Scorer" type="Timer" parent="game/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_template"]
-editor_description = "Used for assigning points to the game manager"
-
-[node name="Button" type="Button" parent="game/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_template"]
-layout_direction = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -55.0
-offset_top = 9.785
-offset_right = 55.0
-offset_bottom = 40.785
-grow_horizontal = 2
-grow_vertical = 2
-text = "reset"
-
-[node name="Label" type="Label" parent="game/HBoxContainer/ColorRect/ScrollContainer/distractions/distraction_template"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -38.515
-offset_right = 20.0
-offset_bottom = -15.515
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "simple timer"
 
 [node name="VBoxContainer_UI_Upgrade" type="VBoxContainer" parent="game/HBoxContainer"]
 layout_mode = 2
@@ -291,7 +254,7 @@ offset_bottom = 53.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "upgrade"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="game/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade" groups=["upgrade_target"]]
+[node name="ScrollContainer" type="ScrollContainer" parent="game/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -300,7 +263,7 @@ offset_top = 66.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="game/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="game/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade/ScrollContainer" groups=["upgrade_target"]]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -364,9 +327,15 @@ layout_mode = 2
 text = "save & quit
 "
 
+[node name="ui" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="pressed" from="game/HBoxContainer/VBoxContainer_UI/ColorRect/container_settings_vert/CenterContainer/HBoxContainer/Button_Settings" to="game" method="_on_button_settings_pressed"]
 [connection signal="pressed" from="game/HBoxContainer/VBoxContainer_UI/ColorRect/container_settings_vert/CenterContainer/HBoxContainer/Button_Settings" to="settings" method="_on_button_settings_pressed"]
 [connection signal="pressed" from="game/HBoxContainer/VBoxContainer_UI/ColorRect/container_settings_vert/CenterContainer/HBoxContainer/Button_Save_and_Quit" to="settings" method="_on_button_save_and_quit_pressed"]
+[connection signal="pressed" from="game/HBoxContainer/VBoxContainer_UI/ColorRect/container_settings_vert/CenterContainer/HBoxContainer/Button_Quit" to="settings" method="_on_button_quit_pressed"]
 [connection signal="child_entered_tree" from="game/HBoxContainer/ColorRect/ScrollContainer/distractions" to="game/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade" method="_on_distractions_child_entered_tree"]
 [connection signal="child_entered_tree" from="game/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/shop/ScrollContainer/GridContainer" to="game/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/shop" method="_on_grid_container_child_entered_tree"]
 [connection signal="pressed" from="settings/VBoxContainer/Button_resume" to="settings" method="_on_button_resume_pressed"]

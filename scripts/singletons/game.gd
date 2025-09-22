@@ -139,7 +139,7 @@ func save_game() -> void:
 
 	#gather data from nodes we generated
 	#distraction nodes
-	for d in get_tree().get_nodes_in_group("distraction"):
+	for d in get_tree().get_first_node_in_group("distraction_target").get_children():
 		save_dict.distractionz.push_back({
 			data = d.getSaveData(),
 		})
@@ -171,6 +171,7 @@ func load_game() -> void:
 	json.parse(file.get_line())
 	var save_dict := json.get_data() as Dictionary
 	var shop_item_target = get_tree().get_first_node_in_group("shop_target")
+	var distraction_target = get_tree().get_first_node_in_group("distraction_target")
 
 
 	var shop_item_template =  preload("res://scenes/shop_item.tscn")
@@ -214,11 +215,13 @@ func load_game() -> void:
 			
 		var item:Distraction = distraction_ref.instantiate()
 		
-		item.init()
 		item.savedata = distract.data.stats.duplicate()
+		item.UI_MODE = false
+		item.loading_from_save = true
+		item.loadSaveData()
+		distraction_target.add_child(item)
 	
 	for shopies: Dictionary in save_dict.shopItemz:
-		
 		if(str_to_var(shopies.data.stats.id) == "clicker"):	
 			linked_async_shop_item_clicker.loadSaveData(shopies.data.stats)
 		elif(str_to_var(shopies.data.stats.id) == "pet"):

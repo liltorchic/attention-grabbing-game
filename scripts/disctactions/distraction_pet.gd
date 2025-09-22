@@ -23,7 +23,6 @@ func _ready() -> void:
 	health = 100
 	_calc_score(0)
 	Game.data_purchased.connect(update_labels)
-	init()
 	
 	if(self.UI_MODE):
 		button_food.disabled = true	
@@ -31,22 +30,26 @@ func _ready() -> void:
 	else:
 		timer.start(3)
 		_on_timer_scorer_timeout()
-				#for upgrade
+		#for upgrade
 		var upgrade_node_target = get_node("../../../../../HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade/ScrollContainer/VBoxContainer")
 		var u:upgrade_item = upgrade.instantiate()
-		self.init_data()
-		upgrade_node_target.add_child(u)
+		u.loading_from_save = self.loading_from_save
 		u.link(self)
-			
-func loadSaveData():
-	self.title = str_to_var(savedata.title)
-	self.price = str_to_var(savedata.price)
-	self.amount = str_to_var(savedata.amount)
-	self.mult = str_to_var(savedata.mult)
-	self.last_reward = str_to_var(savedata.last_reward)
-	self.award = str_to_var(savedata.award)
+		upgrade_node_target.add_child(u)
+		self.upgrade_reference = u
 		
-func init_data():
+	
+#run when instancing item before adding it to the scene
+func init() -> void:
+	self.title = "pet"
+	self.price = 10000
+	self.amount = 1
+	self.mult = 0
+	self.last_reward = 0
+	self.award = 0
+
+#run when instancing item before adding it to the scene		
+func present_init_upgrade_data():
 	self.upgrade_level_1_title = "Amount"
 	self.upgrade_level_1_desc = "+1"
 	self.upgrade_level_1_price = 500
@@ -71,13 +74,49 @@ func init_data():
 	self.upgrade_level_4_price_increase = 1.115
 	self.upgrade_level_4_level_string = "0"
 
-func init() -> void:
-	self.title = "pet"
-	self.price = 10000
-	self.amount = 1
-	self.mult = 0
-	self.last_reward = 0
-	self.award = 0
+func loadSaveData():
+	self.title = str_to_var(savedata.title)
+	self.price = str_to_var(savedata.price)
+	self.amount = str_to_var(savedata.amount)
+	self.mult = str_to_var(savedata.mult)
+	self.last_reward = str_to_var(savedata.last_reward)
+	self.award = str_to_var(savedata.award)
+	self.upgrade_level_1_desc = str_to_var(savedata.upgrade_level_1_desc)
+	self.upgrade_level_1_disabled = str_to_var(savedata.upgrade_level_1_disabled)
+	self.upgrade_level_1_level = str_to_var(savedata.upgrade_level_1_level)
+	self.upgrade_level_1_level_limit = str_to_var(savedata.upgrade_level_1_level_limit)
+	self.upgrade_level_1_level_string = str_to_var(savedata.upgrade_level_1_level_string)
+	self.upgrade_level_1_one_time = str_to_var(savedata.upgrade_level_1_one_time)
+	self.upgrade_level_1_price = str_to_var(savedata.upgrade_level_1_price)
+	self.upgrade_level_1_price_increase = str_to_var(savedata.upgrade_level_1_price_increase)
+	self.upgrade_level_1_title = str_to_var(savedata.upgrade_level_1_title)
+	self.upgrade_level_2_desc = str_to_var(savedata.upgrade_level_2_desc)
+	self.upgrade_level_2_disabled = str_to_var(savedata.upgrade_level_2_disabled)
+	self.upgrade_level_2_level = str_to_var(savedata.upgrade_level_2_level)
+	self.upgrade_level_2_level_limit = str_to_var(savedata.upgrade_level_2_level_limit)
+	self.upgrade_level_2_level_string = str_to_var(savedata.upgrade_level_2_level_string)
+	self.upgrade_level_2_one_time = str_to_var(savedata.upgrade_level_2_one_time)
+	self.upgrade_level_2_price = str_to_var(savedata.upgrade_level_2_price)
+	self.upgrade_level_2_price_increase = str_to_var(savedata.upgrade_level_2_price_increase)
+	self.upgrade_level_2_title = str_to_var(savedata.upgrade_level_2_title)
+	self.upgrade_level_3_desc = str_to_var(savedata.upgrade_level_3_desc)
+	self.upgrade_level_3_disabled = str_to_var(savedata.upgrade_level_3_disabled)
+	self.upgrade_level_3_level = str_to_var(savedata.upgrade_level_3_level)
+	self.upgrade_level_3_level_limit = str_to_var(savedata.upgrade_level_3_level_limit)
+	self.upgrade_level_3_level_string = str_to_var(savedata.upgrade_level_3_level_string)
+	self.upgrade_level_3_one_time = str_to_var(savedata.upgrade_level_3_one_time)
+	self.upgrade_level_3_price = str_to_var(savedata.upgrade_level_3_price)
+	self.upgrade_level_3_price_increase = str_to_var(savedata.upgrade_level_3_price_increase)
+	self.upgrade_level_3_title = str_to_var(savedata.upgrade_level_3_title)
+	self.upgrade_level_4_desc = str_to_var(savedata.upgrade_level_4_desc)
+	self.upgrade_level_4_disabled = str_to_var(savedata.upgrade_level_4_disabled)
+	self.upgrade_level_4_level = str_to_var(savedata.upgrade_level_4_level)
+	self.upgrade_level_4_level_limit = str_to_var(savedata.upgrade_level_4_level_limit)
+	self.upgrade_level_4_level_string = str_to_var(savedata.upgrade_level_4_level_string)
+	self.upgrade_level_4_one_time = str_to_var(savedata.upgrade_level_4_one_time)
+	self.upgrade_level_4_price = str_to_var(savedata.upgrade_level_4_price)
+	self.upgrade_level_4_price_increase = str_to_var(savedata.upgrade_level_4_price_increase)
+	self.upgrade_level_4_title = str_to_var(savedata.upgrade_level_4_title)
 	
 #gather all info to be saved
 func getSaveData() -> Dictionary:

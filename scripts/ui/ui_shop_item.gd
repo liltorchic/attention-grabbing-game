@@ -58,6 +58,14 @@ func add_item(_in:PackedScene):
 	distraction_target.add_child(	lilguy)
 	Game.discount_purchased.connect(_discount_purchased)
 	
+func add_item_d(_in:Distraction):
+	container = get_node("ColorRect/VBoxContainer/Container")
+	var distraction_target = get_node("ColorRect/VBoxContainer/Container/ColorRect")
+	_in.init()
+	_in.UI_MODE = true
+	distraction_target.add_child(	_in)
+	Game.discount_purchased.connect(_discount_purchased)
+	
 func _discount_purchased():
 	set_price(price * Game.discount)
 	

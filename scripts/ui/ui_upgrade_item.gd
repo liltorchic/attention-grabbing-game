@@ -2,6 +2,8 @@ extends Node
 
 class_name upgrade_item
 
+var loading_from_save:bool = false
+
 @onready var title :Label = $ColorRect/VBoxContainer/Label_Title
 
 @onready var highlight :ColorRect = $ColorRect
@@ -38,24 +40,30 @@ var linked_distraction:Distraction
 
 var is_selected:bool = false
 
-func link(input):
-	self.linked_distraction = input
-	self.title.text = str(linked_distraction.title)
-	self.focus_mode = Control.FOCUS_NONE
-	Game.updated_selected.connect(_selection_update)
-	Game.discount_purchased.connect(_discount_update)
-	Game.data_purchased.connect(_data_purchased)
+func _ready() -> void:
+	self.title.text = str(linked_distraction.get_title())
 	upgrade_1_button.pressed.connect(update_price_labels)
 	upgrade_2_button.pressed.connect(update_price_labels)
 	upgrade_3_button.pressed.connect(update_price_labels)
 	upgrade_4_button.pressed.connect(update_price_labels)
-	
 	if(Game.isDataUnlocked):
 		_data_purchased()
 	else:
 		update_price_labels()
 	
-	
+	if(self.loading_from_save):
+		self.linked_distraction.upgrade_ui_loaded.emit()
+
+func loadSaveData(_in:Dictionary):
+	pass
+
+func link(input):
+	self.linked_distraction = input
+	self.focus_mode = Control.FOCUS_NONE
+	Game.updated_selected.connect(_selection_update)
+	Game.discount_purchased.connect(_discount_update)
+	Game.data_purchased.connect(_data_purchased)
+		
 func update_price_labels():
 	
 	upgrade_1_title.text = linked_distraction.upgrade_level_1_title

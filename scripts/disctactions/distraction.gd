@@ -9,10 +9,14 @@ var LOG:bool = false
 @onready var p = preload("res://scenes/particle.tscn")
 var particle_tree
 @onready var upgrade = preload("res://scenes/upgrade_item.tscn")
+var upgrade_reference
 
 var price:float = 1 * Game.get_multiplier()
 var title:String = "undefined"
 var savedata
+var loading_from_save:bool = false
+
+signal upgrade_ui_loaded
 
 var upgrade_level_1_title:String = "undefined"
 var upgrade_level_1_desc:String = "description"
@@ -61,13 +65,19 @@ var autofreq:float
 var alarm:bool
 
 func getSaveData(): 
-	push_error("update_labels unimplemented")
+	push_error("getSaveData unimplemented")
+
+func loadSaveData():
+	push_error("loadSaveData unimplemented")
 
 func update_labels():
 	push_error("update_labels unimplemented")
 	
 func init():
 	push_error("init unimplemented")
+	
+func present_init_upgrade_data():
+	push_error("present_init_upgrade_data unimplemented")
 	
 func upgrade_1():
 	push_warning("upgrade_1 unimplemented")
@@ -80,3 +90,6 @@ func upgrade_3():
 	
 func upgrade_4():
 	push_warning("upgrade_4 unimplemented")
+	
+func get_title() -> String:
+	return self.title

@@ -49,6 +49,14 @@ custom_minimum_size = Vector2(130, 0)
 layout_mode = 2
 text = "Load Game"
 
+[node name="CenterContainer5" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Button_delete_save" type="Button" parent="VBoxContainer/CenterContainer5"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "open save foldr"
+
 [node name="CenterContainer3" type="CenterContainer" parent="VBoxContainer"]
 layout_mode = 2
 
@@ -67,5 +75,6 @@ text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/CenterContainer/Button_new" to="." method="_on_button_new_pressed"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer2/Button_load" to="." method="_on_button_load_pressed"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer5/Button_delete_save" to="." method="_on_button_delete_save_pressed"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer3/Button_settings" to="." method="_on_button_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer4/Button_quit" to="." method="_on_button_quit_pressed"]

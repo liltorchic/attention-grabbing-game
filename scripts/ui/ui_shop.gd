@@ -42,6 +42,8 @@ func _ready() -> void:
 func _child_button_pressed(packedscene: PackedScene):
 	var distraction:Distraction = packedscene.instantiate()
 	distraction.UI_MODE = false
+	distraction.init()
+	distraction.present_init_upgrade_data()
 	distractions_target.add_child(distraction)
 	print("bought " + str(distraction))
 	

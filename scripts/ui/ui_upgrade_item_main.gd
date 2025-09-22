@@ -72,7 +72,8 @@ func update_price_labels():
 	$ColorRect/VBoxContainer/HBoxContainer/upgrade_1/level/Label.text = str(upgrade_1_level)
 	$ColorRect/VBoxContainer/HBoxContainer/upgrade_2/level/Label.text = str(upgrade_2_level)
 	$ColorRect/VBoxContainer/HBoxContainer/upgrade_3/level/Label.text = "purchased"
-	$ColorRect/VBoxContainer/HBoxContainer/upgrade_4/level/Label.text = str(upgrade_4_level) + "/" + str(upgrade_4_level_limit)
+	if($ColorRect/VBoxContainer/HBoxContainer/upgrade_4/level.visible == true):
+		$ColorRect/VBoxContainer/HBoxContainer/upgrade_4/level/Label.text = str(upgrade_4_level) + "/" + str(upgrade_4_level_limit)
 
 
 func _on_button_pressed() -> void:

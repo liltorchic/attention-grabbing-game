@@ -19,7 +19,8 @@ func _on_button_resume_pressed() -> void:
 
 
 func _on_button_quit_pressed() -> void:
-	_saveandquit()
+	print("quiting")
+	get_tree().quit()
 
 
 #from the game screen
@@ -33,6 +34,7 @@ func _on_button_save_and_quit_pressed() -> void:
 
 
 func _saveandquit():
+	print("saving")
 	Game.is_new_game = true # reset flag
 	Game.save_game()
 	print("quiting")
