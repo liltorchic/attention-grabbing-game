@@ -206,7 +206,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="shop" type="ColorRect" parent="game/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer"]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(191.755, 195.595)
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.4
@@ -241,7 +241,7 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 1.61
+size_flags_stretch_ratio = 4.0
 color = Color(0.801395, 0.957694, 0, 1)
 
 [node name="Label" type="Label" parent="game/HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade"]

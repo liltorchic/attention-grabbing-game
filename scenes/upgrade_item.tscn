@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bhfjilsgfahpa" path="res://scripts/ui/ui_upgrade_item.gd" id="1_5bs5i"]
 
 [node name="UpgradeItem" type="Control"]
-custom_minimum_size = Vector2(145, 144)
+custom_minimum_size = Vector2(145, 180)
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
@@ -16,14 +16,9 @@ script = ExtResource("1_5bs5i")
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(145, 180)
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -72.0
-offset_bottom = 108.0
 grow_horizontal = 2
-grow_vertical = 2
 color = Color(0.589096, 0.589096, 0.589096, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
@@ -33,6 +28,7 @@ anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -204.0
+offset_top = 17.0
 offset_right = 204.0
 grow_horizontal = 2
 grow_vertical = 2
