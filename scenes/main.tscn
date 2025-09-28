@@ -1,5 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmab5sthll2kw"]
+[gd_scene load_steps=7 format=3 uid="uid://dmab5sthll2kw"]
 
+[ext_resource type="Texture2D" uid="uid://ctj4tc3mdt4ca" path="res://textures/brain1.png" id="2_tbgi4"]
+[ext_resource type="Script" uid="uid://ddqd6x68oc8ca" path="res://scripts/ui/graphics/brain_texture.gd" id="3_tefeu"]
 [ext_resource type="Script" uid="uid://cvbafd8qkfu7x" path="res://scripts/ui/pause_settings_ui.gd" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://jvp8yk25jfnw" path="res://scripts/ui/ui_vbox_container_score.gd" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://coqm2j3xd3wot" path="res://scenes/upgrade_item_base.tscn" id="5_tefeu"]
@@ -33,11 +35,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
 [node name="VBoxContainer_UI" type="VBoxContainer" parent="game/HBoxContainer"]
+z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -171,6 +175,22 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.8
 color = Color(0.454524, 0.454524, 0.454524, 1)
 
+[node name="brain_texture" type="TextureRect" parent="game/HBoxContainer/ColorRect"]
+y_sort_enabled = true
+texture_filter = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.41, 2.41)
+pivot_offset = Vector2(300, 600)
+texture = ExtResource("2_tbgi4")
+expand_mode = 1
+stretch_mode = 1
+script = ExtResource("3_tefeu")
+
 [node name="ScrollContainer" type="ScrollContainer" parent="game/HBoxContainer/ColorRect"]
 layout_mode = 1
 anchors_preset = 15
@@ -187,6 +207,7 @@ size_flags_vertical = 6
 columns = 2
 
 [node name="VBoxContainer_UI_Upgrade" type="VBoxContainer" parent="game/HBoxContainer"]
+z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 6.66
