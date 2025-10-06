@@ -91,6 +91,8 @@ func update_price_labels():
 	upgrade_3_data_label.text = linked_distraction.upgrade_level_3_level_string
 	upgrade_4_data_label.text = linked_distraction.upgrade_level_4_level_string
 	
+	
+	
 func _selection_update():
 	if Game.selected == linked_distraction:
 		is_selected = true

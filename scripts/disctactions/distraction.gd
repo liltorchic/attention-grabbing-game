@@ -9,7 +9,7 @@ var LOG:bool = false
 @onready var p = preload("res://scenes/particle.tscn")
 var particle_tree
 @onready var upgrade = preload("res://scenes/upgrade_item.tscn")
-var upgrade_reference
+var upgrade_reference : upgrade_item
 
 var price:float = 1 * Game.get_multiplier()
 var title:String = "undefined"

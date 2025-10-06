@@ -23,6 +23,10 @@ func _ready() -> void:
 		u.link(self)
 		upgrade_node_target.add_child(u)
 		self.upgrade_reference = u
+		
+	if(loading_from_save):
+		self.timer_autoclicker.start(0.1)
+		
 
 #run when instancing item before adding it to the scene
 func init() -> void:
@@ -65,6 +69,9 @@ func present_init_upgrade_data():
 #only calls when loading from save
 func _upgrade_ui_loaded():
 	upgrade_reference.update_price_labels()
+	if(self.upgrade_level_3_level >= 1):
+		self.upgrade_reference.upgrade_3_button.disabled = true
+		self.upgrade_reference.upgrade_3_price.text = "out of stock"
 
 
 func loadSaveData():
