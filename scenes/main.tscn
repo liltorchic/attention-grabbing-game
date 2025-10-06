@@ -150,6 +150,8 @@ grow_vertical = 0
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="game/HBoxContainer/VBoxContainer_UI/ColorRect/container_settings_vert/CenterContainer"]
+z_index = 1
+z_as_relative = false
 layout_mode = 2
 
 [node name="Button_Settings" type="Button" parent="game/HBoxContainer/VBoxContainer_UI/ColorRect/container_settings_vert/CenterContainer/HBoxContainer"]
@@ -186,6 +188,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2.41, 2.41)
 pivot_offset = Vector2(300, 600)
+mouse_filter = 2
 texture = ExtResource("2_tbgi4")
 expand_mode = 1
 stretch_mode = 1
