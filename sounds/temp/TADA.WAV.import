@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://clevq3x8nu05w"
-path="res://.godot/imported/hat.wav-7226581341cc046a7c58de424e7062c3.sample"
+uid="uid://db5o516uvvmii"
+path="res://.godot/imported/TADA.WAV-dd0eb5631673b576cc768207f29c89a2.sample"
 
 [deps]
 
-source_file="res://sounds/hat.wav"
-dest_files=["res://.godot/imported/hat.wav-7226581341cc046a7c58de424e7062c3.sample"]
+source_file="res://sounds/temp/TADA.WAV"
+dest_files=["res://.godot/imported/TADA.WAV-dd0eb5631673b576cc768207f29c89a2.sample"]
 
 [params]
 
