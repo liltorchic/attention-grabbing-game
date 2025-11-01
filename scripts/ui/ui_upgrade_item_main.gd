@@ -6,6 +6,8 @@ enum Type {UNDEFINED, AMOUNT, MULTIPLIER, AUTOCLICKER, BOOST, LOVE, TORTURE, ALA
 #mult
 @onready var upgrade_1_price :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_1/HBoxContainer/Label_Price
 @onready var upgrade_1_button :Button = $ColorRect/VBoxContainer/HBoxContainer/upgrade_1/HBoxContainer/Button
+@onready var hbox_level_1 :HBoxContainer = $ColorRect/VBoxContainer/HBoxContainer/upgrade_1/level
+@onready var data_label_1 :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_1/level/Label
 var upgrade_1_price_f:float = 1000.0
 var upgrade_1_type:Type = Type.MULTIPLIER
 var upgrade_1_level:int = 0
@@ -13,6 +15,8 @@ var upgrade_1_level:int = 0
 #lives
 @onready var upgrade_2_price :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_2/HBoxContainer/Label_Price
 @onready var upgrade_2_button :Button = $ColorRect/VBoxContainer/HBoxContainer/upgrade_2/HBoxContainer/Button
+@onready var hbox_level_2 :HBoxContainer = $ColorRect/VBoxContainer/HBoxContainer/upgrade_2/level
+@onready var data_label_2 :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_2/level/Label
 var upgrade_2_price_f:float = 10000.0
 var upgrade_2_type:Type = Type.BASE_LIVES
 var upgrade_2_level:int = 0
@@ -20,6 +24,8 @@ var upgrade_2_level:int = 0
 #data
 @onready var upgrade_3_price :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_3/HBoxContainer/Label_Price
 @onready var upgrade_3_button :Button = $ColorRect/VBoxContainer/HBoxContainer/upgrade_3/HBoxContainer/Button
+@onready var hbox_level_3 :HBoxContainer = $ColorRect/VBoxContainer/HBoxContainer/upgrade_3/level
+@onready var data_label_3 :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_3/level/Label
 var upgrade_3_price_f:float = 100.0
 var upgrade_3_type:Type = Type.BASE_DATA
 
@@ -27,6 +33,8 @@ var upgrade_3_type:Type = Type.BASE_DATA
 #discount
 @onready var upgrade_4_price :Label = %Label_Price_data_upgrade
 @onready var upgrade_4_button :Button = %Button_data_upgrade
+@onready var hbox_level_4 :HBoxContainer = $ColorRect/VBoxContainer/HBoxContainer/upgrade_4/level
+@onready var data_label_4 :Label = $ColorRect/VBoxContainer/HBoxContainer/upgrade_4/level/Label
 var upgrade_4_price_f:float = 10000.0
 var upgrade_4_type:Type = Type.BASE_DISCOUNT
 var upgrade_4_level:int = 0
@@ -42,10 +50,14 @@ func _discount_purchased():
 	update_price_labels()
 	
 func _data_purchased():
-	$ColorRect/VBoxContainer/HBoxContainer/upgrade_1/level.visible = true
-	$ColorRect/VBoxContainer/HBoxContainer/upgrade_2/level.visible = true
-	$ColorRect/VBoxContainer/HBoxContainer/upgrade_3/level.visible = true
-	$ColorRect/VBoxContainer/HBoxContainer/upgrade_4/level.visible = true
+	hbox_level_1.visible = true
+	hbox_level_2.visible = true
+	hbox_level_3.visible = true
+	hbox_level_4.visible = true
+	data_label_1.text = str(upgrade_1_level)
+	data_label_2.text = str(upgrade_2_level)
+	data_label_3.text = "purchased"
+	data_label_4.text = "purchased" 
 	update_price_labels()
 
 func update_price_labels():
@@ -62,18 +74,14 @@ func update_price_labels():
 	if(upgrade_3_price_f != -1):	
 		upgrade_3_price.text = str("%.0f" % [upgrade_3_price_f * Game.discount])
 	else:
-		upgrade_3_price.text = "out of stock"	
+		upgrade_3_price.text = "purchased"	
 		
 	if(upgrade_4_price_f != -1):			
 		upgrade_4_price.text = str("%.0f" % [upgrade_4_price_f * Game.discount])
 	else:
-		upgrade_4_price.text = ""
+		upgrade_4_price.text = "purchased"
 	
-	$ColorRect/VBoxContainer/HBoxContainer/upgrade_1/level/Label.text = str(upgrade_1_level)
-	$ColorRect/VBoxContainer/HBoxContainer/upgrade_2/level/Label.text = str(upgrade_2_level)
-	$ColorRect/VBoxContainer/HBoxContainer/upgrade_3/level/Label.text = "purchased"
-	if($ColorRect/VBoxContainer/HBoxContainer/upgrade_4/level.visible == true):
-		$ColorRect/VBoxContainer/HBoxContainer/upgrade_4/level/Label.text = str(upgrade_4_level) + "/" + str(upgrade_4_level_limit)
+
 
 
 func _on_button_pressed() -> void:
@@ -117,7 +125,7 @@ func _on_button_pressed_4() -> void:
 		upgrade_4_price_f = Game.recalc_price(upgrade_4_price_f * Game.discount)
 		upgrade_4_level += 1
 		do_upgrade(upgrade_4_type)
-		if(upgrade_4_type == Type.BASE_DATA):
+		if(upgrade_4_type == Type.BASE_DISCOUNT):
 			upgrade_4_button.disabled = true
 			upgrade_4_price_f = -1
 		update_price_labels()

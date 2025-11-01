@@ -19,12 +19,9 @@ func _on_button_load_pressed() -> void:
 
 
 func _on_button_settings_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://scenes/menu/settings.tscn")
+
 
 
 func _on_button_quit_pressed() -> void:
 	get_tree().quit()
-
-
-func _on_button_delete_save_pressed() -> void:
-	OS.shell_open(ProjectSettings.globalize_path("user://"))
