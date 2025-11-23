@@ -48,7 +48,6 @@ horizontal_alignment = 1
 stream = SubResource("AudioStreamRandomizer_y25om")
 autoplay = true
 attenuation = 2.2974
-bus = &"clicks"
 
 [connection signal="item_rect_changed" from="Label" to="." method="_on_label_item_rect_changed"]
 [connection signal="ready" from="Timer" to="." method="_on_timer_ready"]

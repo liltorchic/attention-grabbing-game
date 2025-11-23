@@ -3,7 +3,7 @@ extends Node
 var is_new_game: bool = true
 
 #game stats
-var time_points:float = 100000 if Constants.dev else 0
+var time_points:float = 1000000 if Constants.dev else 0
 var isDataUnlocked = false
 var cumlative_points:int = 0
 var cumlative_points_rollover:int = 0

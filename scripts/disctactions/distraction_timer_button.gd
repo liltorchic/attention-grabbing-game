@@ -5,71 +5,6 @@ var scorer:Timer
 var button:Button
 var timer_length:float = 10
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	timer = get_node("Timer")
-	label = get_node("Label")
-	scorer = get_node("Timer_Scorer")
-	button = get_node("Button")
-	Game.data_purchased.connect(update_labels)
-	
-	if(self.UI_MODE):
-		button.disabled = true
-	else:
-		timer.start(timer_length)
-		_on_timer_scorer_timeout()
-				#for upgrade
-		var upgrade_node_target = get_node("../../../../../HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade/ScrollContainer/VBoxContainer")
-		var u:upgrade_item = upgrade.instantiate()
-		u.loading_from_save = self.loading_from_save
-		u.link(self)
-		upgrade_node_target.add_child(u)
-		self.upgrade_reference = u
-		
-func loadSaveData():
-	self.title = str_to_var(savedata.title)
-	self.price = str_to_var(savedata.price)
-	self.amount = str_to_var(savedata.amount)
-	self.mult = str_to_var(savedata.mult)
-	self.alarm = str_to_var(savedata.alarm)
-	self.timer_length = str_to_var(savedata.timer_length)
-	self.upgrade_level_1_desc = str_to_var(savedata.upgrade_level_1_desc)
-	self.upgrade_level_1_disabled = str_to_var(savedata.upgrade_level_1_disabled)
-	self.upgrade_level_1_level = str_to_var(savedata.upgrade_level_1_level)
-	self.upgrade_level_1_level_limit = str_to_var(savedata.upgrade_level_1_level_limit)
-	self.upgrade_level_1_level_string = str_to_var(savedata.upgrade_level_1_level_string)
-	self.upgrade_level_1_one_time = str_to_var(savedata.upgrade_level_1_one_time)
-	self.upgrade_level_1_price = str_to_var(savedata.upgrade_level_1_price)
-	self.upgrade_level_1_price_increase = str_to_var(savedata.upgrade_level_1_price_increase)
-	self.upgrade_level_1_title = str_to_var(savedata.upgrade_level_1_title)
-	self.upgrade_level_2_desc = str_to_var(savedata.upgrade_level_2_desc)
-	self.upgrade_level_2_disabled = str_to_var(savedata.upgrade_level_2_disabled)
-	self.upgrade_level_2_level = str_to_var(savedata.upgrade_level_2_level)
-	self.upgrade_level_2_level_limit = str_to_var(savedata.upgrade_level_2_level_limit)
-	self.upgrade_level_2_level_string = str_to_var(savedata.upgrade_level_2_level_string)
-	self.upgrade_level_2_one_time = str_to_var(savedata.upgrade_level_2_one_time)
-	self.upgrade_level_2_price = str_to_var(savedata.upgrade_level_2_price)
-	self.upgrade_level_2_price_increase = str_to_var(savedata.upgrade_level_2_price_increase)
-	self.upgrade_level_2_title = str_to_var(savedata.upgrade_level_2_title)
-	self.upgrade_level_3_desc = str_to_var(savedata.upgrade_level_3_desc)
-	self.upgrade_level_3_disabled = str_to_var(savedata.upgrade_level_3_disabled)
-	self.upgrade_level_3_level = str_to_var(savedata.upgrade_level_3_level)
-	self.upgrade_level_3_level_limit = str_to_var(savedata.upgrade_level_3_level_limit)
-	self.upgrade_level_3_level_string = str_to_var(savedata.upgrade_level_3_level_string)
-	self.upgrade_level_3_one_time = str_to_var(savedata.upgrade_level_3_one_time)
-	self.upgrade_level_3_price = str_to_var(savedata.upgrade_level_3_price)
-	self.upgrade_level_3_price_increase = str_to_var(savedata.upgrade_level_3_price_increase)
-	self.upgrade_level_3_title = str_to_var(savedata.upgrade_level_3_title)
-	self.upgrade_level_4_desc = str_to_var(savedata.upgrade_level_4_desc)
-	self.upgrade_level_4_disabled = str_to_var(savedata.upgrade_level_4_disabled)
-	self.upgrade_level_4_level = str_to_var(savedata.upgrade_level_4_level)
-	self.upgrade_level_4_level_limit = str_to_var(savedata.upgrade_level_4_level_limit)
-	self.upgrade_level_4_level_string = str_to_var(savedata.upgrade_level_4_level_string)
-	self.upgrade_level_4_one_time = str_to_var(savedata.upgrade_level_4_one_time)
-	self.upgrade_level_4_price = str_to_var(savedata.upgrade_level_4_price)
-	self.upgrade_level_4_price_increase = str_to_var(savedata.upgrade_level_4_price_increase)
-	self.upgrade_level_4_title = str_to_var(savedata.upgrade_level_4_title)
-	
 func present_init_upgrade_data():
 	self.upgrade_level_1_title = "click amount"
 	self.upgrade_level_1_desc = "+1"
@@ -94,12 +29,142 @@ func present_init_upgrade_data():
 	self.upgrade_level_4_price = 100000
 	self.upgrade_level_4_one_time = true
 	self.upgrade_level_4_level_string = "available"
+	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	label.text = str("%.2f" % [timer.time_left])
 
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	timer = get_node("Timer")
+	label = get_node("Label")
+	scorer = get_node("Timer_Scorer")
+	button = get_node("Button")
+	Game.data_purchased.connect(update_labels)
+	
+	if(self.UI_MODE):
+		button.disabled = true
+	else:
+		timer.start(timer_length)
+		_on_timer_scorer_timeout()
+				#for upgrade
+		var upgrade_node_target = get_node("../../../../../HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade/ScrollContainer/VBoxContainer")
+		var u:upgrade_item = upgrade.instantiate()
+		u.loading_from_save = self.loading_from_save
+		u.link(self)
+		upgrade_node_target.add_child(u)
+		self.upgrade_reference = u
+		
 func init() -> void:
 	self.title = "timer"
 	self.price = 100
 	self.amount = 1
 	
+func update_labels():
+	self.upgrade_level_1_level_string = str(upgrade_level_1_level)
+	self.upgrade_level_2_level_string = str(upgrade_level_2_level)
+	self.upgrade_level_3_level_string = str(upgrade_level_3_level)
+	self.upgrade_level_4_level_string = "purchased" if upgrade_level_4_level == 1 else "available"
+	
+#Amount
+func upgrade_1():
+	if(self.upgrade_level_1_price  * Game.discount<= Game.get_points()):
+		Game.remove_time_points(upgrade_level_1_price * Game.discount)
+		self.upgrade_level_1_price = upgrade_level_1_price * Game.discount * upgrade_level_1_price_increase
+		self.upgrade_level_1_level = upgrade_level_1_level + 1
+		
+		#upgrade
+		self.amount += 1
+		update_labels()
+		return true
+	else:
+		return false
+		
+#Multiplier
+func upgrade_2():
+	if(self.upgrade_level_2_price  * Game.discount<= Game.get_points()):
+		Game.remove_time_points(upgrade_level_2_price * Game.discount)
+		self.upgrade_level_2_price = upgrade_level_2_price * Game.discount * upgrade_level_2_price_increase
+		self.upgrade_level_2_level = upgrade_level_2_level + 1
+		
+		#upgrade
+		self.mult += 0.1
+		update_labels()
+		return true
+	else:
+		return false
+
+#alarm	
+func upgrade_3():
+	if(self.upgrade_level_3_price * Game.discount <= Game.get_points()):
+		Game.remove_time_points(upgrade_level_3_price * Game.discount)
+		self.upgrade_level_3_price = upgrade_level_3_price * Game.discount * upgrade_level_3_price_increase
+		self.upgrade_level_3_level = upgrade_level_3_level + 1
+		
+		#upgrade
+		self.timer_length = self.timer_length * 1.5
+		update_labels()
+		return true
+	else:
+		return false
+
+#tick amount
+func upgrade_4():
+	if(self.upgrade_level_4_price * Game.discount <= Game.get_points()):
+		Game.remove_time_points(upgrade_level_4_price * Game.discount)
+		self.upgrade_level_4_price = upgrade_level_4_price * Game.discount * upgrade_level_4_price_increase
+		self.upgrade_level_4_level = upgrade_level_4_level + 1
+		#upgrade
+		print("alarm is set to true")
+		self.alarm = true
+		update_labels()
+		return true
+	else:
+		return false
+
+
+func _on_timer_timeout() -> void:
+	timer.stop()
+	scorer.stop()
+	label.text = "0.00"
+	Game.remove_life()
+	alarmlogic()
+	print("simple timer timeout")
+
+#reset button
+func _on_button_pressed() -> void:
+	timer.start(timer_length)
+	scorer.start(1)
+	self.color = Color(1.0, 1.0, 1.0, 1.0)
+	
+func _on_timer_scorer_timeout() -> void:
+	var reward = self.amount * (Game.get_multiplier() + self.mult)
+	scorer.start(1)
+	particle_tree = p.instantiate()
+	add_child(particle_tree)
+	particle_tree.emit_speed(reward ,1.0,.02)
+	Game.add_time_points(reward)
+	alarmlogic()
+	
+	
+
+func alarmlogic():
+	if(self.alarm):
+		var g = round(timer.time_left) / round(timer_length)
+		if(g < 0.1):
+			self.color = Color(0.452, 0.0, 0.082, 1.0)
+		elif(g < 0.2):
+			self.color = Color(1.0, 0.18, 0.18, 1.0)
+		elif(g < 0.3):
+			self.color = Color(1.0, 0.47, 0.47, 1.0)
+	
+func _on_gui_input(event: InputEvent) -> void:
+	if not self.UI_MODE:
+		if event is not InputEventMouseMotion:
+			if event.pressed:
+				Game.set_selected(self)
+				
+#save/load
 #gather all info to be saved
 func getSaveData() -> Dictionary:
 	var save_dict := {
@@ -151,81 +216,47 @@ func getSaveData() -> Dictionary:
 	}
 	return save_dict
 
-func update_labels():
-	self.upgrade_level_1_level_string = str(upgrade_level_1_level)
-	self.upgrade_level_2_level_string = str(upgrade_level_2_level)
-	self.upgrade_level_3_level_string = str(upgrade_level_3_level)
-	self.upgrade_level_4_level_string = "purchased" if upgrade_level_4_level == 1 else "available"
+func loadSaveData():
+	self.title = str_to_var(savedata.title)
+	self.price = str_to_var(savedata.price)
+	self.amount = str_to_var(savedata.amount)
+	self.mult = str_to_var(savedata.mult)
+	self.alarm = str_to_var(savedata.alarm)
+	self.timer_length = str_to_var(savedata.timer_length)
+	self.upgrade_level_1_desc = str_to_var(savedata.upgrade_level_1_desc)
+	self.upgrade_level_1_disabled = str_to_var(savedata.upgrade_level_1_disabled)
+	self.upgrade_level_1_level = str_to_var(savedata.upgrade_level_1_level)
+	self.upgrade_level_1_level_limit = str_to_var(savedata.upgrade_level_1_level_limit)
+	self.upgrade_level_1_level_string = str_to_var(savedata.upgrade_level_1_level_string)
+	self.upgrade_level_1_one_time = str_to_var(savedata.upgrade_level_1_one_time)
+	self.upgrade_level_1_price = str_to_var(savedata.upgrade_level_1_price)
+	self.upgrade_level_1_price_increase = str_to_var(savedata.upgrade_level_1_price_increase)
+	self.upgrade_level_1_title = str_to_var(savedata.upgrade_level_1_title)
+	self.upgrade_level_2_desc = str_to_var(savedata.upgrade_level_2_desc)
+	self.upgrade_level_2_disabled = str_to_var(savedata.upgrade_level_2_disabled)
+	self.upgrade_level_2_level = str_to_var(savedata.upgrade_level_2_level)
+	self.upgrade_level_2_level_limit = str_to_var(savedata.upgrade_level_2_level_limit)
+	self.upgrade_level_2_level_string = str_to_var(savedata.upgrade_level_2_level_string)
+	self.upgrade_level_2_one_time = str_to_var(savedata.upgrade_level_2_one_time)
+	self.upgrade_level_2_price = str_to_var(savedata.upgrade_level_2_price)
+	self.upgrade_level_2_price_increase = str_to_var(savedata.upgrade_level_2_price_increase)
+	self.upgrade_level_2_title = str_to_var(savedata.upgrade_level_2_title)
+	self.upgrade_level_3_desc = str_to_var(savedata.upgrade_level_3_desc)
+	self.upgrade_level_3_disabled = str_to_var(savedata.upgrade_level_3_disabled)
+	self.upgrade_level_3_level = str_to_var(savedata.upgrade_level_3_level)
+	self.upgrade_level_3_level_limit = str_to_var(savedata.upgrade_level_3_level_limit)
+	self.upgrade_level_3_level_string = str_to_var(savedata.upgrade_level_3_level_string)
+	self.upgrade_level_3_one_time = str_to_var(savedata.upgrade_level_3_one_time)
+	self.upgrade_level_3_price = str_to_var(savedata.upgrade_level_3_price)
+	self.upgrade_level_3_price_increase = str_to_var(savedata.upgrade_level_3_price_increase)
+	self.upgrade_level_3_title = str_to_var(savedata.upgrade_level_3_title)
+	self.upgrade_level_4_desc = str_to_var(savedata.upgrade_level_4_desc)
+	self.upgrade_level_4_disabled = str_to_var(savedata.upgrade_level_4_disabled)
+	self.upgrade_level_4_level = str_to_var(savedata.upgrade_level_4_level)
+	self.upgrade_level_4_level_limit = str_to_var(savedata.upgrade_level_4_level_limit)
+	self.upgrade_level_4_level_string = str_to_var(savedata.upgrade_level_4_level_string)
+	self.upgrade_level_4_one_time = str_to_var(savedata.upgrade_level_4_one_time)
+	self.upgrade_level_4_price = str_to_var(savedata.upgrade_level_4_price)
+	self.upgrade_level_4_price_increase = str_to_var(savedata.upgrade_level_4_price_increase)
+	self.upgrade_level_4_title = str_to_var(savedata.upgrade_level_4_title)
 	
-#Amount
-func upgrade_1():
-	if(self.upgrade_level_1_price  * Game.discount<= Game.get_points()):
-		Game.remove_time_points(upgrade_level_1_price * Game.discount)
-		self.upgrade_level_1_price = upgrade_level_1_price * Game.discount * upgrade_level_1_price_increase
-		self.upgrade_level_1_level = upgrade_level_1_level + 1
-		
-		#upgrade
-		self.amount += 1
-		update_labels()
-		
-#Multiplier
-func upgrade_2():
-	if(self.upgrade_level_2_price  * Game.discount<= Game.get_points()):
-		Game.remove_time_points(upgrade_level_2_price * Game.discount)
-		self.upgrade_level_2_price = upgrade_level_2_price * Game.discount * upgrade_level_2_price_increase
-		self.upgrade_level_2_level = upgrade_level_2_level + 1
-		
-		#upgrade
-		self.mult += 0.1
-		update_labels()
-
-#alarm	
-func upgrade_3():
-	if(self.upgrade_level_3_price * Game.discount <= Game.get_points()):
-		Game.remove_time_points(upgrade_level_3_price * Game.discount)
-		self.upgrade_level_3_price = upgrade_level_3_price * Game.discount * upgrade_level_3_price_increase
-		self.upgrade_level_3_level = upgrade_level_3_level + 1
-		
-		#upgrade
-		self.timer_length = self.timer_length * 1.5
-		update_labels()
-
-#tick amount
-func upgrade_4():
-	if(self.upgrade_level_4_price * Game.discount <= Game.get_points()):
-		Game.remove_time_points(upgrade_level_4_price * Game.discount)
-		self.upgrade_level_4_price = upgrade_level_4_price * Game.discount * upgrade_level_4_price_increase
-		self.upgrade_level_4_level = upgrade_level_4_level + 1
-		#upgrade
-		self.alarm = true
-		update_labels()
-
-		
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	label.text = str("%.2f" % [timer.time_left])
-
-func _on_timer_timeout() -> void:
-	timer.stop()
-	scorer.stop()
-	label.text = "0.00"
-	Game.remove_life()
-	print("simple timer timeout")
-
-func _on_button_pressed() -> void:
-	timer.start(timer_length)
-	scorer.start(1)
-	
-func _on_timer_scorer_timeout() -> void:
-	var reward = self.amount * (Game.get_multiplier() + self.mult)
-	scorer.start(1)
-	particle_tree = p.instantiate()
-	add_child(particle_tree)
-	particle_tree.emit_speed(reward ,1.0,.02)
-	Game.add_time_points(reward)
-	
-func _on_gui_input(event: InputEvent) -> void:
-	if not self.UI_MODE:
-		if event is not InputEventMouseMotion:
-			if event.pressed:
-				Game.set_selected(self)

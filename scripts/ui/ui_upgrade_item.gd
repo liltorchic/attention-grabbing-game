@@ -113,37 +113,41 @@ func _data_purchased():
 		update_price_labels()
 
 func _on_button_pressed() -> void:
-	self.linked_distraction.upgrade_1()
-	if(linked_distraction.upgrade_level_1_one_time == true or linked_distraction.upgrade_level_1_disabled):
-		upgrade_1_button.disabled = true
-		upgrade_1_price.text = "out of stock"
-	else:
-		update_price_labels()
+	var result = self.linked_distraction.upgrade_1()
+	if(result):
+		if(linked_distraction.upgrade_level_1_one_time == true or linked_distraction.upgrade_level_1_disabled):
+			upgrade_1_button.disabled = true
+			upgrade_1_price.text = "out of stock"
+		else:
+			update_price_labels()
 
 
 func _on_button_pressed_2() -> void:
-	self.linked_distraction.upgrade_2()
-	if(linked_distraction.upgrade_level_2_one_time == true or linked_distraction.upgrade_level_2_disabled):
-		upgrade_2_button.disabled = true
-		upgrade_2_price.text = "out of stock"
-	else:
-		update_price_labels()
+	var result = self.linked_distraction.upgrade_2()
+	if(result):
+		if(linked_distraction.upgrade_level_2_one_time == true or linked_distraction.upgrade_level_2_disabled):
+			upgrade_2_button.disabled = true
+			upgrade_2_price.text = "out of stock"
+		else:
+			update_price_labels()
 
 
 func _on_button_pressed_3() -> void:
-	self.linked_distraction.upgrade_3()
-	if(linked_distraction.upgrade_level_3_one_time == true or linked_distraction.upgrade_level_3_disabled):
-		upgrade_3_button.disabled = true
-		upgrade_3_price.text = "out of stock"
-	else:
-		update_price_labels()
+	var result = self.linked_distraction.upgrade_3()
+	if(result):
+		if(linked_distraction.upgrade_level_3_one_time == true or linked_distraction.upgrade_level_3_disabled):
+			upgrade_3_button.disabled = true
+			upgrade_3_price.text = "out of stock"
+		else:
+			update_price_labels()
 
 
 func _on_button_pressed_4() -> void:
-	self.linked_distraction.upgrade_4()
-	if(linked_distraction.upgrade_level_4_one_time == true or linked_distraction.upgrade_level_4_disabled):
-		upgrade_4_button.disabled = true
-		upgrade_4_price.text = "out of stock"
-	else:
-		update_price_labels()
+	var result = self.linked_distraction.upgrade_4()
+	if(result):
+		if(linked_distraction.upgrade_level_4_one_time == true or linked_distraction.upgrade_level_4_disabled):
+			upgrade_4_button.disabled = true
+			upgrade_4_price.text = "out of stock"
+		else:
+			update_price_labels()
 		

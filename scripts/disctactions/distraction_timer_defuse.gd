@@ -13,76 +13,7 @@ var timer_hidden:bool
 var timer_amount:int = 3
 var timer_rng_lower:int = 6
 var timer_rng_upper:int = 12
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	countdown_timer = get_node("TimerCountdown")
-	hidden_timer = get_node("TimerHidden")
-	label = get_node("Label")
-	button = get_node("Button")
-	label.text = ""
-	timer_hidden = true
-	button.visible = false
-	Game.data_purchased.connect(update_labels)
-	
-	if(self.UI_MODE):
-		button.disabled = true
-	else:
-		countdown_timer.set_wait_time(timer_amount + 0.01) # +0.01 so the scorewr can score on 0.00
-		hidden_timer.start(rng.randf_range(timer_rng_lower, timer_rng_upper))
-				#for upgrade
-		var upgrade_node_target = get_node("../../../../../HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade/ScrollContainer/VBoxContainer")
-		var u:upgrade_item = upgrade.instantiate()
-		u.loading_from_save = self.loading_from_save
-		u.link(self)
-		upgrade_node_target.add_child(u)
-		self.upgrade_reference = u
-		
-func loadSaveData():
-	self.title = str_to_var(savedata.title)
-	self.price = str_to_var(savedata.price)
-	self.amount = str_to_var(savedata.amount)
-	self.mult = str_to_var(savedata.mult)
-	self.alarm = str_to_var(savedata.alarm)
-	self.timer_amount = str_to_var(savedata.timer_amount)
-	self.timer_rng_lower = str_to_var(savedata.timer_rng_lower)
-	self.timer_rng_upper = str_to_var(savedata.timer_rng_upper)
-	self.upgrade_level_1_desc = str_to_var(savedata.upgrade_level_1_desc)
-	self.upgrade_level_1_disabled = str_to_var(savedata.upgrade_level_1_disabled)
-	self.upgrade_level_1_level = str_to_var(savedata.upgrade_level_1_level)
-	self.upgrade_level_1_level_limit = str_to_var(savedata.upgrade_level_1_level_limit)
-	self.upgrade_level_1_level_string = str_to_var(savedata.upgrade_level_1_level_string)
-	self.upgrade_level_1_one_time = str_to_var(savedata.upgrade_level_1_one_time)
-	self.upgrade_level_1_price = str_to_var(savedata.upgrade_level_1_price)
-	self.upgrade_level_1_price_increase = str_to_var(savedata.upgrade_level_1_price_increase)
-	self.upgrade_level_1_title = str_to_var(savedata.upgrade_level_1_title)
-	self.upgrade_level_2_desc = str_to_var(savedata.upgrade_level_2_desc)
-	self.upgrade_level_2_disabled = str_to_var(savedata.upgrade_level_2_disabled)
-	self.upgrade_level_2_level = str_to_var(savedata.upgrade_level_2_level)
-	self.upgrade_level_2_level_limit = str_to_var(savedata.upgrade_level_2_level_limit)
-	self.upgrade_level_2_level_string = str_to_var(savedata.upgrade_level_2_level_string)
-	self.upgrade_level_2_one_time = str_to_var(savedata.upgrade_level_2_one_time)
-	self.upgrade_level_2_price = str_to_var(savedata.upgrade_level_2_price)
-	self.upgrade_level_2_price_increase = str_to_var(savedata.upgrade_level_2_price_increase)
-	self.upgrade_level_2_title = str_to_var(savedata.upgrade_level_2_title)
-	self.upgrade_level_3_desc = str_to_var(savedata.upgrade_level_3_desc)
-	self.upgrade_level_3_disabled = str_to_var(savedata.upgrade_level_3_disabled)
-	self.upgrade_level_3_level = str_to_var(savedata.upgrade_level_3_level)
-	self.upgrade_level_3_level_limit = str_to_var(savedata.upgrade_level_3_level_limit)
-	self.upgrade_level_3_level_string = str_to_var(savedata.upgrade_level_3_level_string)
-	self.upgrade_level_3_one_time = str_to_var(savedata.upgrade_level_3_one_time)
-	self.upgrade_level_3_price = str_to_var(savedata.upgrade_level_3_price)
-	self.upgrade_level_3_price_increase = str_to_var(savedata.upgrade_level_3_price_increase)
-	self.upgrade_level_3_title = str_to_var(savedata.upgrade_level_3_title)
-	self.upgrade_level_4_desc = str_to_var(savedata.upgrade_level_4_desc)
-	self.upgrade_level_4_disabled = str_to_var(savedata.upgrade_level_4_disabled)
-	self.upgrade_level_4_level = str_to_var(savedata.upgrade_level_4_level)
-	self.upgrade_level_4_level_limit = str_to_var(savedata.upgrade_level_4_level_limit)
-	self.upgrade_level_4_level_string = str_to_var(savedata.upgrade_level_4_level_string)
-	self.upgrade_level_4_one_time = str_to_var(savedata.upgrade_level_4_one_time)
-	self.upgrade_level_4_price = str_to_var(savedata.upgrade_level_4_price)
-	self.upgrade_level_4_price_increase = str_to_var(savedata.upgrade_level_4_price_increase)
-	self.upgrade_level_4_title = str_to_var(savedata.upgrade_level_4_title)
-		
+
 func present_init_upgrade_data():
 	self.upgrade_level_1_title = "amount"
 	self.upgrade_level_1_desc = "+1"
@@ -108,15 +39,147 @@ func present_init_upgrade_data():
 	self.upgrade_level_4_one_time = true
 	self.upgrade_level_4_level_string = "available"
 
-func init() -> void:
-	self.title = "bomb"
-	self.price = 200
-	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if(!timer_hidden):
 		label.text =  str("%.2f" % [countdown_timer.time_left])
-			
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	countdown_timer = get_node("TimerCountdown")
+	hidden_timer = get_node("TimerHidden")
+	label = get_node("Label")
+	button = get_node("Button")
+	label.text = ""
+	timer_hidden = true
+	button.visible = false
+	Game.data_purchased.connect(update_labels)
+	
+	if(self.UI_MODE):
+		button.disabled = true
+	else:
+		countdown_timer.set_wait_time(timer_amount + 0.01) # +0.01 so the scorewr can score on 0.00
+		hidden_timer.start(rng.randf_range(timer_rng_lower, timer_rng_upper))
+				#for upgrade
+		var upgrade_node_target = get_node("../../../../../HBoxContainer/VBoxContainer_UI_Upgrade/ColorRect/VBoxContainer/upgrade/ScrollContainer/VBoxContainer")
+		var u:upgrade_item = upgrade.instantiate()
+		u.loading_from_save = self.loading_from_save
+		u.link(self)
+		upgrade_node_target.add_child(u)
+		self.upgrade_reference = u
+		
+
+func init() -> void:
+	self.title = "bomb"
+	self.price = 200
+	
+
+func update_labels():
+	self.upgrade_level_1_level_string = str(upgrade_level_1_level)
+	self.upgrade_level_2_level_string = str(upgrade_level_2_level)
+	self.upgrade_level_3_level_string = str(upgrade_level_3_level)
+	self.upgrade_level_4_level_string = "purchased" if upgrade_level_4_level == 1 else "available"
+	
+#Amount
+func upgrade_1():
+	if(self.upgrade_level_1_price * Game.discount <= Game.get_points()):
+		Game.remove_time_points(upgrade_level_1_price * Game.discount)
+		self.upgrade_level_1_price = upgrade_level_1_price * Game.discount * upgrade_level_1_price_increase
+		self.upgrade_level_1_level = upgrade_level_1_level + 1
+		
+		#upgrade
+		self.amount += 1
+		update_labels()
+		return true
+	else:
+		return false
+		
+#Multiplier
+func upgrade_2():
+	if(self.upgrade_level_2_price * Game.discount <= Game.get_points()):
+		Game.remove_time_points(upgrade_level_2_price * Game.discount)
+		self.upgrade_level_2_price = upgrade_level_2_price * Game.discount * upgrade_level_2_price_increase
+		self.upgrade_level_2_level = upgrade_level_2_level + 1
+		
+		#upgrade
+		self.mult += 0.1
+		update_labels()
+		return true
+	else:
+		return false
+
+#peace	
+func upgrade_3():
+	if(self.upgrade_level_3_price * Game.discount <= Game.get_points()):
+		Game.remove_time_points(upgrade_level_3_price * Game.discount)
+		self.upgrade_level_3_price = upgrade_level_3_price * Game.discount * upgrade_level_3_price_increase
+		self.upgrade_level_3_level = upgrade_level_3_level + 1
+		
+		#upgrade
+		self.timer_amount += 1
+		self.timer_rng_lower += 1
+		self.timer_rng_upper += 2
+		update_labels()
+		return true
+	else:
+		return false
+
+#alarm
+func upgrade_4():
+	if(self.upgrade_level_4_price * Game.discount <= Game.get_points()):
+		Game.remove_time_points(upgrade_level_4_price * Game.discount)
+		self.upgrade_level_4_price = upgrade_level_4_price * Game.discount * upgrade_level_4_price_increase
+		self.upgrade_level_4_level = upgrade_level_4_level + 1
+		#upgrade
+		self.alarm = true
+		update_labels()
+		return true
+	else:
+		return false
+	
+
+#reset
+func _on_timer_hidden_timeout() -> void:
+	if(alarm):
+		self.color = Color(0.996, 0.806, 0.395, 1.0)
+	timer_hidden = false
+	button.visible = true
+	countdown_timer.start()
+	
+	
+#you lose
+func _on_timer_countdown_timeout() -> void:
+	countdown_timer.stop()
+	hidden_timer.stop()
+	label.text = "0.00"
+	Game.remove_life()
+	if(alarm):
+		self.color = Color(0.814, 0.0, 0.05, 1.0)
+	print("suprise defuse timeout")
+
+#defuse
+func _on_button_pressed() -> void:
+	var reward = 20 + self.amount * (Game.get_multiplier() + self.mult)
+	if(!countdown_timer.is_stopped()):
+		Game.add_time_points(reward)	
+	timer_hidden = true
+	label.text = ""
+	countdown_timer.stop()
+	countdown_timer.set_wait_time(timer_amount)
+	hidden_timer.start(rng.randf_range(timer_rng_lower, timer_rng_upper))
+	button.visible = false
+	particle_tree = p.instantiate()
+	add_child(particle_tree)
+	particle_tree.emit(reward,2.0)
+	self.color = Color(1.0, 1.0, 1.0, 1.0)
+	
+func _on_gui_input(event: InputEvent) -> void:
+	if not self.UI_MODE:
+		if event is not InputEventMouseMotion:
+			if event.pressed:
+				Game.set_selected(self)
+				
+#save/load
 #gather all info to be saved
 func getSaveData() -> Dictionary:
 	var save_dict := {
@@ -169,91 +232,50 @@ func getSaveData() -> Dictionary:
 		},
 	}
 	return save_dict
-
-func update_labels():
-	self.upgrade_level_1_level_string = str(upgrade_level_1_level)
-	self.upgrade_level_2_level_string = str(upgrade_level_2_level)
-	self.upgrade_level_3_level_string = str(upgrade_level_3_level)
-	self.upgrade_level_4_level_string = "purchased" if upgrade_level_4_level == 1 else "available"
 	
-#Amount
-func upgrade_1():
-	if(self.upgrade_level_1_price * Game.discount <= Game.get_points()):
-		Game.remove_time_points(upgrade_level_1_price * Game.discount)
-		self.upgrade_level_1_price = upgrade_level_1_price * Game.discount * upgrade_level_1_price_increase
-		self.upgrade_level_1_level = upgrade_level_1_level + 1
+func loadSaveData():
+	self.title = str_to_var(savedata.title)
+	self.price = str_to_var(savedata.price)
+	self.amount = str_to_var(savedata.amount)
+	self.mult = str_to_var(savedata.mult)
+	self.alarm = str_to_var(savedata.alarm)
+	self.timer_amount = str_to_var(savedata.timer_amount)
+	self.timer_rng_lower = str_to_var(savedata.timer_rng_lower)
+	self.timer_rng_upper = str_to_var(savedata.timer_rng_upper)
+	self.upgrade_level_1_desc = str_to_var(savedata.upgrade_level_1_desc)
+	self.upgrade_level_1_disabled = str_to_var(savedata.upgrade_level_1_disabled)
+	self.upgrade_level_1_level = str_to_var(savedata.upgrade_level_1_level)
+	self.upgrade_level_1_level_limit = str_to_var(savedata.upgrade_level_1_level_limit)
+	self.upgrade_level_1_level_string = str_to_var(savedata.upgrade_level_1_level_string)
+	self.upgrade_level_1_one_time = str_to_var(savedata.upgrade_level_1_one_time)
+	self.upgrade_level_1_price = str_to_var(savedata.upgrade_level_1_price)
+	self.upgrade_level_1_price_increase = str_to_var(savedata.upgrade_level_1_price_increase)
+	self.upgrade_level_1_title = str_to_var(savedata.upgrade_level_1_title)
+	self.upgrade_level_2_desc = str_to_var(savedata.upgrade_level_2_desc)
+	self.upgrade_level_2_disabled = str_to_var(savedata.upgrade_level_2_disabled)
+	self.upgrade_level_2_level = str_to_var(savedata.upgrade_level_2_level)
+	self.upgrade_level_2_level_limit = str_to_var(savedata.upgrade_level_2_level_limit)
+	self.upgrade_level_2_level_string = str_to_var(savedata.upgrade_level_2_level_string)
+	self.upgrade_level_2_one_time = str_to_var(savedata.upgrade_level_2_one_time)
+	self.upgrade_level_2_price = str_to_var(savedata.upgrade_level_2_price)
+	self.upgrade_level_2_price_increase = str_to_var(savedata.upgrade_level_2_price_increase)
+	self.upgrade_level_2_title = str_to_var(savedata.upgrade_level_2_title)
+	self.upgrade_level_3_desc = str_to_var(savedata.upgrade_level_3_desc)
+	self.upgrade_level_3_disabled = str_to_var(savedata.upgrade_level_3_disabled)
+	self.upgrade_level_3_level = str_to_var(savedata.upgrade_level_3_level)
+	self.upgrade_level_3_level_limit = str_to_var(savedata.upgrade_level_3_level_limit)
+	self.upgrade_level_3_level_string = str_to_var(savedata.upgrade_level_3_level_string)
+	self.upgrade_level_3_one_time = str_to_var(savedata.upgrade_level_3_one_time)
+	self.upgrade_level_3_price = str_to_var(savedata.upgrade_level_3_price)
+	self.upgrade_level_3_price_increase = str_to_var(savedata.upgrade_level_3_price_increase)
+	self.upgrade_level_3_title = str_to_var(savedata.upgrade_level_3_title)
+	self.upgrade_level_4_desc = str_to_var(savedata.upgrade_level_4_desc)
+	self.upgrade_level_4_disabled = str_to_var(savedata.upgrade_level_4_disabled)
+	self.upgrade_level_4_level = str_to_var(savedata.upgrade_level_4_level)
+	self.upgrade_level_4_level_limit = str_to_var(savedata.upgrade_level_4_level_limit)
+	self.upgrade_level_4_level_string = str_to_var(savedata.upgrade_level_4_level_string)
+	self.upgrade_level_4_one_time = str_to_var(savedata.upgrade_level_4_one_time)
+	self.upgrade_level_4_price = str_to_var(savedata.upgrade_level_4_price)
+	self.upgrade_level_4_price_increase = str_to_var(savedata.upgrade_level_4_price_increase)
+	self.upgrade_level_4_title = str_to_var(savedata.upgrade_level_4_title)
 		
-		#upgrade
-		self.amount += 1
-		update_labels()
-		
-#Multiplier
-func upgrade_2():
-	if(self.upgrade_level_2_price * Game.discount <= Game.get_points()):
-		Game.remove_time_points(upgrade_level_2_price * Game.discount)
-		self.upgrade_level_2_price = upgrade_level_2_price * Game.discount * upgrade_level_2_price_increase
-		self.upgrade_level_2_level = upgrade_level_2_level + 1
-		
-		#upgrade
-		self.mult += 0.1
-		update_labels()
-
-#peace	
-func upgrade_3():
-	if(self.upgrade_level_3_price * Game.discount <= Game.get_points()):
-		Game.remove_time_points(upgrade_level_3_price * Game.discount)
-		self.upgrade_level_3_price = upgrade_level_3_price * Game.discount * upgrade_level_3_price_increase
-		self.upgrade_level_3_level = upgrade_level_3_level + 1
-		
-		#upgrade
-		self.timer_amount += 1
-		self.timer_rng_lower += 1
-		self.timer_rng_upper += 2
-		update_labels()
-
-#alarm
-func upgrade_4():
-	if(self.upgrade_level_4_price * Game.discount <= Game.get_points()):
-		Game.remove_time_points(upgrade_level_4_price * Game.discount)
-		self.upgrade_level_4_price = upgrade_level_4_price * Game.discount * upgrade_level_4_price_increase
-		self.upgrade_level_4_level = upgrade_level_4_level + 1
-		#upgrade
-		self.alarm = true
-		update_labels()
-	
-
-	
-#reset
-func _on_timer_hidden_timeout() -> void:
-	timer_hidden = false
-	button.visible = true
-	countdown_timer.start()
-	
-#you lose
-func _on_timer_countdown_timeout() -> void:
-	countdown_timer.stop()
-	hidden_timer.stop()
-	label.text = "0.00"
-	Game.remove_life()
-	print("suprise defuse timeout")
-
-#defuse
-func _on_button_pressed() -> void:
-	var reward = 20 + self.amount * (Game.get_multiplier() + self.mult)
-	if(!countdown_timer.is_stopped()):
-		Game.add_time_points(reward)	
-	timer_hidden = true
-	label.text = ""
-	countdown_timer.stop()
-	countdown_timer.set_wait_time(timer_amount)
-	hidden_timer.start(rng.randf_range(timer_rng_lower, timer_rng_upper))
-	button.visible = false
-	particle_tree = p.instantiate()
-	add_child(particle_tree)
-	particle_tree.emit(reward,2.0)
-	
-func _on_gui_input(event: InputEvent) -> void:
-	if not self.UI_MODE:
-		if event is not InputEventMouseMotion:
-			if event.pressed:
-				Game.set_selected(self)
