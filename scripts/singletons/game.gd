@@ -111,14 +111,14 @@ func doDiscountUpdate():
 		button.disabled = true
 		label.text = "out of stock"
 		
-@onready var stats_node: NodePath = "game/HBoxContainer/VBoxContainer_UI/ColorRect/container_scorer_ver"
+@onready var stats_node:  = %container_scorer_ver
 
 const SAVE_PATH = "user://save_json.json"
 
 func save_game() -> void:
 	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 
-	var stats := get_node(stats_node)
+	var stats := stats_node
 	# JSON doesn't support many of Godot's types such as Vector2.
 	# var_to_str can be used to convert any Variant to a String.
 	var save_dict := {

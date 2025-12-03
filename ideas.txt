@@ -4,8 +4,13 @@ mult two number for points
 memory game
 long term memory game
 mini shop (this is the best idea, have like different genres and types)
+different game modes/challanges
 
 --mechanics--
-buy lives
 upgrade modules
 passive unlocking (automatic)
+
+--------------
+reimplement main upgrades to left panel to better associate what it upgrades
+	main upgrade data labels dont update
+add average points per second (graph??? lol maybe not) 

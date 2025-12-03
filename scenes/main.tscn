@@ -53,6 +53,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="container_scorer_ver" type="VBoxContainer" parent="game/HBoxContainer/VBoxContainer_UI/ColorRect"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

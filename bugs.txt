@@ -1,0 +1,20 @@
+bugs
+----------
+discount extra data field initialized with purchased tag
+multiplier data field should be item multiplier instead of upgrade count
+clicking on button text blocks button press detection
+ticker multiplayer upgrade price doesn't work
+	ticker adds points when at negative point
+
+
+
+
+balance ideas
+---------------
+timer should payout way more to balance against autoclickers
+is the discount only being 1% off a joke lol 
+main multiplier price should be higher
+individual multiplier upgrades should be cheaper
+bomb shoulr reward more points the quicker you are :3
+ticker offset upgrade should be super cheap
+expired timers should deduct points
