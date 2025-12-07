@@ -1,6 +1,20 @@
 extends Node
 
 @onready var window_options: OptionButton = $VBoxContainer/OptionButton
+@onready var slider_music : HSlider = $VBoxContainer/HBoxContainer_Music/HSlider
+@onready var slider_clicks : HSlider = $VBoxContainer/HBoxContainer_Clicks/HSlider
+@onready var slider_amb : HSlider = $VBoxContainer/HBoxContainer_Amb/HSlider
+@onready var slider_sfx : HSlider = $VBoxContainer/HBoxContainer_SFX/HSlider
+@onready var slider_alarm : HSlider = $VBoxContainer/HBoxContainer_Alarm/HSlider
+
+var audio_music_bus = AudioServer.get_bus_index("Music")
+var audio_click_bus = AudioServer.get_bus_index("Clicks")
+var audio_amb_bus = AudioServer.get_bus_index("AMB")
+var audio_sfx_bus = AudioServer.get_bus_index("SFX")
+var audio_alarm_bus = AudioServer.get_bus_index("Alarm")
+
+# Create new ConfigFile object.
+var config = ConfigFile.new()
 
 func _ready() -> void:
 	if Engine.is_embedded_in_editor():
@@ -14,6 +28,22 @@ func _ready() -> void:
 			window_options.select(1)
 		DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
 			window_options.select(2)
+			
+	var err = config.load("user://settings.cfg")
+		
+	# If the file didn't load, ignore it.
+	if err != OK:
+		pass
+	else:
+		slider_music.value = config.get_value("volume", "music")
+		
+		slider_clicks.value = config.get_value("volume", "clicks")
+		
+		slider_amb.value = config.get_value("volume", "amb")
+		
+		slider_sfx.value = config.get_value("volume", "sfx")
+		
+		slider_alarm.value = config.get_value("volume", "alarms")
 
 #video window mode
 func _on_option_button_item_selected(index: int) -> void:
@@ -32,3 +62,32 @@ func _on_button_pressed() -> void:
 #open save folder
 func _on_button_savefldr_pressed() -> void:
 	OS.shell_open(ProjectSettings.globalize_path("user://"))
+
+
+func _on_music_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(audio_music_bus, linear_to_db(value))
+	config.set_value("volume", "music", value)
+	_save_config()
+
+func _on_click_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(audio_click_bus, linear_to_db(value))
+	config.set_value("volume", "clicks", value)
+	_save_config()
+
+func _on_amb_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(audio_amb_bus, linear_to_db(value))
+	config.set_value("volume", "amb", value)
+	_save_config()
+
+func _on_sfx_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(audio_sfx_bus, linear_to_db(value))
+	config.set_value("volume", "sfx", value)
+	_save_config()
+
+func _on_alarm_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(audio_alarm_bus, linear_to_db(value))
+	config.set_value("volume", "alarms", value)
+	_save_config()
+	
+func _save_config():
+	config.save("user://settings.cfg")

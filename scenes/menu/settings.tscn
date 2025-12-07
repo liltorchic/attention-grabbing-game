@@ -40,7 +40,9 @@ text = "Music"
 [node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer_Music"]
 layout_mode = 2
 size_flags_horizontal = 3
-value = 100.0
+max_value = 1.0
+step = 0.001
+value = 1.0
 
 [node name="HBoxContainer_Clicks" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -53,7 +55,9 @@ text = "Clicks"
 [node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer_Clicks"]
 layout_mode = 2
 size_flags_horizontal = 3
-value = 100.0
+max_value = 1.0
+step = 0.001
+value = 1.0
 
 [node name="HBoxContainer_Amb" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -66,7 +70,9 @@ text = "Amb"
 [node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer_Amb"]
 layout_mode = 2
 size_flags_horizontal = 3
-value = 100.0
+max_value = 1.0
+step = 0.001
+value = 1.0
 
 [node name="HBoxContainer_SFX" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -79,7 +85,9 @@ text = "SFX"
 [node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer_SFX"]
 layout_mode = 2
 size_flags_horizontal = 3
-value = 100.0
+max_value = 1.0
+step = 0.001
+value = 1.0
 
 [node name="HBoxContainer_Alarm" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -92,7 +100,9 @@ text = "Alarm"
 [node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer_Alarm"]
 layout_mode = 2
 size_flags_horizontal = 3
-value = 100.0
+max_value = 1.0
+step = 0.001
+value = 1.0
 
 [node name="OptionButton" type="OptionButton" parent="VBoxContainer"]
 layout_mode = 2
@@ -118,6 +128,11 @@ layout_mode = 2
 layout_mode = 2
 text = "back"
 
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer_Music/HSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer_Clicks/HSlider" to="." method="_on_click_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer_Amb/HSlider" to="." method="_on_amb_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer_SFX/HSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer_Alarm/HSlider" to="." method="_on_alarm_slider_value_changed"]
 [connection signal="item_selected" from="VBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer/Button_savefldr" to="." method="_on_button_savefldr_pressed"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer2/Button" to="." method="_on_button_pressed"]

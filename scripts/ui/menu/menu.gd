@@ -1,11 +1,11 @@
 extends Control
 
 func _ready() -> void:
-		($VBoxContainer/CenterContainer5/Button_delete_save as Button).disabled = not FileAccess.file_exists("user://save_json.json")
+		#($VBoxContainer/CenterContainer5/Button_delete_save as Button).disabled = not FileAccess.file_exists("user://save_json.json")
 		($VBoxContainer/CenterContainer2/Button_load as Button).disabled = not FileAccess.file_exists("user://save_json.json")
 
 func _process(_delta: float) -> void:
-	($VBoxContainer/CenterContainer5/Button_delete_save as Button).disabled = not FileAccess.file_exists("user://save_json.json")
+	#($VBoxContainer/CenterContainer5/Button_delete_save as Button).disabled = not FileAccess.file_exists("user://save_json.json")
 	($VBoxContainer/CenterContainer2/Button_load as Button).disabled = not FileAccess.file_exists("user://save_json.json")
 	
 func _on_button_new_pressed() -> void:
